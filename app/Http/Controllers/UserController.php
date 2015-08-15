@@ -7,6 +7,7 @@ use App\Http\Requests\AddIrrBankRequest;
 use App\Http\Requests\DepositBitcoinRequest;
 use App\Http\Requests\DepositRialRequest;
 use App\Http\Requests\FundHistoryRequest;
+use App\Http\Requests\TradeHistoryRequest;
 use App\Http\Requests\UpdateInfoRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\WithdrawBitcoinRequest;
@@ -105,17 +106,17 @@ class UserController extends Controller
 
     public function fundHistoryShow()
     {
-        $fund_reports = $this->userClass->fundReport(Auth::user()->id, 1, 0, 0);
+        $fund_reports = $this->userClass->fundReport(Auth::user()->id, 1, [4,5], [2,3,4]);
         return view('user.fund.history', compact('fund_reports'));
     }
 
     public function fundHistory(FundHistoryRequest $request)
     {
         $money = $request->currency_report;
-        $type = $request->kind_report;
-        $status = $request->status_report;
+        $type = array($request->kind_report);
+        $status = array($request->status_report);
         $fund_reports = $this->userClass->fundReport(Auth::user()->id, $money, $type, $status);
-        return view('user.fund.history', compact('fund_reports'))->withInput($request->old('status_report'));
+        return view('user.fund.history', compact('fund_reports'));
     }
 
     public function depositBitcoinShow()
@@ -203,9 +204,19 @@ class UserController extends Controller
         return view('user.trades.active', compact('active_trades'));
     }
 
-    public function tradeHistory()
+    public function tradeHistoryShow()
     {
-        return view('user.trades.history');
+        $trades = $this->tradeRepository->getUserAllTrades(Auth::user()->id, 3, [2,3], [1,2]);
+        return view('user.trades.history', compact('trades'));
+    }
+
+    public function tradeHistory(TradeHistoryRequest $request)
+    {
+        $money = $request->currency_report;
+        $status = array($request->status_report);
+        $type = array($request->kind_report);
+        $trades = $this->tradeRepository->getUserAllTrades(Auth::user()->id, $money, $status, $type);
+        return view('user.trades.history', compact('trades'));
     }
 
     public function bankIrr()

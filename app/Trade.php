@@ -8,32 +8,32 @@ class Trade extends Model
 {
     protected $table = 'trades';
 
-    public function owner()
+    public function ownerTrade()
     {
         return $this->belongsTo('App\User', 'owner');
     }
 
-    public function type()
+    public function typeTrade()
     {
         return $this->belongsTo('App\Type', 'type');
     }
 
-    public function status()
+    public function statusTrade()
     {
         return $this->belongsTo('App\Status', 'status');
     }
 
-    public function money()
+    public function moneyTrade()
     {
         return $this->belongsTo('App\Money', 'money');
     }
 
-    public function trade1()
+    public function trade1Trade()
     {
         return $this->belongsToMany('App\TradeDetail', 'trade1');
     }
 
-    public function trade2()
+    public function trade2Trade()
     {
         return $this->belongsToMany('App\TradeDetail', 'trade2');
     }

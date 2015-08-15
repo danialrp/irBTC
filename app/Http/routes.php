@@ -79,7 +79,9 @@ Route::get('/trade/perfectmoney', 'TradeController@Perfectmoney');
 
 Route::get('/trades/active', 'UserController@activeTrades');
 
-Route::get('/trades/history', 'UserController@tradeHistory');
+Route::get('/trades/history', 'UserController@tradeHistoryShow');
+
+Route::post('/trades/history', 'UserController@tradeHistory');
 
 Route::post('/trade/update/cancel', 'TradeController@cancelTrade');
 

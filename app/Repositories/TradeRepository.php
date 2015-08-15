@@ -94,4 +94,19 @@ class TradeRepository {
             ->get();
     }
 
+    public function getUserAllTrades($id, $money, $status, $type)
+    {
+        if($status == [0])
+            $status = [2,3];
+        if($type == [0])
+            $type = [1,2];
+        return Trade::where('owner', $id)
+            ->where('money', $money)
+            ->whereIn('status', $status)
+            ->whereIn('type', $type)
+            ->select('reference_number', 'type', 'amount', 'remain', 'value', 'fee_amount', 'status', 'money', 'description', 'created_fa', 'created_at')
+            ->orderby('created_at', 'desc')
+            ->get();
+    }
+
 }

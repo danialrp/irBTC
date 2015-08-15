@@ -265,39 +265,16 @@ class UserClass
 
     public function fundReport($id, $money, $type, $status)
     {
-        if($type == 0 && $status == 0) {
-            $fund_report = Transaction::where('owner', $id)
-                ->where('money', $money)
-                ->select('id', 'type', 'created_fa', 'amount', 'money', 'bank', 'status', 'note')
-                ->orderby('created_fa', 'desc')
-                ->get();
-        }
-        elseif($type == 0) {
-            $fund_report = Transaction::where('owner', $id)
-                ->where('money', $money)
-                ->where('status', $status)
-                ->select('id', 'type', 'created_fa', 'amount', 'money', 'bank', 'status', 'note')
-                ->orderby('created_fa', 'desc')
-                ->get();
-        }
-        elseif($status == 0) {
-            $fund_report = Transaction::where('owner', $id)
-                ->where('money', $money)
-                ->where('type', $type)
-                ->select('id', 'type', 'created_fa', 'amount', 'money', 'bank', 'status', 'note')
-                ->orderby('created_fa', 'desc')
-                ->get();
-        }
-        else {
-            $fund_report = Transaction::where('owner', $id)
-                ->where('money', $money)
-                ->where('status', $status)
-                ->where('type', $type)
-                ->select('id', 'type', 'created_fa', 'amount', 'money', 'bank', 'status', 'note')
-                ->orderby('created_fa', 'desc')
-                ->get();
-        }
-
-        return $fund_report;
+        if($type == [0])
+            $type = [4,5];
+        if($status == [0])
+            $status = [2,3,4];
+        return $fund_report = Transaction::where('owner', $id)
+            ->where('money', $money)
+            ->whereIn('type', $type)
+            ->whereIn('status', $status)
+            ->select('id', 'type', 'created_fa', 'amount', 'money', 'bank', 'status', 'note')
+            ->orderby('created_fa', 'desc')
+            ->get();
     }
 }
