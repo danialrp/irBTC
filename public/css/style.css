@@ -1,0 +1,946 @@
+/**
+ * Eric Meyer's Reset CSS v2.0
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table tr:nth-of-type(even) {
+    background: #eaeaea;
+}
+
+@font-face {
+    font-family: 'MyYekan';
+    src: url('../font/Yekan.eot'); /* IE9 Compat Modes */
+    src: url('../font/Yekan.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/Yekan.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../font/Yekan.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../font/Yekan.svg#svgFontName') format('svg'); /* Legacy iOS */
+    /*url('../fonts/Yekan.woff2') format('woff2'), *//* Super Modern Browsers */
+}
+
+body {
+    font-family: 'MyYekan' !important;
+    font-size: 11px;
+    line-height: 1px;
+    direction: rtl;
+    background-color: #CBCBCB;
+}
+
+body a, a:visited {
+    text-decoration: none;
+    color: #1D417A;
+}
+
+body a:hover {
+    text-decoration: underline;
+    color: #000000;
+}
+
+#page-wrap {
+    background-color: #FFFFFF;
+    width: 1100px;
+    margin: auto;
+}
+
+#header {
+    width: 100%;
+    height: 45px;
+    background-color: #999999;
+}
+
+.user-login {
+    width: 600px;
+    height: 41px;
+    padding: 2px 4px 2px 2px;
+}
+
+#login-error {
+    display: none;
+    font-family: 'MyYekan' !important;
+    direction: rtl;
+}
+
+#login-error ul {
+    padding: 0px 30px 0px 0px;
+}
+
+#login-error ul li {}
+
+.login-error-item {
+    line-height: 20px;
+    list-style-type: disc;
+}
+
+#flash-message {
+    display: block;
+    font-family: 'MyYekan' !important;
+    direction: rtl;
+}
+
+#message ul {
+    padding: 0px 30px 0px 0px;
+}
+
+#message ul li {}
+
+.message-item {
+    line-height: 20px;
+    list-style-type: none;
+}
+
+.ui-dialog .ui-dialog-title {
+    margin: 0px 0px 0px 0px !important;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: right !important;
+    padding: 7px 0px !important;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    position: absolute;
+    right: .3em;
+    top: 50%;
+    width: 20px;
+    margin: -10px 273px 0 0 !important;
+    padding: 1px;
+    height: 20px;
+}
+
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: .5em 2em !important;
+    background: none;
+    overflow: auto;
+}
+
+.login-form-small {
+    margin: 7px 0px 0px 0px;
+}
+
+.login-txt {
+    width: 135px;
+    display: inline;
+    padding-left: 3px;
+}
+
+.login-txt ul {
+    width: 200px;
+    display: inline;
+}
+
+.login-txt ul li {
+    font-size: 11px;
+    width: 90px;
+    display: inline;
+    padding: 0px 8px 0px 0px;
+}
+
+.login-txt-prof {
+    width: 135px;
+    display: inline;
+    padding-left: 3px;
+}
+
+.login-txt-prof ul {
+    width: 200px;
+    display: inline;
+}
+
+.login-txt-prof ul li {
+    font-size: 12px;
+    width: 90px;
+    display: inline;
+    padding: 0px 8px 0px 0px;
+    line-height: 40px;
+}
+
+.btn-simple {
+    font-family: 'MyYekan';
+    width: 98px;
+    height: 27px;
+    color: #222222;
+    border: 1px solid #888888;
+}
+
+.btn-simple:hover {
+    color: #FFFFFF;
+    background-color: #323B57;
+}
+
+.txt-simple {
+    font-family: 'MyYekan' !important;
+    font-size: 12px;
+    width: 120px;
+    height: 19px;
+}
+
+#logo {
+    width: 140px;
+    margin: -43px 961px 0px 0px;
+}
+
+#logo img {
+    width: 136px;
+    height: 42px;
+}
+
+#menu {
+    width: 100%;
+    height: 50px;
+    background-color: #FFFFFF;
+}
+
+#menu ul {
+    text-align: center;
+    padding: 10px 0px 0px 0px;
+}
+
+#menu ul li {
+    display: inline-block;
+    padding: 0px 0px 0px 50px;
+    line-height: 25px;
+}
+
+#menu ul li a {
+    padding: 0px;
+    width: 140px;
+    height: 27px;
+    display: block;
+}
+
+#menu a:hover{
+    text-decoration: none;
+    color: #FFFFFF;
+    background-color: #323B57;
+}
+
+.btn-menu {
+    color: #222222;
+    background-color: #F0F0F0;
+    border: 1px solid #000000;
+}
+
+
+#sidebar {
+    background-color: #FFFFFF;
+    width: 250px;
+    height: 783px;
+    position: absolute;
+    margin: 10px 0px 0px 0px;
+    border-left: 1px solid #EBEBEB;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+.sidebar-container {
+    padding: 0px;
+    height: 100%;
+
+}
+
+.sidebar-section {
+    padding: 0px 0px 12px 0px;
+}
+
+.sidebar-head {
+    line-height: 28px;
+    font-weight: bold;
+    font-size: 12px;
+    background: #EDEDED;
+    padding: 0px 7px 0px 0px;
+}
+
+.sidebar-element {
+    padding: 17px 0px 4px 0px;
+    margin: 0pc 18px 0px 0px;
+    font-size: 12px;
+}
+
+.sidebar-element-title {
+    font-size: 12px;
+}
+
+.sidebar-element-value {
+    color: #474749;
+    direction: ltr;
+    margin: 0px 115px 0px 0px;
+    display: block;
+    width: 100px;
+    height: 5px;
+}
+
+#btc_balance a, a:visited, a:hover {
+    color: #1D417A;
+    text-decoration: none;
+}
+
+#ir_balance a, a:visited, a:hover {
+    color: #1D417A;
+    text-decoration: none;
+}
+
+#wm_balance a, a:visited, a:hover {
+    color: #1D417A;
+    text-decoration: none;
+}
+
+#pm_balance a, a:visited, a:hover {
+    color: #1D417A;
+    text-decoration: none;
+}
+
+#main-content {
+    width: 848px;
+    height: auto;
+    background: #FFFFFF;
+    margin: 2px 252px 0px -1px;
+    padding: 0px 0px 7px 0px;
+}
+
+#box {
+    padding: 1px 0px 0px 0px;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+}
+
+.trade-box-right {
+    width: 408px;
+    height: 264px;
+    border: 1px solid #EBEBEB;
+    margin: 7px 10px 0px 0px;
+    position: relative;
+}
+
+.trade-box-left{
+    width: 408px;
+    height: 264px;
+    border: 1px solid #EBEBEB;
+    margin: -266px 427px 0px 0px;
+    position: relative;
+}
+
+.trade-box-title {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    margin: 0px 4px 0px 0px;
+}
+
+.trade-form {
+    padding: 5px 13px 0px 13px;
+    font-size: 13px;
+}
+
+.trade-box-element {
+    padding: 7px 20px 7px 0px;
+}
+
+.trade-box-element-lbl {
+    padding: 0px 20px 0px 0px;
+    line-height: 36px;
+}
+
+.txt-trade {
+    font-family: "MyYekan" !important;
+    font-size: 13px !important;
+    border: 1px solid #AAAAAA;
+    text-align: left;
+    width: 130px;
+    height: 18px;
+    padding: 0px 0px 0px 4px;
+    direction: ltr;
+}
+
+.txt-trade-amount {
+    margin: 0px 111px 0px 6px;
+}
+
+.txt-trade-value {
+    margin: 0px 95px 0px 6px;
+}
+
+.lbl-trade {
+    margin: 0px 177px 0px 5px;
+}
+
+.btn-trade {
+    margin: 45px 240px 0px 0px;
+    position: absolute;
+}
+
+.btn-calculate {
+    margin: 45px 32px 0px 0px;
+}
+
+.trade-box-notice {
+    position: absolute;
+    margin: 10px 29px 0px 0px;
+    font-size: 12px;
+}
+
+.trade-list-right {
+    width: 408px;
+    height: 510px;
+    margin: 6px 10px 0px 0px;
+    border: 1px solid #EBEBEB;
+    position: relative;
+}
+
+.trade-list-left {
+    width: 408px;
+    height: 510px;
+    margin: -512px 427px 0px 0px;
+    border: 1px solid #EBEBEB;
+    position: relative;
+}
+
+.trade-list-top {
+    margin: 11px 5px 15px 0px;
+}
+
+.trade-list-top-title {
+    font-size: 13px;
+    font-weight: bold;
+    color: #193477;
+}
+
+.trade-list-top-total {
+    margin: 20px 270px 0px 0px;
+    color: #595656;
+    font-size: 11px;
+}
+
+.trade-list-table {
+    height: 431px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*width: 402px;
+    margin: 0px 2px;*/
+}
+
+.trade-table {
+    font-size: 13px;
+    /*margin: 0px 2px 0px 0px;*/
+    text-align: center;
+    overflow: scroll;
+    width: 408px;
+}
+
+.trade-list-lbl {
+    width: 408px;
+    height: 29px;
+    background-color: #CCC;
+}
+
+.trade-list-lbl ul li {
+    display: inline;
+    line-height: 28px;
+    margin: 0px 46px 0px 43px;
+    padding: 0px 2px 0px 1px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.trade-table thead {
+    font-weight: bold;
+    background: #F0F0F0;
+    width: 408px;
+    margin: 0px -4px 0px 0px;
+}
+
+.trade-table thead th {
+    width: 133px;
+}
+
+.trade-table tr {
+    line-height: 30px;
+    border-bottom: 1px solid #CCC;
+}
+
+.trade-table tr:hover {
+    background: #fffff5;
+}
+
+.trade-table tbody td {
+    width: 133px;
+    font-size: 13px;
+}
+
+.t-row {
+    cursor: pointer;
+}
+
+.trade-fee-show {
+    font-size: 12px;
+    width: 825px;
+    height: 35px;
+    border: 1px solid #EBEBEB;
+    margin: 4px 10px 0px 0px;
+}
+
+.trade-fee-show label {
+    margin: 0px 8px 0px 0px;
+    line-height: 32px;
+}
+
+.active-trades {
+    width: 825px;
+    border: 1px solid #EBEBEB;
+    margin: 4px 10px 0px 0px;
+}
+
+.form-normal {
+    font-size: 13px;
+    width: 800px;
+    text-align: center;
+    padding: 0px 19px 0px 0px;
+}
+
+.form-normal-content {
+    width: 480px;
+    padding: 35px 0px 0px 0px;
+    margin: auto;
+}
+
+.txt-form-normal {
+    width: 250px;
+    margin: 0px 30px 0px 60px;
+    font-size: 12px;
+}
+
+.btn-form-normal {
+    font-family: 'MyYekan';
+    width: 120px;
+    height: 27px;
+    color: #222222;
+    border: 1px solid #888888;
+}
+
+.btn-form-normal:hover {
+    color: #FFFFFF;
+    background-color: #323B57;
+}
+
+.fieldset-normal {
+    margin: 14px 8px 0px 0px;
+    border: 1px solid #000000;
+}
+
+.fieldset-normal legend{
+    margin: 0px 26px;
+    padding: 0px 15px;
+}
+
+.form-element {
+    padding: 0px 0px 30px 0px;
+    text-align: left;
+}
+
+.form-btn {
+    padding: 20px 0px 0px 0px;
+}
+
+.lbl-center {
+    margin: auto;
+    font-size: 11px;
+    padding: 12px 0 0 0;
+}
+
+#update-info-form {
+    padding: 0px 19px 220px 0px;
+}
+
+#update-password-form {
+    padding: 0px 19px 518px 0px;
+}
+
+#register-form {
+    padding: 0px 19px 518px 0px;
+}
+
+#footer {
+    background: url("../image/footer.png") repeat-x;
+    width: 100%;
+    height: 70px;
+    color: #9D9D9D;
+}
+
+#footer a {
+    color: #C2C2C2;
+}
+
+#footer a:visited, a:hover {
+    color: #C2C2C2;
+    text-decoration: underline;
+}
+
+.copy-right {
+    color: #9D9D9D;
+    height: 20px;
+    width: 500px;
+    padding: 20px 0px 0px 0px;
+    margin: auto;
+    text-align: center;
+}
+
+.footer-links {
+    width: 500px;
+    height: 20px;
+    text-align: center;
+    padding: 3px 0px 0px 0px;
+    margin: auto;
+}
+
+.footer-links ul li {
+    display: inline;
+    padding: 0px 0px 0px 15px;
+}
+
+.fund-menu {
+    padding: 9px 0px 599px;
+}
+
+.fund-item {
+    border: 1px solid #888888;
+    height: 50px;
+    margin: 0px 10px 7px;
+}
+
+#irr-deposit {
+    padding: 9px 0px 303px 0px;
+}
+
+#irr-deposit .fund-menu {
+    padding: 0px;
+}
+
+#irr-deposit-btn {
+    margin: -150px 709px 0px 0px;
+    position: absolute;
+}
+
+#irr-withdraw {
+    padding: 9px 0px 409px 0px;
+}
+
+#irr-withdraw .fund-menu {
+    padding: 0px;
+}
+
+#irr-withdraw-btn {
+    margin: -88px 709px 0px 0px;
+    position: absolute;
+}
+
+#btc-deposit {
+    padding: 9px 0px 312px 0px;
+}
+
+#btc-deposit .fund-menu {
+    padding: 0px;
+}
+
+#btc-deposit-btn {
+    margin: -119px 709px 0px 0px;
+    position: absolute;
+}
+
+#btc-withdraw {
+    padding: 9px 0px 343px 0px;
+}
+
+#btc-withdraw .fund-menu {
+    padding: 0px;
+}
+
+#btc-withdraw-btn {
+    margin: -88px 709px 0px 0px;
+    position: absolute;
+}
+
+#fund-history {
+    margin: 10px 0px 111px 0px;
+}
+.history-info-container {
+    margin: 20px 8px 13px 0px;
+}
+
+#fund-history-btn {
+    margin: 670px 269px 0px 0px;
+    position: absolute;
+}
+.history-table-report {
+    width: 825px;
+    height: 631px;
+    margin: 0px 10px 0px 0px;
+    padding: 0px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border: 1px solid #ccc;
+}
+
+.active-table-report {
+    margin: -5px -11px 0px 0px;
+}
+
+.fund-info {
+    border: 1px solid #888888;
+    margin: 0px 10px 7px;
+}
+
+.fund-info-item {
+    padding: 10px 0px 10px 30px;
+}
+
+.fund-info-item label {
+    padding: 0px 5px 0px 5px;
+}
+
+.fund-info-item-child {
+    margin: -10px 80px 0px 0px;
+}
+
+.fund-info-detail {
+    padding: 2px 3px 5px 0px;
+}
+
+.bank-dropdown {
+    width: 260px;
+}
+
+.txt-fund {
+    font-family: "MyYekan" !important;
+    font-size: 13px !important;
+    border: 1px solid #AAA;
+    text-align: left;
+    width: 200px;
+    height: 18px;
+    padding: 0px 0px 0px 4px;
+    direction: ltr;
+}
+
+.hr-tag {
+    padding: 0px;
+}
+
+.fund-info-item ul li {
+    padding: 10px 0px 8px 0px;
+}
+
+.fund-info-container {
+    padding: 15px 5px 8px 0px;
+}
+
+.currency-balance-container {
+    margin: 16px 6px 0px 0px;
+}
+
+.currency-name {
+    font-size: 12px;
+    color: #193477;
+    font-weight: bold;
+    margin: 12px 5px 0px 0px;
+}
+
+.fund-action {
+    margin: -20px 573px 0px 0px;
+}
+
+.fund-action.single {
+    margin: -20px 687px 0px 0px;
+}
+
+.fund-action ul {
+    text-align: center;
+}
+
+.fund-action ul li {
+    display: inline-block;
+    line-height: 22px;
+    padding: 0px 10px 0px 0px;
+}
+
+.fund-action ul li a {
+    padding: 0px;
+    width: 100px;
+    height: 22px;
+    display: block;
+}
+
+.fund-action a:hover {
+    text-decoration: none;
+    color: #FFF;
+    background-color: #323B57;
+}
+
+.fund-dropdown {
+    width: 206px;
+}
+
+.bank-table {
+    margin: 10px 10px 20px 0px;
+}
+
+#add-bank-form {
+    padding: 0px 19px 88px 0px;
+}
+
+#add-address-form {
+    padding: 0px 19px 253px 0px;
+}
+
+.deposit-info-lbl {
+    font-size: 12px;
+    font-weight: bold
+}
+
+.currency-balance {
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0px 2px;
+}
+
+.currency-unit {
+
+}
+
+#user-active-trades {
+    margin: 10px 0px 144px;
+}
+
+.red {
+    color: #ec030e;
+}
+
+.blue {
+    color: #1C0EFF;
+}
+
+.green {
+    color: #2ca02c;
+}
+
+.numbers {
+    font-family: tahoma !important;
+}
+
+.odd {
+    background: #eaeaea;
+}
+
+.cssload-container {
+    position: absolute;
+    margin: -24px 1062px 0px 0px;
+    width: 27px;
+    height: 25px;
+    text-align: center;
+}
+
+.cssload-speeding-wheel {
+    width: 21px;
+    height: 21px;
+    margin: 0 auto;
+    border: 1px solid rgb(41, 45, 48);
+    border-radius: 50%;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    animation: cssload-spin 575ms infinite linear;
+    -o-animation: cssload-spin 575ms infinite linear;
+    -ms-animation: cssload-spin 575ms infinite linear;
+    -webkit-animation: cssload-spin 575ms infinite linear;
+    -moz-animation: cssload-spin 575ms infinite linear;
+}
+
+@keyframes cssload-spin {
+    100%{ transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-o-keyframes cssload-spin {
+    100%{ -o-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-ms-keyframes cssload-spin {
+    100%{ -ms-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-webkit-keyframes cssload-spin {
+    100%{ -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@-moz-keyframes cssload-spin {
+    100%{ -moz-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+.table-general{
+    font-size: 12px;
+    width: 100%;
+    border-collapse: collapse;
+}
+/* Zebra striping */
+/*.table-general tr:nth-of-type(odd) {
+    background: #eaeaea;
+}*/
+.table-general th {
+    line-height: 10px;
+    background: #CCC;
+    color: #000;
+    font-weight: bold;
+}
+
+.table-general td {
+    font-size: 12px;
+    line-height: 8px;
+}
+.table-general td, th {
+
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
