@@ -38,6 +38,7 @@
                 <thead>
                 <tr>
                     <th>نوع</th>
+                    <th>شناسه</th>
                     <th>زمان</th>
                     <th>مقدار</th>
                     <th>حساب کاربر</th>
@@ -53,12 +54,13 @@
                         @elseif($fund_report->type == 4)
                             <td class="green">{{ $fund_report->typeTransaction->fa_name }}</td>
                         @endif
-                        <td>{{ date('H:i - y/m/d ', strtotime($fund_report->created_fa)) }}</td>
+                            <td class="numbers">{{ $fund_report->reference_number }}</td>
+                            <td>{{ date('H:i - y/m/d ', strtotime($fund_report->created_fa)) }}</td>
                         @if($fund_report->money == 1)
                             <td class="numbers">{{ number_format($fund_report->amount, 0, '.', ',') }} <span> تومان </span></td>
                         @endif
                         @if($fund_report->money == 3)
-                            <td class="numbers">{{ round(number_format($fund_report->amount, 6, '.', ','), 6) }} <span> بیتکوین </span></td>
+                            <td class="numbers">{{ rtrim(sprintf('%.8F', round(number_format($fund_report->amount, 6, '.', ','), 6)), '0') }} <span> بیتکوین </span></td>
                         @endif
                         <td>{{ $fund_report->bankTransaction->name }}</td>
                         <td>{{ $fund_report->statusTransaction->fa_name }}</td>

@@ -82,14 +82,20 @@ class TradeRepository {
 
     public function getUserActiveTrade($id, $money)
     {
-        return ActiveTrade::where('owner', $id)->where('money', $money)
+        return ActiveTrade::where('owner', $id)
+            ->where('money', $money)
             ->select('trade_id', 'type', 'remain', 'value', 'created_fa', 'created_at')
             ->get();
     }
-    public function getUserAllActiveTrade($id)
+
+    public function getUserActiveTradeReport($id, $money, $type)
     {
+        if($type == [0])
+            $type = [1,2];
         return ActiveTrade::where('owner', $id)
-            ->select('trade_id', 'type', 'remain', 'value', 'created_fa', 'created_at')
+            ->whereIn('money', $money)
+            ->whereIn('type', $type)
+            ->select('trade_id', 'type', 'money', 'remain', 'value', 'created_fa', 'created_at')
             ->orderby('created_at', 'desc')
             ->get();
     }

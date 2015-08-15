@@ -568,6 +568,18 @@ hr {
     background-color: #323B57;
 }
 
+.link-button {
+    font-family: 'myYekan', Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    background: none;
+    border: none;
+    outline: none;
+    height: 12px;
+    width: auto;
+    color: #1D417A;
+    cursor: pointer;
+}
+
 .fieldset-normal {
     margin: 14px 8px 0px 0px;
     border: 1px solid #000000;
@@ -826,6 +838,7 @@ hr {
 
 .bank-table {
     margin: 10px 10px 20px 0px;
+    height: 361px;
 }
 
 #add-bank-form {
@@ -852,11 +865,11 @@ hr {
 }
 
 #user-active-trades {
-    margin: 10px 0px 144px;
+    margin: 10px 0px 111px;
 }
 
 #user-all-trades {
-    margin: 10px 0px 144px;
+    margin: 10px 0px 111px;
 }
 
 .red {
@@ -947,4 +960,8 @@ hr {
     padding: 6px;
     border: 1px solid #ccc;
     text-align: center;
+}
+
+.td-no-padding {
+    padding: 0px;
 }

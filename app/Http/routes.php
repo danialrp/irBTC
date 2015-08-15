@@ -77,7 +77,9 @@ Route::post('/trade/bitcoin/active-trades', 'TradeController@getBitcoinActiveTra
 
 Route::get('/trade/perfectmoney', 'TradeController@Perfectmoney');
 
-Route::get('/trades/active', 'UserController@activeTrades');
+Route::get('/trades/active', 'UserController@activeTradesShow');
+
+Route::post('/trades/active', 'UserController@activeTrades');
 
 Route::get('/trades/history', 'UserController@tradeHistoryShow');
 

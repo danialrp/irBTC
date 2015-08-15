@@ -29,6 +29,16 @@ use Illuminate\Support\Facades\DB;
 class UserClass
 {
 
+    public function generateReferenceNumber($rf_number)
+    {
+        $transaction = Transaction::where('reference_number', $rf_number)->first();
+        while($transaction) {
+            $rf_number = rand(00000000,99999999);
+            $transaction = Transaction::where('reference_number', $rf_number)->first();
+        }
+        return $rf_number;
+    }
+
     public function updateUserInfo($id, UpdateInfoRequest $request)
     {
         $user = DB::table('users')->where('id', $id)->first();
@@ -164,6 +174,7 @@ class UserClass
     public function depositRial($id, $ip, DepositRialRequest $request)
     {
         DB::table('transactions')->insert([
+            'reference_number' => $this->generateReferenceNumber(rand(00000000,99999999)),
             'owner' => $id,
             'type' => 4,
             'bank' => $request->bank_name,
@@ -193,6 +204,7 @@ class UserClass
             $irr_balance->save();
             $fee_amount = Fee::where('id', 2)->first();
             DB::table('transactions')->insert([
+                'reference_number' => $this->generateReferenceNumber(rand(00000000,99999999)),
                 'owner' => $id,
                 'type' => 5,
                 'bank' => $request->bank_name,
@@ -215,6 +227,7 @@ class UserClass
     public function depositBitcoin($id, $ip, DepositBitcoinRequest $request)
     {
         DB::table('transactions')->insert([
+            'reference_number' => $this->generateReferenceNumber(rand(00000000,99999999)),
             'owner' => $id,
             'type' => 4,
             'bank' => $request->btc_address_select,
@@ -244,6 +257,7 @@ class UserClass
             $btc_balance->save();
             $fee_amount = Fee::where('id', 3)->first();
             DB::table('transactions')->insert([
+                'reference_number' => $this->generateReferenceNumber(rand(00000000,99999999)),
                 'owner' => $id,
                 'type' => 5,
                 'bank' => $request->btc_address_select,
@@ -273,7 +287,7 @@ class UserClass
             ->where('money', $money)
             ->whereIn('type', $type)
             ->whereIn('status', $status)
-            ->select('id', 'type', 'created_fa', 'amount', 'money', 'bank', 'status', 'note')
+            ->select('id', 'reference_number', 'type', 'created_fa', 'amount', 'money', 'bank', 'status', 'note')
             ->orderby('created_fa', 'desc')
             ->get();
     }

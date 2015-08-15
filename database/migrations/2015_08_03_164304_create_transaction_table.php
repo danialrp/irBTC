@@ -14,6 +14,7 @@ class CreateTransactionTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('reference_number')->unsigned()->unique()->nullable();
             $table->integer('owner')->unsigned()->nullable();
             $table->foreign('owner')->references('id')->on('users')->onDelete('cascade');
             $table->integer('type')->unsigned()->nullable();

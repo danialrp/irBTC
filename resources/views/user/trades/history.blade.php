@@ -50,19 +50,19 @@
                 @foreach($trades as $trade)
                     <tr class="active-row {{ $trade->trade_id }}">
                         @if($trade->type == 1)
-                            <td>فروش</td>
+                            <td class="green">فروش</td>
                         @elseif($trade->type == 2)
-                            <td>خرید</td>
+                            <td class="red">خرید</td>
                         @endif
-                        <td>{{ $trade->reference_number }}</td>
+                        <td class="numbers">{{ $trade->reference_number }}</td>
                         <td class="numbers">{{ number_format($trade->value, 0, '.', ',') }}</td>
                         @if($trade->money == 3)
-                            <td class="act-amount numbers">{{ round(number_format($trade->amount, 6, '.', ','), 6) }} <span> بیتکوین </span></td>
+                            <td class="act-amount numbers">{{ rtrim(sprintf('%.8F', round(number_format($trade->amount, 6, '.', ','), 6)), '0') }} <span> بیتکوین </span></td>
                         @endif
                         <td class="act-total numbers">{{ number_format($trade->amount * $trade->value, 0, '.', ',') }}</td>
                         <td class="numbers">{{ $trade->fee_amount }}</td>
                         <td>{{ date('H:i - y/m/d ', strtotime($trade->created_fa)) }}</td>
-                        <td>{{ $trade->statusTrade->fa_name }} <span>({{ round(number_format($trade->remain, 6, '.', ','), 6) }})</span></td>
+                        <td>{{ $trade->statusTrade->fa_name }} <span>({{ rtrim(sprintf('%.8F', round(number_format($trade->remain, 6, '.', ','), 6)), '0') }})</span></td>
                         <td>{{ $trade->description }}</td>
                     </tr>
                 @endforeach

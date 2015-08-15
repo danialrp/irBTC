@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ActiveTradeHistoryRequest;
 use App\Http\Requests\AddBtcAddressRequest;
 use App\Http\Requests\AddIrrBankRequest;
 use App\Http\Requests\DepositBitcoinRequest;
@@ -198,9 +199,17 @@ class UserController extends Controller
         return redirect('/fund/withdraw/irr');
     }
 
-    public function activeTrades()
+    public function activeTradesShow()
     {
-        $active_trades = $this->tradeRepository->getUserAllActiveTrade(Auth::user()->id);
+        $active_trades = $this->tradeRepository->getUserActiveTradeReport(Auth::user()->id, [3], [1,2]);
+        return view('user.trades.active', compact('active_trades'));
+    }
+
+    public function activeTrades(ActiveTradeHistoryRequest $request)
+    {
+        $money = array($request->currency_report);
+        $type = array($request->kind_report);
+        $active_trades = $this->tradeRepository->getUserActiveTradeReport(Auth::user()->id, $money, $type);
         return view('user.trades.active', compact('active_trades'));
     }
 
