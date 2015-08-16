@@ -51,13 +51,13 @@ Route::get('/bank/irr', 'UserController@bankIrr');
 
 Route::post('/bank/irr', 'UserController@addBankIrr');
 
-Route::get('/bank/irr/delete{id}', 'UserController@deleteBankIrr');
+Route::post('/bank/irr/delete/{id}', 'UserController@deleteBankIrr');
 
 Route::get('/bank/btc', 'UserController@addressBtc');
 
 Route::post('/bank/btc', 'UserController@addAddressBtc');
 
-Route::get('/bank/btc/delete{id}', 'UserController@deleteAddressBtc');
+Route::post('/bank/btc/delete/{id}', 'UserController@deleteAddressBtc');
 
 
 Route::post('/user/update/balance', 'UserController@updateBalance');
@@ -80,6 +80,8 @@ Route::get('/trade/perfectmoney', 'TradeController@Perfectmoney');
 Route::get('/trades/active', 'UserController@activeTradesShow');
 
 Route::post('/trades/active', 'UserController@activeTrades');
+
+Route::post('/trades/active/delete/{id}', 'UserController@cancelActiveTrades');
 
 Route::get('/trades/history', 'UserController@tradeHistoryShow');
 

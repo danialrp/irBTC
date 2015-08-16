@@ -569,15 +569,19 @@ hr {
 }
 
 .link-button {
-    font-family: 'myYekan', Helvetica, Arial, sans-serif;
-    font-size: 10px;
+    font-family: 'myYekan';
+    font-size: 11px;
     background: none;
     border: none;
     outline: none;
-    height: 12px;
+    height: 20px;
     width: auto;
     color: #1D417A;
     cursor: pointer;
+}
+
+.link-button:hover {
+    text-decoration: underline;
 }
 
 .fieldset-normal {
@@ -963,5 +967,5 @@ hr {
 }
 
 .td-no-padding {
-    padding: 0px;
+    padding: 0px !important;
 }

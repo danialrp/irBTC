@@ -21,7 +21,10 @@
                 <td class="numbers">{{ $bank->card_number }}</td>
                 <td class="numbers">{{ $bank->acc_number }}</td>
                 <td>فعال</td>
-                <td><a href="{{ action('UserController@deleteBankIrr', [$bank->id]) }}"> حذف </a></td>
+                <form id="delete-irr-bank" class="form-normal" role="form" method="POST" action="{{ action('UserController@deleteBankIrr', [$bank->id]) }}">
+                    {!! csrf_field() !!}
+                    <td class="td-no-padding"><button type="submit" class="link-button">حذف</button></td>
+                </form>
             </tr>
                 @endforeach
             </tbody>

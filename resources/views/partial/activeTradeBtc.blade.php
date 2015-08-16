@@ -15,9 +15,9 @@
             @foreach($active_trades as $active_trade)
                 <tr class="active-row {{ $active_trade->trade_id }}">
                     @if($active_trade->type == 1)
-                        <td>فروش</td>
+                        <td class="green">فروش</td>
                     @elseif($active_trade->type == 2)
-                        <td>خرید</td>
+                        <td class="red">خرید</td>
                     @endif
                     <td class="numbers">{{ number_format($active_trade->value, 0, '.', ',') }}</td>
                     <td class="act-amount numbers">{{ rtrim(sprintf('%.8F', round(number_format($active_trade->remain, 6, '.', ','), 6)), '0') }}</td>

@@ -13,6 +13,7 @@ use App\Http\Requests\UpdateInfoRequest;
 use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\WithdrawBitcoinRequest;
 use App\Http\Requests\WithdrawRialRequest;
+use App\MyClasses\TradeClass;
 use App\MyClasses\UserClass;
 use App\Repositories\TradeRepository;
 use App\User;
@@ -34,16 +35,21 @@ class UserController extends Controller
      * @var TradeRepository
      */
     private $tradeRepository;
+    /**
+     * @var TradeClass
+     */
+    private $tradeClass;
 
     /**
      * @param UserClass $userClass
      */
-    public function __construct(UserClass $userClass, TradeRepository $tradeRepository)
+    public function __construct(UserClass $userClass, TradeRepository $tradeRepository, TradeClass $tradeClass)
     {
         $this->middleware('auth');
         /*Session::forget('message');*/
         $this->userClass = $userClass;
         $this->tradeRepository = $tradeRepository;
+        $this->tradeClass = $tradeClass;
     }
 
     /**
@@ -213,6 +219,15 @@ class UserController extends Controller
         return view('user.trades.active', compact('active_trades'));
     }
 
+    public function cancelActiveTrades($active_trade)
+    {
+        if($this->tradeClass->cancelTrade($active_trade, Auth::user()->id))
+            Session::flash('message', 'مبادله مورد نظر با موفقیت لغو شد!');
+        else
+            Session::flash('message', 'عملیات لغو انجام نشد!');
+        return redirect('/trades/active');
+    }
+
     public function tradeHistoryShow()
     {
         $trades = $this->tradeRepository->getUserAllTrades(Auth::user()->id, 3, [2,3], [1,2]);
@@ -247,7 +262,11 @@ class UserController extends Controller
     public function deleteBankIrr($bank_id)
     {
         if($this->userClass->deleteIrrBankAccount(Auth::user()->id, $bank_id))
-            return redirect('/bank/irr');
+            Session::flash('message', 'حساب بانکی شما با موفقیت حذف گردید!');
+        else
+            Session::flash('message', 'متاسفانه عملیات حذف انجام نشد!');
+
+        return redirect('/bank/irr');
     }
 
     public function addressBtc()
@@ -269,6 +288,10 @@ class UserController extends Controller
     public function deleteAddressBtc($address_id)
     {
         if($this->userClass->deleteBitcoinAddress(Auth::user()->id, $address_id))
+            Session::flash('message', 'آدرس کیف پول بیتکوین با موفقیت حذف شد!');
+        else
+            Session::flash('message', 'متاسفانه عملیات حذف انجام نشد!');
+
             return redirect('/bank/btc');
     }
 

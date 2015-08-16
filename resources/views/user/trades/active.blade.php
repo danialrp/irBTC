@@ -46,16 +46,16 @@
                         @elseif($active_trade->type == 2)
                             <td class="red">خرید</td>
                         @endif
-                        <td class="numbers">{{--{{ $active_trade->reference_number }}--}}11121</td>
+                        <td class="numbers">{{--{{ $active_trade->reference_number }}--}}!!000!!</td>
                         <td class="numbers">{{ number_format($active_trade->value, 0, '.', ',') }}</td>
                         @if($active_trade->money == 3)
                             <td class="act-amount numbers">{{ rtrim(sprintf('%.8F', round(number_format($active_trade->remain, 6, '.', ','), 6)), '0') }} <span> بیتکوین </span></td>
                         @endif
                         <td class="act-total numbers">{{ number_format($active_trade->remain * $active_trade->value, 0, '.', ',') }}</td>
                         <td>{{ date('H:i - y/m/d ', strtotime($active_trade->created_fa)) }}</td>
-                        <form id="add-bank-form" class="form-normal" role="form" method="POST" action="{{ url('/bank/irr') }}">
+                        <form id="cancel-trade" class="form-normal" role="form" method="POST" action="{{ action('UserController@cancelActiveTrades', [$active_trade->trade_id]) }}">
                             {!! csrf_field() !!}
-                            <td class="td-no-padding"><button type="submit" class="">لغو مبادله</button></td>
+                            <td class="td-no-padding"><button type="submit" class="link-button">لغو مبادله</button></td>
                         </form>
                     </tr>
                 @endforeach

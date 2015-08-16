@@ -62,7 +62,11 @@
                         <td class="act-total numbers">{{ number_format($trade->amount * $trade->value, 0, '.', ',') }}</td>
                         <td class="numbers">{{ $trade->fee_amount }}</td>
                         <td>{{ date('H:i - y/m/d ', strtotime($trade->created_fa)) }}</td>
-                        <td>{{ $trade->statusTrade->fa_name }} <span>({{ rtrim(sprintf('%.8F', round(number_format($trade->remain, 6, '.', ','), 6)), '0') }})</span></td>
+                        @if($trade->remain == 0)
+                            <td>{{ $trade->statusTrade->fa_name }}</td>
+                        @else
+                            <td>{{ $trade->statusTrade->fa_name }} <span>({{ rtrim(sprintf('%.8F', round(number_format($trade->remain, 6, '.', ','), 6)), '0') }})</span></td>
+                        @endif
                         <td>{{ $trade->description }}</td>
                     </tr>
                 @endforeach
