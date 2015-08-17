@@ -335,6 +335,7 @@ body a:hover {
 #main-content {
     width: 848px;
     height: auto;
+    min-height: 780px;
     background: #FFFFFF;
     margin: 2px 252px 0px -1px;
     padding: 0px 0px 7px 0px;
@@ -614,7 +615,6 @@ hr {
 }
 
 #update-password-form {
-    padding: 0px 19px 518px 0px;
 }
 
 #register-form {
@@ -660,7 +660,7 @@ hr {
 }
 
 .fund-menu {
-    padding: 9px 0px 599px;
+    margin: 11px 0px 0px;
 }
 
 .fund-item {
@@ -670,7 +670,7 @@ hr {
 }
 
 #irr-deposit {
-    padding: 9px 0px 303px 0px;
+    margin: 11px 0px 0px 0px;
 }
 
 #irr-deposit .fund-menu {
@@ -683,7 +683,7 @@ hr {
 }
 
 #irr-withdraw {
-    padding: 9px 0px 409px 0px;
+    margin: 11px 0px 0px 0px;
 }
 
 #irr-withdraw .fund-menu {
@@ -696,7 +696,7 @@ hr {
 }
 
 #btc-deposit {
-    padding: 9px 0px 312px 0px;
+    margin: 11px 0px 0px 0px;
 }
 
 #btc-deposit .fund-menu {
@@ -709,7 +709,7 @@ hr {
 }
 
 #btc-withdraw {
-    padding: 9px 0px 343px 0px;
+    margin: 11px 0px 0px 0px;
 }
 
 #btc-withdraw .fund-menu {

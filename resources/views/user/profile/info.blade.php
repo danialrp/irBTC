@@ -60,52 +60,54 @@
             </div>
         </form>
     @else
-        <fieldset class="fieldset-normal">
-            <legend> مشخصات کاربری </legend>
-            <div class="form-normal-content">
-                <div class="form-element">
-                    <label> نام </label>
-                    <input type="text" name="fname" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->fname }}" disabled>
-                </div>
+        <div id="update-info-form" class="form-normal">
+            <fieldset class="fieldset-normal">
+                <legend> مشخصات کاربری </legend>
+                <div class="form-normal-content">
+                    <div class="form-element">
+                        <label> نام </label>
+                        <input type="text" name="fname" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->fname }}" disabled>
+                    </div>
 
-                <div class="form-element">
-                    <label> نام خانوادگی </label>
-                    <input type="text" name="lname" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->lname }}" disabled>
-                </div>
+                    <div class="form-element">
+                        <label> نام خانوادگی </label>
+                        <input type="text" name="lname" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->lname }}" disabled>
+                    </div>
 
-                <div class="form-element">
-                    <label> نام کاربری </label>
-                    <input type="text" name="nname" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->nname }}" disabled>
-                </div>
+                    <div class="form-element">
+                        <label> نام کاربری </label>
+                        <input type="text" name="nname" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->nname }}" disabled>
+                    </div>
 
-                <div class="form-element">
-                    <label> ایمیل </label>
-                    <input type="email" name="email" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->email }}" disabled>
-                </div>
+                    <div class="form-element">
+                        <label> ایمیل </label>
+                        <input type="email" name="email" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->email }}" disabled>
+                    </div>
 
-                <div class="form-element">
-                    <label> تلفن </label>
-                    <input type="text" name="tel" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->tel }}" disabled>
-                </div>
+                    <div class="form-element">
+                        <label> تلفن </label>
+                        <input type="text" name="tel" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->tel }}" disabled>
+                    </div>
 
-                <div class="form-element">
-                    <label> موبایل</label>
-                    <input type="text" name="mobile" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->mobile }}" disabled>
-                </div>
+                    <div class="form-element">
+                        <label> موبایل</label>
+                        <input type="text" name="mobile" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->mobile }}" disabled>
+                    </div>
 
-                <div class="form-element">
-                    <label> شماره ملی </label>
-                    <input type="text" name="national_number" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->national_number }}" disabled>
-                </div>
+                    <div class="form-element">
+                        <label> شماره ملی </label>
+                        <input type="text" name="national_number" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->national_number }}" disabled>
+                    </div>
 
-                <div class="form-element">
-                    <label> آدرس </label>
-                    <input type="text" name="address" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->address }}" disabled>
+                    <div class="form-element">
+                        <label> آدرس </label>
+                        <input type="text" name="address" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->address }}" disabled>
+                    </div>
                 </div>
+            </fieldset>
+            <div class="lbl-center">
+                <label> *در صورت نیاز به تغییر مشخصات لطفا از طریق ایمیل درخواست خود را ارسال فرمایید. </label>
             </div>
-        </fieldset>
-        <div class="lbl-center">
-            <label> *در صورت نیاز به تغییر مشخصات لطفا از طریق ایمیل درخواست خود را ارسال فرمایید. </label>
         </div>
     @endif
 @stop
