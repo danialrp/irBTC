@@ -14,6 +14,11 @@
                 </div>
 
                 <div class="form-element">
+                    <label> نام کاربری </label>
+                    <input type="text" name="nname" class="txt-form-normal txt-simple" placeholder="نام کاربری" value="{{old('nname')}}" >
+                </div>
+
+                <div class="form-element">
                     <label> کلمه عبور </label>
                     <input type="password" name="password" class="txt-form-normal txt-simple" placeholder="کلمه عبور" >
                 </div>

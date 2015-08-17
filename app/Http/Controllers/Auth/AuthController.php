@@ -43,6 +43,7 @@ class AuthController extends Controller
         return Validator::make($data, [
             'email' => 'required|email|max:60|unique:users',
             'password' => array('required', 'confirmed', 'min:8', 'regex:/^\S*(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$/'),
+            'nname' => array('required','max:60','unique:users','regex:/^[a-zA-Z0-9_@.-]*$/')
         ]);
     }
 
@@ -57,10 +58,10 @@ class AuthController extends Controller
         $user = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'nname' => $data['nname'],
             'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s',time(),false,true),
             'login_time' => JDateServiceProvider::date('Y-m-d H:i:s',time(),false,true)
         ]);
-
         $this->userClass->makeBalance($user->id);
         return $user;
     }

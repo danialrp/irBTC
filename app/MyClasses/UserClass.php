@@ -48,7 +48,6 @@ class UserClass
                 ->update([
                     'fname' => $request->fname,
                     'lname' => $request->lname,
-                    'nname' => $request->nname,
                     'tel' => $request->tel,
                     'mobile' => $request->mobile,
                     'national_number' => $request->national_number,
