@@ -106,20 +106,25 @@ class TradeController extends Controller
      */
     public function sellBitcoin(BitcoinTradeRequest $request)
     {
-        $amount = $request->sell_amount;
-        $value = $request->sell_value;
+        if(Auth::user()->confirmed == 1) {
+            $amount = $request->sell_amount;
+            $value = $request->sell_value;
 
-        if($amount < 0.001)
-            return response()->json(['message' => ['حداقل مقدار فروش 0.001 بیتکوین می باشد!']], 422);
+            if ($amount < 0.001)
+                return response()->json(['message' => ['حداقل مقدار فروش 0.001 بیتکوین می باشد!']], 422);
 
-        $chk_balance = $this->tradeClass->checkBalance(Auth::user()->id, 3, 1, $amount);
+            $chk_balance = $this->tradeClass->checkBalance(Auth::user()->id, 3, 1, $amount);
 
-        if($chk_balance) {
-            $this->tradeClass->createTrade(Auth::user()->id, 1, $amount, $value, 3);
-            return response()->json(['message' => 'مبادله فروش با موفقیت ثبت شد!'], 200);
+            if ($chk_balance) {
+                if ($this->tradeClass->createTrade(Auth::user()->id, 1, $amount, $value, 3))
+                    return response()->json(['message' => 'مبادله فروش با موفقیت ثبت شد!'], 200);
+                else
+                    return response()->json(['message' => ['شما حداکثر 15 مبادله فعال می توانید داشته باشید!']], 422);
+            } else
+                return response()->json(['message' => ['متاسفانه موجودی کافی نیست!']], 422);
         }
         else
-            return response()->json(['message' => ['متاسفانه موجودی کافی نیست!']], 422);
+            return response()->json(['message' => ['برای شروع مبادله باید ابتدا اکانت خود را فعال کنید!']], 422);
     }
 
     /**
@@ -128,20 +133,25 @@ class TradeController extends Controller
      */
     public function buyBitcoin(BitcoinTradeRequest $request)
     {
-        $amount = $request->sell_amount;
-        $value = $request->sell_value;
+        if(Auth::user()->confirmed == 1) {
+            $amount = $request->sell_amount;
+            $value = $request->sell_value;
 
-        if($amount < 0.001)
-            return response()->json(['message' => ['حداقل مقدار خرید 0.001 بیتکوین می باشد!']], 422);
+            if ($amount < 0.001)
+                return response()->json(['message' => ['حداقل مقدار خرید 0.001 بیتکوین می باشد!']], 422);
 
-        $chk_balance = $this->tradeClass->checkBalance(Auth::user()->id, 1, 2, $amount*$value);
+            $chk_balance = $this->tradeClass->checkBalance(Auth::user()->id, 1, 2, $amount * $value);
 
-        if($chk_balance) {
-            $this->tradeClass->createTrade(Auth::user()->id, 2, $amount, $value, 3);
-            return response()->json(['message' => 'مبادله خرید با موفقیت ثبت شد!'], 200);
+            if ($chk_balance) {
+                if ($this->tradeClass->createTrade(Auth::user()->id, 2, $amount, $value, 3))
+                    return response()->json(['message' => 'مبادله خرید با موفقیت ثبت شد!'], 200);
+                else
+                    return response()->json(['message' => ['شما حداکثر 15 مبادله فعال می توانید داشته باشید!']], 422);
+            } else
+                return response()->json(['message' => ['متاسفانه موجودی کافی نیست!']], 422);
         }
         else
-            return response()->json(['message' => ['متاسفانه موجودی کافی نیست!']], 422);
+            return response()->json(['message' => ['برای شروع مبادله باید ابتدا اکانت خود را فعال کنید!']], 422);
     }
 
     /**
@@ -150,11 +160,14 @@ class TradeController extends Controller
      */
     public function cancelTrade(Request $request)
     {
-        if($this->tradeClass->cancelTrade($request->trade_id, Auth::user()->id)) {
-            return response()->json(['message' => 'مبادله مورد نظر با موفقیت لغو شد!'], 200);
+        if(Auth::user()->confirmed == 1) {
+            if ($this->tradeClass->cancelTrade($request->trade_id, Auth::user()->id)) {
+                return response()->json(['message' => 'مبادله مورد نظر با موفقیت لغو شد!'], 200);
+            } else
+                return response()->json(['message' => ['عملیات لغو انجام نشد!']], 422);
         }
         else
-            return response()->json(['message' => ['عملیات لغو انجام نشد!']], 422);
+            return response()->json(['message' => ['برای شروع مبادله باید ابتدا اکانت خود را فعال کنید!']], 422);
     }
 
     public function Webmoney()

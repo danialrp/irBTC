@@ -881,15 +881,15 @@ hr {
 }
 
 .red {
-    color: #ec030e;
+    color: #ec030e !important;
 }
 
 .blue {
-    color: #1C0EFF;
+    color: #1C0EFF !important;
 }
 
 .green {
-    color: #2ca02c;
+    color: #2ca02c !important;
 }
 
 .numbers {

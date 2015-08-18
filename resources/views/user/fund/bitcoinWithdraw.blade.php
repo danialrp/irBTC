@@ -13,7 +13,6 @@
             <div class="fund-info-container">
                 <form id="btc-withdraw-form" class="" role="form" method="POST" action="{{ url('/fund/withdraw/btc') }}">
                     {!! csrf_field() !!}
-
                     <div class="fund-info-item">
                         <label> به </label>
                         <div class="fund-info-item-child">

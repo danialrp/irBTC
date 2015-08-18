@@ -31,7 +31,7 @@
                 @if(Auth::user()->confirmed)
                     <label class="sidebar-element-value"> عادی </label>
                 @else
-                    <label class="sidebar-element-value red"> تایید نشده </label>
+                    <label class="sidebar-element-value"><a href="{{ url('/profile') }}" class="red">تایید نشده</a></label>
                 @endif
             </div>
 

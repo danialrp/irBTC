@@ -30,7 +30,6 @@
                 <thead>
                 <tr>
                     <th>نوع</th>
-                    <th>شناسه</th>
                     <th>نرخ واحد</th>
                     <th>مقدار (بیتکوین)</th>
                     <th>مقدار (تومان)</th>
@@ -46,7 +45,6 @@
                         @elseif($active_trade->type == 2)
                             <td class="red">خرید</td>
                         @endif
-                        <td class="numbers">{{--{{ $active_trade->reference_number }}--}}!!000!!</td>
                         <td class="numbers">{{ number_format($active_trade->value, 0, '.', ',') }}</td>
                         @if($active_trade->money == 3)
                             <td class="act-amount numbers">{{ rtrim(sprintf('%.8F', round(number_format($active_trade->remain, 6, '.', ','), 6)), '0') }} <span> بیتکوین </span></td>

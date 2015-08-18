@@ -48,25 +48,30 @@ class TradeClass {
      */
     public function createTrade($owner,$type,$amount,$value,$money)
     {
-        $fee_qr = Fee::where('id', 1)->first();
-        $fee = $fee_qr->fee_value;
-        $new_trade = DB::table('trades')->insertGetId([
-            'reference_number' => $this->generateReferenceNumber(rand(00000000,99999999)),
-            'owner' => $owner,
-            'type' => $type,
-            'amount' => $amount,
-            'remain' => $amount-$fee*$amount,
-            'value' => $value,
-            'fee_amount' => $fee*$amount*$value,
-            'status' => 1,
-            'money' => $money,
-            'created_at' => Carbon::now(),
-            'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s',time(),false,true)
-        ]);
-        $this->tradeDetailClass->feeAmountOnTradeCreate($new_trade);
-        $this->insertToActiveList($new_trade);
-        $this->matchTrade();
-        $this->completeTrade();
+        if($this->limitActiveTrades($owner, $money)) {
+            $fee_qr = Fee::where('id', 1)->first();
+            $fee = $fee_qr->fee_value;
+            $new_trade = DB::table('trades')->insertGetId([
+                'reference_number' => $this->generateReferenceNumber(rand(00000000, 99999999)),
+                'owner' => $owner,
+                'type' => $type,
+                'amount' => $amount,
+                'remain' => $amount - $fee * $amount,
+                'value' => $value,
+                'fee_amount' => $fee * $amount * $value,
+                'status' => 1,
+                'money' => $money,
+                'created_at' => Carbon::now(),
+                'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true)
+            ]);
+            $this->tradeDetailClass->feeAmountOnTradeCreate($new_trade);
+            $this->insertToActiveList($new_trade);
+            $this->matchTrade();
+            $this->completeTrade();
+            return true;
+        }
+        else
+            return false;
     }
 
     /**
@@ -118,6 +123,13 @@ class TradeClass {
         }
     }
 
+    /**
+     * @param $buyer
+     * @param $seller
+     * @param $money
+     * @param $amount
+     * @param $sell_value
+     */
     public function updateBalance($buyer,$seller,$money,$amount,$sell_value)
     {
         $buyerBalance = Balance::where('owner', $buyer)->where('money', $money)->first();
@@ -227,6 +239,17 @@ class TradeClass {
         }
         else
             return false;
+    }
+
+    public function limitActiveTrades($owner, $money)
+    {
+        $active_trades = ActiveTrade::where('owner', $owner)
+            ->where('money', $money)
+            ->get();
+        if($active_trades->count() >= 15)
+            return false;
+        else
+            return true;
     }
 
 }
