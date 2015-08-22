@@ -14,7 +14,7 @@ class CreateThrottleTable extends Migration
     {
         Schema::create('throttles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->integer('attempt')->unsigned()->default(0);
             $table->integer('max_attempt')->unsigned()->nullable();
             $table->dateTime('attempt_time')->nullable();
