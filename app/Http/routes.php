@@ -90,4 +90,6 @@ Route::post('/trades/history', 'UserController@tradeHistory');
 Route::post('/trade/update/cancel', 'TradeController@cancelTrade');
 
 
-Route::get('/admin/dashboard', 'AdminController@dashboard');
+Route::get('/_admin/login', 'AdminController@login');
+
+Route::get('/_admin/dashboard', 'AdminController@dashboard');

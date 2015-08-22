@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\MyClasses\ThrottleClass;
 use App\MyClasses\UserClass;
 use App\Providers\JDateServiceProvider;
 use App\User;
@@ -19,6 +20,10 @@ class AuthController extends Controller
      * @var UserClass
      */
     private $userClass;
+    /**
+     * @var ThrottleClass
+     */
+    private $throttleClass;
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
@@ -26,10 +31,11 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct(UserClass $userClass)
+    public function __construct(UserClass $userClass, ThrottleClass $throttleClass)
     {
         $this->middleware('guest', ['except' => 'getLogout']);
         $this->userClass = $userClass;
+        $this->throttleClass = $throttleClass;
     }
 
     /**
@@ -68,23 +74,29 @@ class AuthController extends Controller
 
     public function Authenticate(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-
-        if(Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'active' => 1]))
-        {
-            $this->userClass->setLoginFootage(Auth::user()->id, $request->ip());
-            return redirect()->intended('/');
-        }
-        else
-        {
+        if ($this->throttleClass->checkLocked($request->ip(), $request->email) == false) {
             return redirect('/')
-                ->withInput($request->only('email'))
                 ->withErrors([
-                    'email' => 'اطلاعات وارد شده صحیح نمی باشد!',
+                    'email' => 'دسترسی شما به دلایل امنیتی به مدت ۱ دقیقه مسدود گردید!'
                 ]);
+            dd($request);
+        } else {
+            $this->validate($request, [
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'active' => 1])) {
+                $this->userClass->setLoginFootage(Auth::user()->id, $request->ip());
+                $this->throttleClass->setThrottleStatus($request->ip(), 1);
+                return redirect()->intended('/');
+            } else {
+                return redirect('/')
+                    ->withInput($request->only('email'))
+                    ->withErrors([
+                        'email' => 'اطلاعات وارد شده صحیح نمی باشد!',
+                    ]);
+            }
         }
     }
 }
