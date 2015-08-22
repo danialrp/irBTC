@@ -18,6 +18,10 @@
         @include('partial/header')
     </div>
 
+    <div id="menu">
+        @include('partial/mainMenu')
+    </div>
+
     @include('partial/flash-message')
 
     <div id="sidebar">

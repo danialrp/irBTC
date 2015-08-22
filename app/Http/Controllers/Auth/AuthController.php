@@ -54,6 +54,34 @@ class AuthController extends Controller
     }
 
     /**
+     * OverRide to RegisterUsers Trait > postRegister
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function postRegister(Request $request)
+    {
+        if ($this->throttleClass->checkLocked($request->ip(), $request->email) == false) {
+            return redirect('/auth/register')
+                ->withErrors([
+                    'email' => 'دسترسی شما به دلایل امنیتی به مدت ۱ دقیقه مسدود گردید!'
+                ]);
+            dd($request);
+        } else {
+            $validator = $this->validator($request->all());
+
+            if ($validator->fails()) {
+                $this->throwValidationException(
+                    $request, $validator
+                );
+            }
+
+            $this->throttleClass->setThrottleStatus($request->ip(), 1);
+            Auth::login($this->create($request->all()));
+            return redirect($this->redirectPath());
+        }
+    }
+
+    /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
@@ -62,14 +90,14 @@ class AuthController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'nname' => $data['nname'],
-            'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s',time(),false,true),
-            'login_time' => JDateServiceProvider::date('Y-m-d H:i:s',time(),false,true)
-        ]);
-        $this->userClass->makeBalance($user->id);
-        return $user;
+                'email' => $data['email'],
+                'password' => bcrypt($data['password']),
+                'nname' => $data['nname'],
+                'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true),
+                'login_time' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true),
+            ]);
+            $this->userClass->makeBalance($user->id);
+            return $user;
     }
 
     public function Authenticate(Request $request)
