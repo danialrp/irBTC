@@ -1,0 +1,345 @@
+/**
+ * Eric Meyer's Reset CSS v2.0
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table tr:nth-of-type(even) {
+    background: #eaeaea;
+}
+
+@font-face {
+    font-family: 'MyYekan';
+    src: url('../font/Yekan.eot'); /* IE9 Compat Modes */
+    src: url('../font/Yekan.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/Yekan.woff') format('woff'), /* Pretty Modern Browsers */
+    url('../font/Yekan.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('../font/Yekan.svg#svgFontName') format('svg'); /* Legacy iOS */
+    /*url('../fonts/Yekan.woff2') format('woff2'), *//* Super Modern Browsers */
+}
+
+body {
+    font-family: 'MyYekan' !important;
+    font-size: 13px;
+    line-height: 1px;
+    direction: rtl;
+    background-color: #CBCBCB;
+}
+
+body a, a:visited {
+    text-decoration: none;
+    color: #FF631D;
+}
+
+body a:hover {
+    text-decoration: underline;
+    color: #ffa812;
+}
+
+#login-error {
+    display: none;
+    font-family: 'MyYekan' !important;
+    direction: rtl;
+}
+
+#login-error ul {
+    padding: 0px 30px 0px 0px;
+}
+
+#login-error ul li {}
+
+.login-error-item {
+    line-height: 20px;
+    list-style-type: disc;
+}
+
+#flash-message {
+    display: block;
+    font-family: 'MyYekan' !important;
+    direction: rtl;
+}
+
+#message ul {
+    padding: 0px 30px 0px 0px;
+}
+
+#message ul li {}
+
+.message-item {
+    line-height: 20px;
+    list-style-type: none;
+}
+
+.ui-dialog .ui-dialog-title {
+    margin: 0px 0px 0px 0px !important;
+    white-space: nowrap;
+    width: 90%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    float: right !important;
+    padding: 7px 0px !important;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+    position: absolute;
+    right: .3em;
+    top: 50%;
+    width: 20px;
+    margin: -10px 273px 0 0 !important;
+    padding: 1px;
+    height: 20px;
+}
+
+.ui-dialog .ui-dialog-content {
+    position: relative;
+    border: 0;
+    padding: .5em 2em !important;
+    background: none;
+    overflow: auto;
+}
+
+#page-wrap {
+    background-color: #FFFFFF;
+    width: 100%;
+    margin: auto;
+}
+
+#header {
+    background-color: #293D4A;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.header-container {
+    width: 100%;
+    height: 70px;
+}
+
+.header-container-right {
+
+}
+
+.header-container-left {
+    color: #FFF;
+    width: 200px;
+    float: left;
+    height: 70px;
+}
+
+.header-container-left-element {
+    margin: 19px 0px 0px 0px;
+}
+
+.header-container-left-element ul li {
+    padding: 0px 0px 20px 0px;
+}
+
+.pipe {
+    padding: 0px 10px;
+}
+
+#menu {
+    width: 100%;
+    height: 50px;
+    background-color: #293D4A;
+}
+
+.menu-container {
+    position: relative;
+    width: 100%;
+    margin: 0px auto;
+    direction: rtl;
+}
+
+.mainBar
+{
+    background-color: #293D4A;
+    color: rgba(255, 255, 255, 1);
+    width: 100%;
+    height: 50px;
+    font-family: 'MyYekan' !important;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.menu-item
+{
+    float: right;
+    text-align: center;
+    height: 50px;
+    width: auto;
+    line-height: 50px;
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0px 9px 0px 11px;
+}
+
+.menu-item:hover {
+    background: #354854;
+    color: #E7E7E8;
+    cursor: pointer;
+}
+
+.sub-menu
+{
+    margin: 2px 2px 0px 0px;
+    background-color: #293D4A;
+    color: rgba(255, 255, 255, 0.8);
+    width: 250px;
+    height: auto;
+    font-family: 'MyYekan' !important;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+#submenu-2 {
+    margin: 2px 96px 0px 0px;
+}
+
+#submenu-3 {
+    margin: 2px 191px 0px 0px;
+}
+
+#submenu-4 {
+    margin: 2px 286px 0px 0px;
+}
+
+#submenu-5 {
+    margin: 2px 381px 0px 0px;
+}
+
+.sub-menu a, a:visited {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+.sub-menu a:hover {
+    color: #FF6324;
+    text-decoration: none;
+}
+
+.sub-menu p {
+    padding: 0px 20px 0px 0px;
+    line-height: 38px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.sub-menu p:after
+{
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.sub-menu p:hover:after{
+    opacity: 1;
+}
+
+.sub-menu p:hover
+{
+    background: #354854;
+    color: #FF6324;
+    cursor: pointer;
+}
+
+#main-content {
+    background-color: #FFFFFF;
+    width: 100%;
+    height: auto;
+    min-height: 1000px;
+}
+
+#footer {
+
+}
+
+.login-box {
+    width: 400px;
+    height: 210px;
+    background-color: #FFF;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 450px;
+    border-radius: 5px;
+}
+
+.login-box-title {
+    height: 35px;
+    background-color: #509050;
+    text-align: center;
+}
+
+.login-box-title-text {
+    color: #FFFFFF;
+    line-height: 30px;
+}
+
+.login-box-container {
+    width: 350px;
+    padding: 25px 0px 0px 0px;
+    margin: auto;
+    text-align: center;
+}
+
+.txt-simple {
+    font-family: "MyYekan" !important;
+    font-size: 12px;
+    padding: 0px 2px 0px 0px;
+    height: 20px;
+    width: 220px;
+}
+
+.btn-simple {
+    font-family: "MyYekan" !important;
+    background-color: #0067BF;
+    border: none;
+    color: #FFFFFF;
+    padding: 2px 15px 2px 15px;
+}
+
+.login-element {
+    padding: 15px 0px 0px 0px;
+}

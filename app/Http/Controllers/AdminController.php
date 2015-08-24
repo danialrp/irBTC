@@ -11,11 +11,16 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin');
+        /*$this->middleware('auth', ['except' => ['getLogin', 'postLogin']]);
+        $this->middleware('admin', ['except' => ['getLogin', 'postLogin']]);*/
     }
 
-    public function dashboard()
+    public function getLogin()
+    {
+        return view('admin.login');
+    }
+
+    public function getDashboard()
     {
         return view('admin.dashboard');
     }

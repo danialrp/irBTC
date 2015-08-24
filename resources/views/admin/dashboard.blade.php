@@ -1,3 +1,7 @@
-<div>
-    this a admin dashboard.
-</div>
+@extends('layout/admin')
+
+@section('title', 'داشبورد مدیریت')
+
+@section('content')
+<div>test</div>
+@stop

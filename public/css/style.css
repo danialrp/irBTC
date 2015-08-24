@@ -880,6 +880,12 @@ hr {
     margin: 14px 10px 772px;
 }
 
+.error-page {
+    margin: 7px 293px 0px 0px;
+    padding: 40px 0px 0px 0px;
+    font-size: 14px;
+}
+
 .red {
     color: #ec030e !important;
 }
