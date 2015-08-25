@@ -46,3 +46,13 @@ $("#menu-5").on("click", function() {
     $("#submenu-1").css("display", "none");
     $("#submenu-4").css("display", "none");
 });
+
+$(document).ready(function () {
+    $("tr").not(':first').hover(
+        function () {
+            $(this).css("cssText","background: #F9E97D !important;");
+        },
+        function () {
+            $(this).css("background","");
+        });
+});

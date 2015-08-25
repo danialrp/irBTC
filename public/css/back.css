@@ -46,7 +46,7 @@ table {
 }
 
 table tr:nth-of-type(even) {
-    background: #eaeaea;
+    background: #F4F9FB !important;
 }
 
 @font-face {
@@ -64,7 +64,7 @@ body {
     font-size: 13px;
     line-height: 1px;
     direction: rtl;
-    background-color: #CBCBCB;
+    background-color: #FFFFFF;
 }
 
 body a, a:visited {
@@ -158,7 +158,20 @@ body a:hover {
 }
 
 .header-container-right {
+    font-size: 12px;
+    width: auto;
+    height: 70px;
+    color: #FFFFFF;
+    float: right;
+}
 
+.header-container-right-element {
+    margin: 33px 9px 0px 0px;
+}
+
+.header-container-right-element ul li {
+    display: inline-block;
+    padding: 0px;
 }
 
 .header-container-left {
@@ -176,8 +189,12 @@ body a:hover {
     padding: 0px 0px 20px 0px;
 }
 
+.header-container-title {
+    padding: 0px 0px 0px 5px;
+}
+
 .pipe {
-    padding: 0px 10px;
+    padding: 0px 5px;
 }
 
 #menu {
@@ -289,7 +306,7 @@ body a:hover {
     background-color: #FFFFFF;
     width: 100%;
     height: auto;
-    min-height: 1000px;
+    padding: 2px;
 }
 
 #footer {
@@ -342,4 +359,56 @@ body a:hover {
 
 .login-element {
     padding: 15px 0px 0px 0px;
+}
+
+.red {
+    color: #ec030e !important;
+}
+
+.blue {
+    color: #1C0EFF !important;
+}
+
+.blue-sky {
+    color: #9ED6FF;
+}
+
+.green {
+    color: #2ca02c !important;
+}
+
+.numbers {
+    font-family: tahoma !important;
+}
+
+.table-container {
+    border: 1px solid #E1D9D9;
+    padding: 3px;
+    width: 99%;
+    margin: auto;
+}
+
+.table-general{
+    font-size: 12px;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-general th {
+    line-height: 10px;
+    background: #1B65B9;
+    color: #FFFFFF;
+}
+
+.table-general td {
+    font-size: 12px;
+    line-height: 8px;
+}
+.table-general td, th {
+    padding: 6px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.td-no-padding {
+    padding: 0px !important;
 }
