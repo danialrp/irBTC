@@ -95,3 +95,7 @@ Route::get('/iadmin', 'AdminController@getLogin');
 Route::get('/iadmin/login', 'AdminController@getLogin');
 
 Route::get('/iadmin/dashboard', 'AdminController@getDashboard');
+
+Route::get('/iadmin/user/credit', 'AdminController@getUserCredit');
+
+Route::get('/iadmin/user/profile', 'AdminController@getUserProfile');

@@ -24,4 +24,14 @@ class AdminController extends Controller
     {
         return view('admin.dashboard');
     }
+
+    public function getUserCredit()
+    {
+        return view('admin.manageUserCredit');
+    }
+
+    public function getUserProfile()
+    {
+        return view('admin.manageUserProfile');
+    }
 }
