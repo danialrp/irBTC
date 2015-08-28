@@ -90,7 +90,7 @@ Route::post('/trades/history', 'UserController@tradeHistory');
 Route::post('/trade/update/cancel', 'TradeController@cancelTrade');
 
 
-Route::get('/iadmin', 'AdminController@getLogin');
+Route::get('/iadmin', 'AdminController@getDashboard');
 
 Route::get('/iadmin/login', 'AdminController@getLogin');
 
@@ -99,3 +99,11 @@ Route::get('/iadmin/dashboard', 'AdminController@getDashboard');
 Route::get('/iadmin/user/credit', 'AdminController@getUserCredit');
 
 Route::get('/iadmin/user/profile', 'AdminController@getUserProfile');
+
+Route::get('/iadmin/user/new', 'AdminController@getUserNew');
+
+Route::get('/iadmin/trade/active', 'AdminController@getTradeActive');
+
+Route::get('/iadmin/trade', 'AdminController@getTradeAll');
+
+Route::get('/iadmin/trade/{id}', 'AdminController@getTradeDetail');

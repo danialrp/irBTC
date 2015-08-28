@@ -399,6 +399,10 @@ body a:hover {
     font-family: tahoma !important;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .table-container {
     border: 1px solid #F6EBEB;
     padding: 5px;

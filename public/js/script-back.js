@@ -3,6 +3,7 @@ $(document).ready(function () {
     $(".sub-menu").css("display", "none");
 });
 
+/*BINDE CLICKOUTSITE PLUGIN TO CLASS*/
 $(".mainBar").bind( "clickoutside", function(event){
     $(".sub-menu").hide();
 });
@@ -47,6 +48,7 @@ $("#menu-5").on("click", function() {
     $("#submenu-4").css("display", "none");
 });
 
+/*HOVER TABLE TR*/
 $(document).ready(function () {
     $("tr").not(':first').hover(
         function () {
@@ -56,3 +58,9 @@ $(document).ready(function () {
             $(this).css("background","");
         });
 });
+
+/*EDIT PROFILE TABLE*/
+function editProfile(userId) {
+
+}
+

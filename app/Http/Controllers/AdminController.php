@@ -34,4 +34,24 @@ class AdminController extends Controller
     {
         return view('admin.manageUserProfile');
     }
+
+    public function getUserNew()
+    {
+        return view('admin.manageUserNew');
+    }
+
+    public function getTradeActive()
+    {
+        return view('admin.manageTradeActive');
+    }
+
+    public function getTradeAll()
+    {
+        return view('admin.manageTradeAll');
+    }
+
+    public function getTradeDetail()
+    {
+        return view('admin.manageTradeDetail');
+    }
 }

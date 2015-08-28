@@ -11,7 +11,7 @@
 </head>
 
 <body style="background-color: #2C3439 !important;">
-<div id="page-wrap">
+<div id="page-wrap" style="background-color: #2C3439 !important;">
         <div class="login-box">
             <div class="login-box-title"> <span class="login-box-title-text"> ورود </span></div>
             <form class="login-box-container" role="form" method="POST" action="{{ url('') }}">
