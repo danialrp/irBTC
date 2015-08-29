@@ -51,11 +51,11 @@
                     <td>1</td>
                     <td>خرید</td>
                     <td class="numbers">165624466</td>
-                    <td>Hami_reZa</td>
+                    <td class="eng-font">Hami_reZa</td>
                     <td>بیتکوین</td>
                     <td class="numbers">1,200,000</td>
                     <td class="numbers">0.982310</td>
-                    <td class="numbers">1394-06-02 04:17:48</td>
+                    <td class="numbers">1394-06-02@04:17:48</td>
                     <td>مبادله توسط کاربر لغو شد.</td>
                     <td>::</td>
                 </form>

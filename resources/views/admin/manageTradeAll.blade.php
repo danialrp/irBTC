@@ -21,9 +21,7 @@
                 <th>زمان</th>
                 <th>وضعیت</th>
                 <th>یادداشت</th>
-                <th>جزییات</th>
-                <th>ویرایش</th>
-                <th>بروزرسانی</th>
+                <th>عملیات</th>
             </tr>
             </thead>
             <tbody>
@@ -61,32 +59,25 @@
                         </select>
                     </td>
                     <td>::</td>
-                    <td>::</td>
-                    <td>::</td>
                     <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                 </form>
             </tr>
             <tr>
-                <form name="" class="" method="POST" role="form" action="{{ url('#') }}">
-                    {!! csrf_field() !!}
-                    <td>1</td>
-                    <td>خرید</td>
-                    <td class="numbers">989786723</td>
-                    <td>Hami_reZa</td>
-                    <td>بیتکوین</td>
-                    <td class="numbers">1,200,000</td>
-                    <td class="numbers">0.982310</td>
-                    <td class="numbers">659,000</td>
-                    <td class="numbers">0.000023</td>
-                    <td class="numbers">2,450</td>
-                    <td class="numbers">0</td>
-                    <td class="numbers">1394-06-02 04:17:48</td>
-                    <td>لغو شده</td>
-                    <td>مبادله توسط کاربر لغو شد.</td>
-                    <td><a id="detail-link" href="{{ url('/iadmin/trade/1') }}">جزییات</a> </td>
-                    <td><a id="detail-link" href="{{ url('#') }}" onclick="editProfile(1)">ویرایش</a> </td>
-                    <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
-                </form>
+                <td>1</td>
+                <td>خرید</td>
+                <td class="numbers">989786723</td>
+                <td class="eng-font">Hami_reZa</td>
+                <td>بیتکوین</td>
+                <td class="numbers">1,200,000</td>
+                <td class="numbers">0.982310</td>
+                <td class="numbers">659,000</td>
+                <td class="numbers">0.000023</td>
+                <td class="numbers">2,450</td>
+                <td class="numbers">0</td>
+                <td class="numbers">1394-06-02@04:17:48</td>
+                <td>لغو شده</td>
+                <td>مبادله توسط کاربر لغو شد.</td>
+                <td><a id="detail-link" href="{{ url('/iadmin/trade/1') }}">جزییات</a> </td>
             </tr>
             <tr class="bold">
                 <td>::</td>
@@ -100,8 +91,6 @@
                 <td class="numbers">20.980761</td>
                 <td class="numbers">99,999.999</td>
                 <td class="numbers">12.129809</td>
-                <td>::</td>
-                <td>::</td>
                 <td>::</td>
                 <td>::</td>
                 <td>::</td>

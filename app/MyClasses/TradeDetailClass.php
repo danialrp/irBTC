@@ -40,6 +40,7 @@ class TradeDetailClass {
             'trade2' => $trade2->trade_id,
             'trade2_type' => $trade2->type,
             'amount' => $amount,
+            'description' => 'ثبت مبادله توسط سیستم'
         ]);
     }
 

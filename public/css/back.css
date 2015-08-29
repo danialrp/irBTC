@@ -265,6 +265,9 @@ body a:hover {
 #submenu-5 {
     margin: 2px 381px 0px 0px;
 }
+#submenu-6 {
+    margin: 2px 476px 0px 0px;
+}
 
 .sub-menu a, a:visited {
     color: rgba(255, 255, 255, 0.8);
@@ -347,12 +350,21 @@ body a:hover {
     height: 20px;
     width: 220px;
 }
+
 .txt-table {
     font-family: "MyYekan" !important;
     font-size: 12px;
     padding: 0px;
     height: 15px;
     width: 90px;
+}
+
+.txt-table-wide {
+    font-family: "MyYekan" !important;
+    font-size: 12px;
+    padding: 0px;
+    height: 18px;
+    width: 350px;
 }
 
 .btn-simple {
@@ -379,6 +391,12 @@ body a:hover {
     padding: 15px 0px 0px 0px;
 }
 
+.center-element {
+    margin: auto;
+    width: 70px;
+    padding: 5px 0px 0px;
+}
+
 .red {
     color: #ec030e !important;
 }
@@ -403,11 +421,16 @@ body a:hover {
     font-weight: bold;
 }
 
+.eng-font {
+    font-family: tahoma !important;
+}
+
 .table-container {
     border: 1px solid #F6EBEB;
     padding: 5px;
     width: 99%;
     margin: 5px auto;
+    overflow-x: scroll;
 }
 
 .table-general{
@@ -423,7 +446,7 @@ body a:hover {
 
 .table-general td {
     font-size: 12px;
-    line-height: 8px;
+    line-height: 15px;
 }
 .table-general td, th {
     padding: 6px;

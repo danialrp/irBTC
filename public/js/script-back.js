@@ -14,6 +14,7 @@ $("#menu-1").on("click", function() {
     $("#submenu-3").css("display", "none");
     $("#submenu-4").css("display", "none");
     $("#submenu-5").css("display", "none");
+    $("#submenu-6").css("display", "none");
 });
 
 $("#menu-2").on("click", function() {
@@ -22,6 +23,7 @@ $("#menu-2").on("click", function() {
     $("#submenu-3").css("display", "none");
     $("#submenu-4").css("display", "none");
     $("#submenu-5").css("display", "none");
+    $("#submenu-6").css("display", "none");
 });
 
 $("#menu-3").on("click", function() {
@@ -30,6 +32,7 @@ $("#menu-3").on("click", function() {
     $("#submenu-1").css("display", "none");
     $("#submenu-4").css("display", "none");
     $("#submenu-5").css("display", "none");
+    $("#submenu-6").css("display", "none");
 });
 
 $("#menu-4").on("click", function() {
@@ -38,10 +41,21 @@ $("#menu-4").on("click", function() {
     $("#submenu-3").css("display", "none");
     $("#submenu-1").css("display", "none");
     $("#submenu-5").css("display", "none");
+    $("#submenu-6").css("display", "none");
 });
 
 $("#menu-5").on("click", function() {
     $("#submenu-5").fadeToggle("fast");
+    $("#submenu-2").css("display", "none");
+    $("#submenu-3").css("display", "none");
+    $("#submenu-1").css("display", "none");
+    $("#submenu-4").css("display", "none");
+    $("#submenu-6").css("display", "none");
+});
+
+$("#menu-6").on("click", function() {
+    $("#submenu-6").fadeToggle("fast");
+    $("#submenu-5").css("display", "none");
     $("#submenu-2").css("display", "none");
     $("#submenu-3").css("display", "none");
     $("#submenu-1").css("display", "none");

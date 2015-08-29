@@ -100,6 +100,8 @@ Route::get('/iadmin/user/credit', 'AdminController@getUserCredit');
 
 Route::get('/iadmin/user/profile', 'AdminController@getUserProfile');
 
+Route::get('/iadmin/user/profile/{id}', 'AdminController@getUserDetail');
+
 Route::get('/iadmin/user/new', 'AdminController@getUserNew');
 
 Route::get('/iadmin/trade/active', 'AdminController@getTradeActive');
@@ -107,3 +109,9 @@ Route::get('/iadmin/trade/active', 'AdminController@getTradeActive');
 Route::get('/iadmin/trade', 'AdminController@getTradeAll');
 
 Route::get('/iadmin/trade/{id}', 'AdminController@getTradeDetail');
+
+Route::get('/iadmin/transaction/active', 'AdminController@getTransactionActive');
+
+Route::get('/iadmin/transaction', 'AdminController@getTransactionAll');
+
+Route::get('/iadmin/transaction/{id}', 'AdminController@getTransactionDetail');

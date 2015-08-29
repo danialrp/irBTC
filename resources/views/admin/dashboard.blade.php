@@ -5,7 +5,10 @@
 @section('content')
     <div class="table-container">
         <table id="" class="table-general">
-            <thead></thead>
+            <thead>
+            <th>عنوان</th>
+            <th>گزارش</th>
+            </thead>
             <tbody>
             <tr>
                 <td>تعداد کل کاربران</td>

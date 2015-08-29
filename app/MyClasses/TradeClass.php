@@ -61,8 +61,9 @@ class TradeClass {
                 'fee_amount' => $fee * $amount * $value,
                 'status' => 1,
                 'money' => $money,
-                'created_at' => Carbon::now(),
-                'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true)
+                'description' => 'مبادله توسط کاربر ثبت شد',
+                'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true),
+                'created_at' => Carbon::now()
             ]);
             $this->tradeDetailClass->feeAmountOnTradeCreate($new_trade);
             $this->insertToActiveList($new_trade);
@@ -229,7 +230,7 @@ class TradeClass {
                 $mainTrade = Trade::where('id', $activeTrade->trade_id)->first();
                 $mainTrade->remain = $activeTrade->remain;
                 $mainTrade->status = 3;
-                $mainTrade->description = "مبادله توسط کاربر لغو شد.";
+                $mainTrade->description = "مبادله توسط کاربر لغو شد";
                 $mainTrade->save();
                 $activeTrade->remain = 0;
                 $activeTrade->delete();

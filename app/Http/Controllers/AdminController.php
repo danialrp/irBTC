@@ -35,6 +35,11 @@ class AdminController extends Controller
         return view('admin.manageUserProfile');
     }
 
+    public function getUserDetail()
+    {
+        return view('admin.manageUserDetail');
+    }
+
     public function getUserNew()
     {
         return view('admin.manageUserNew');
@@ -53,5 +58,20 @@ class AdminController extends Controller
     public function getTradeDetail()
     {
         return view('admin.manageTradeDetail');
+    }
+
+    public function getTransactionActive()
+    {
+        return view('admin.manageTransactionActive');
+    }
+
+    public function getTransactionAll()
+    {
+        return view('admin.manageTransactionAll');
+    }
+
+    public function getTransactionDetail()
+    {
+        return view('admin.manageTransactionDetail');
     }
 }
