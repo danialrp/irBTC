@@ -27,13 +27,13 @@
             <a href="{{ url('/iadmin/transaction') }}"><p>گزارشات پرداخت</p></a>
         </div>
         <div id="submenu-5" class="sub-menu" >
-            <a href="{{ url('/iadmin/bank') }}"><p>حساب کاربران</p></a>
-            <a href="{{ url('/iadmin/bank/new') }}"><p>افزودن حساب جدید</p></a>
+            <a href="{{ url('/iadmin/bank/irr') }}"><p>حساب ریالی کاربران</p></a>
+            <a href="{{ url('/iadmin/bank/btc') }}"><p>آدرس بیتکوین کاربران</p></a>
         </div>
 
         <div id="submenu-6" class="sub-menu" >
-            <a href="{{ url('#') }}"><p>مدیریت کارمزد</p></a>
-            <a href="{{ url('#') }}"><p>قیمت دلار</p></a>
+            <a href="{{ url('/iadmin/fee') }}"><p>مدیریت کارمزد</p></a>
+            <a href="{{ url('/iadmin/rate') }}"><p>قیمت دلار</p></a>
         </div>
     </div>
 

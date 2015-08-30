@@ -75,18 +75,38 @@ class AdminController extends Controller
         return view('admin.manageTransactionDetail');
     }
 
-    public function getBankAll()
+    public function getBankIrr()
     {
-        return view('admin.manageBankAll');
+        return view('admin.manageBankIrr');
     }
 
-    public function getBankNew()
+    public function getBankIrrDetail()
     {
-        return view('admin.manageBankNew');
+        return view('admin.manageBankIrrDetail');
     }
 
-    public function getBankDetail()
+    public function getBankBtc()
     {
-        return view('admin.manageBankDetail');
+        return view('admin.manageBankBtc');
+    }
+
+    public function getBankBtcDetail()
+    {
+        return view('admin.manageBankBtcDetail');
+    }
+
+    public function getFeeAll()
+    {
+        return view('admin.manageFeeAll');
+    }
+
+    public function getFeeDetail()
+    {
+        return view('admin.manageFeeDetail');
+    }
+
+    public function getRateAll()
+    {
+        return view('admin.manageRateAll');
     }
 }

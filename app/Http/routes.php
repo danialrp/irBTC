@@ -116,8 +116,17 @@ Route::get('/iadmin/transaction', 'AdminController@getTransactionAll');
 
 Route::get('/iadmin/transaction/{id}', 'AdminController@getTransactionDetail');
 
-Route::get('/iadmin/bank', 'AdminController@getBankAll');
+Route::get('/iadmin/bank/irr', 'AdminController@getBankIrr');
 
-Route::get('/iadmin/bank/new', 'AdminController@getBankNew');
+Route::get('/iadmin/bank/irr/{id}', 'AdminController@getBankIrrDetail');
 
-Route::get('/iadmin/bank/{id}', 'AdminController@getBankDetail');
+Route::get('/iadmin/bank/btc', 'AdminController@getBankBtc');
+
+Route::get('/iadmin/bank/btc/{id}', 'AdminController@getBankBtcDetail');
+
+Route::get('/iadmin/fee', 'AdminController@getFeeAll');
+
+Route::get('/iadmin/fee/1', 'AdminController@getFeeDetail');
+
+Route::get('/iadmin/rate', 'AdminController@getRateAll');
+

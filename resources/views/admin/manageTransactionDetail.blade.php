@@ -32,7 +32,7 @@
                 <tr>
                     <td>ارز</td>
                     <td>
-                        <select name="currency" class="fund-dropdown">
+                        <select name="currency" class="">
                             <option value="1">ریالی</option>
                             <option value="3">بیتکوین</option>
                         </select>
