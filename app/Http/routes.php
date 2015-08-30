@@ -115,3 +115,9 @@ Route::get('/iadmin/transaction/active', 'AdminController@getTransactionActive')
 Route::get('/iadmin/transaction', 'AdminController@getTransactionAll');
 
 Route::get('/iadmin/transaction/{id}', 'AdminController@getTransactionDetail');
+
+Route::get('/iadmin/bank', 'AdminController@getBankAll');
+
+Route::get('/iadmin/bank/new', 'AdminController@getBankNew');
+
+Route::get('/iadmin/bank/{id}', 'AdminController@getBankDetail');

@@ -27,8 +27,8 @@
             <a href="{{ url('/iadmin/transaction') }}"><p>گزارشات پرداخت</p></a>
         </div>
         <div id="submenu-5" class="sub-menu" >
-            <a href="{{ url('#') }}"><p>حساب های کاربران</p></a>
-            <a href="{{ url('#') }}"><p>افزودن حساب جدید</p></a>
+            <a href="{{ url('/iadmin/bank') }}"><p>حساب کاربران</p></a>
+            <a href="{{ url('/iadmin/bank/new') }}"><p>افزودن حساب جدید</p></a>
         </div>
 
         <div id="submenu-6" class="sub-menu" >

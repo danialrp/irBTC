@@ -74,4 +74,19 @@ class AdminController extends Controller
     {
         return view('admin.manageTransactionDetail');
     }
+
+    public function getBankAll()
+    {
+        return view('admin.manageBankAll');
+    }
+
+    public function getBankNew()
+    {
+        return view('admin.manageBankNew');
+    }
+
+    public function getBankDetail()
+    {
+        return view('admin.manageBankDetail');
+    }
 }
