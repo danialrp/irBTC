@@ -9,7 +9,7 @@
             </div>,
             <div class="sidebar-element">
                 <label class="sidebar-element-title"> بیتکوین </label>
-                <label id="btc_balance" class="sidebar-element-value numbers blue"><a href="{{ url('/fund/deposit/btc') }}">{{ number_format($bitcoin_balance, 6, '.', ',') }}</a></label>
+                <label id="btc_balance" class="sidebar-element-value numbers blue"><a href="{{ url('/fund/deposit/btc') }}">{{ rtrim(sprintf('%.8F', round(number_format($bitcoin_balance, 6, '.', ','), 6)), '0') }}</a></label>
             </div>
 
             {{--<div class="sidebar-element">

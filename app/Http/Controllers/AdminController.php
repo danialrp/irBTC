@@ -25,7 +25,8 @@ class AdminController extends Controller
 
     public function getDashboard()
     {
-        return view('admin.dashboard');
+        $dashboard = $this->adminClass->getDashboardInfo();
+        return view('admin.dashboard', compact('dashboard'));
     }
 
     public function getUserCredit()

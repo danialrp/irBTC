@@ -12,11 +12,11 @@
             <tbody>
             <tr>
                 <td>تعداد کل کاربران</td>
-                <td class="numbers">72123</td>
+                <td class="numbers">{{ $dashboard['users'] }}</td>
             </tr>
             <tr>
                 <td>کاربران تایید شده</td>
-                <td class="numbers">680</td>
+                <td class="numbers">{{ $dashboard['usersConfirmed'] }}</td>
             </tr>
             <tr>
                 <td>کاربران جدید</td>

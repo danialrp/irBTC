@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\MyClasses\AdminClass;
+use App\MyClasses\AdminAuthenticateClass;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -12,14 +12,15 @@ use Illuminate\Support\Facades\Auth;
 class AdminAuthController extends Controller
 {
 
-    /**
-     * @var AdminClass
-     */
-    private $adminClass;
 
-    public function __construct(AdminClass $adminClass)
+    /**
+     * @var AdminAuthenticateClass
+     */
+    private $adminAuthenticateClass;
+
+    public function __construct(AdminAuthenticateClass $adminAuthenticateClass)
     {
-        $this->adminClass = $adminClass;
+        $this->adminAuthenticateClass = $adminAuthenticateClass;
     }
 
     public function getLogin()
@@ -34,20 +35,20 @@ class AdminAuthController extends Controller
 
     public function postLogin(Request $request)
     {
-        if($auth = $this->adminClass->authenticateAdmin($request) == -1) {
+        if($auth = $this->adminAuthenticateClass->authenticateAdmin($request) == -1) {
             return redirect('/iadmin/login')
                 ->withErrors([
                     'email' => 'دسترسی شما به دلایل امنیتی به مدت ۱ دقیقه مسدود گردید!'
                 ]);
         }
-        elseif($auth = $this->adminClass->authenticateAdmin($request) == 0) {
+        elseif($auth = $this->adminAuthenticateClass->authenticateAdmin($request) == 0) {
             return redirect('/iadmin/login')
                 ->withInput($request->only('email'))
                 ->withErrors([
                     'email' => 'اطلاعات وارد شده صحیح نمی باشد!',
                 ]);
         }
-        elseif($auth = $this->adminClass->authenticateAdmin($request) == 1)
+        elseif($auth = $this->adminAuthenticateClass->authenticateAdmin($request) == 1)
             return redirect()->intended('/iadmin/dashboard');
     }
 

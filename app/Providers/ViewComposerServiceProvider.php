@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Balance;
+use App\Transaction;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +19,7 @@ class ViewComposerServiceProvider extends ServiceProvider
     {
         $this->getUserBalance();
         $this->getUserFootage();
+        $this->getAdminHeaderInfo();
     }
 
     /**
@@ -71,6 +73,29 @@ class ViewComposerServiceProvider extends ServiceProvider
                 $view;
             }
 
+        });
+    }
+
+    public function getAdminHeaderInfo()
+    {
+        view()->composer('admin.partial.header', function($view) {
+           if(Auth::check())
+           {
+               $waitingPayment = Transaction::where('status', 4)->count();
+               $balances = Balance::select('current_balance', 'money')->get();
+               $view->with([
+                   'countWaitingPayment' => $waitingPayment,
+                   'irrTotalBalance' => $balances->where('money', 1)->sum('current_balance'),
+                   'btcTotalBalance' => $balances->where('money', 3)->sum('current_balance'),
+                   'wmTotalBalance' => $balances->where('money', 4)->sum('current_balance'),
+                   'pmTotalBalance' => $balances->where('money', 5)->sum('current_balance'),
+                   'currentTime' => JDateServiceProvider::date('Y/m/d @ H:i', time(), false, true),
+               ]);
+           }
+            else
+            {
+                $view;
+            }
         });
     }
 }
