@@ -114,7 +114,7 @@ class AuthController extends Controller
                 'password' => 'required',
             ]);
 
-            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'active' => 1])) {
+            if (Auth::attempt(['email' => $request['email'], 'password' => $request['password'], 'active' => 1, 'role' => 2])) {
                 $this->userClass->setLoginFootage(Auth::user()->id, $request->ip());
                 $this->throttleClass->setThrottleStatus($request->ip(), 1);
                 return redirect()->intended('/');

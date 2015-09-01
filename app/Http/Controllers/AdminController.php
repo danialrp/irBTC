@@ -2,22 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\MyClasses\AdminClass;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        /*$this->middleware('auth', ['except' => ['getLogin', 'postLogin']]);
-        $this->middleware('admin', ['except' => ['getLogin', 'postLogin']]);*/
-    }
+    /**
+     * @var AdminClass
+     */
+    private $adminClass;
 
-    public function getLogin()
+    public function __construct(AdminClass $adminClass)
     {
-        return view('admin.login');
+        $this->middleware('auth');
+        $this->middleware('admin');
+        $this->adminClass = $adminClass;
     }
 
     public function getDashboard()

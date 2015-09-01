@@ -8,7 +8,7 @@ class Role extends Model
 {
     protected $table = 'roles';
 
-    public function user()
+    public function roleUser()
     {
         return $this->belongsToMany('App\User', 'role');
     }

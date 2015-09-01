@@ -92,7 +92,11 @@ Route::post('/trade/update/cancel', 'TradeController@cancelTrade');
 
 Route::get('/iadmin', 'AdminController@getDashboard');
 
-Route::get('/iadmin/login', 'AdminController@getLogin');
+Route::get('/iadmin/login', 'AdminAuthController@getLogin');
+
+Route::post('/iadmin/login', 'AdminAuthController@postLogin');
+
+Route::get('/iadmin/logout', 'AdminAuthController@getLogout');
 
 Route::get('/iadmin/dashboard', 'AdminController@getDashboard');
 

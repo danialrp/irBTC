@@ -3,6 +3,36 @@ $(document).ready(function () {
     $(".sub-menu").css("display", "none");
 });
 
+/*GENERAL POPUP FLASH MESSAGE*/
+function show_flash()
+{
+    $("#flash-message").dialog(
+        {
+            title: "توجه!",
+            autoOpen: true,
+            modal: true,
+            draggable: false,
+            resizable: false,
+            dialogClass: "alert",
+            width: 300,
+            position: { my: "center center-50%", at: "center", of: "#page-wrap" },
+            buttons: [
+                {
+                    text: "بستن",
+                    click: function() {
+                        $(this).dialog( "close" );
+                    }
+                }]
+        });
+}
+
+/*SHOW SESSION $ERROR ITEMS*/
+$(document).ready(function(){
+    var $err = $(".message-item");
+    if($err.text() != 0)
+        show_flash();
+});
+
 /*BINDE CLICKOUTSITE PLUGIN TO CLASS*/
 $(".mainBar").bind( "clickoutside", function(event){
     $(".sub-menu").hide();
@@ -66,7 +96,7 @@ $("#menu-6").on("click", function() {
 $(document).ready(function () {
     $("tr").not(':first').hover(
         function () {
-            $(this).css("cssText","background: #F9E97D !important;");
+            $(this).css("cssText","background: #DEDEDE !important;");
         },
         function () {
             $(this).css("background","");

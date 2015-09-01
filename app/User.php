@@ -33,7 +33,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      */
     protected $hidden = ['password', 'remember_token'];
 
-    public function role()
+    public function userRole()
     {
         return $this->hasOne('App\Role', 'role');
     }

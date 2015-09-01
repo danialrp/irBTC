@@ -46,7 +46,7 @@ table {
 }
 
 table tr:nth-of-type(even) {
-    background: #F4F9FB !important;
+    background: #F8F8F8 !important;
 }
 
 @font-face {
@@ -98,6 +98,7 @@ body a:hover {
     display: block;
     font-family: 'MyYekan' !important;
     direction: rtl;
+    font-size: 12px !important;
 }
 
 #message ul {
@@ -440,13 +441,17 @@ body a:hover {
 }
 .table-general th {
     line-height: 10px;
-    background: #1B65B9;
+    background: #888;
+    border-bottom: 1px solid #777;
+    border-top: 1px solid #888;
+    border-right: 1px solid #777;
     color: #FFFFFF;
 }
 
 .table-general td {
     font-size: 12px;
     line-height: 15px;
+    color: #5A5A5A;
 }
 .table-general td, th {
     padding: 6px;

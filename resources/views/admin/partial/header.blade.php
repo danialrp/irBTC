@@ -15,7 +15,7 @@
         <div class="header-container-left-element">
             <ul>
                 <li>امروز ۲/۶/۹۴ - ساعت ۲:۲۵</li>
-                <li><span> کاربر:: Admin </span><span class="pipe"> | </span><span><a href="{{ url('#') }}"> خروج </a></span></li>
+                <li><span> کاربر:: Admin </span><span class="pipe"> | </span><span><a href="{{ action('AdminAuthController@getLogout') }}"> خروج </a></span></li>
             </ul>
         </div>
     </div>
