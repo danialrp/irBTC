@@ -23,8 +23,8 @@ class BalanceTableSeeder extends Seeder
             ['id' => 6, 'owner' => 2, 'money' => 1, 'current_balance' => 1000000, 'last_balance' => 0,],
             ['id' => 7, 'owner' => 2, 'money' => 2, 'current_balance' => 0, 'last_balance' => 0],
             ['id' => 8, 'owner' => 2, 'money' => 3, 'current_balance' => 10, 'last_balance' => 0],
-            ['id' => 9, 'owner' => 2, 'money' => 4, 'current_balance' => 200, 'last_balance' => 0],
-            ['id' => 10, 'owner' => 2, 'money' => 5, 'current_balance' => 100, 'last_balance' => 0]
+            ['id' => 9, 'owner' => 2, 'money' => 4, 'current_balance' => 0, 'last_balance' => 0],
+            ['id' => 10, 'owner' => 2, 'money' => 5, 'current_balance' => 0, 'last_balance' => 0]
         ]);
     }
 }

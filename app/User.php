@@ -38,22 +38,22 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
         return $this->hasOne('App\Role', 'role');
     }
 
-    public function balance()
+    public function userBalance()
     {
         return $this->hasMany('App\Balance', 'owner');
     }
 
-    public function trade()
+    public function userTrade()
     {
         return $this->hasMany('App\Trade', 'owner');
     }
 
-    public function bank()
+    public function userBank()
     {
         return $this->hasMany('App\Bank', 'owner');
     }
 
-    public function transaction()
+    public function userTransaction()
     {
         return $this->hasMany('App\Transaction', 'owner');
     }

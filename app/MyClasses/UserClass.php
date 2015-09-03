@@ -61,11 +61,11 @@ class UserClass
 
     public function makeBalance($id)
     {
-        DB::table('balances')->insert(['owner' => $id, 'money' => 1, 'current_balance' => 0, 'last_balance' => 0,]);
-        DB::table('balances')->insert(['owner' => $id, 'money' => 2, 'current_balance' => 0, 'last_balance' => 0,]);
-        DB::table('balances')->insert(['owner' => $id, 'money' => 3, 'current_balance' => 0, 'last_balance' => 0,]);
-        DB::table('balances')->insert(['owner' => $id, 'money' => 4, 'current_balance' => 0, 'last_balance' => 0,]);
-        DB::table('balances')->insert(['owner' => $id, 'money' => 5, 'current_balance' => 0, 'last_balance' => 0,]);
+        DB::table('balances')->insert(['owner' => $id, 'money' => 1, 'current_balance' => 0, 'last_balance' => 0, 'created_at' => Carbon::now()]);
+        DB::table('balances')->insert(['owner' => $id, 'money' => 2, 'current_balance' => 0, 'last_balance' => 0, 'created_at' => Carbon::now()]);
+        DB::table('balances')->insert(['owner' => $id, 'money' => 3, 'current_balance' => 0, 'last_balance' => 0, 'created_at' => Carbon::now()]);
+        DB::table('balances')->insert(['owner' => $id, 'money' => 4, 'current_balance' => 0, 'last_balance' => 0, 'created_at' => Carbon::now()]);
+        DB::table('balances')->insert(['owner' => $id, 'money' => 5, 'current_balance' => 0, 'last_balance' => 0, 'created_at' => Carbon::now()]);
     }
 
     public function getBalance($id)

@@ -31,7 +31,8 @@ class AdminController extends Controller
 
     public function getUserCredit()
     {
-        return view('admin.manageUserCredit');
+        $users = $this->adminClass->manageUserCredit();
+        return view('admin.manageUserCredit', compact('users'));
     }
 
     public function getUserProfile()

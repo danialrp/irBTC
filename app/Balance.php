@@ -8,12 +8,12 @@ class Balance extends Model
 {
     protected $table = 'balances';
 
-    public function owner()
+    public function balanceUser()
     {
         return $this->belongsTo('App\User', 'owner');
     }
 
-    public function money()
+    public function balanceMoney()
     {
         return $this->belongsTo('App\Money', 'money');
     }

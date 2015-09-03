@@ -462,3 +462,24 @@ body a:hover {
 .td-no-padding {
     padding: 0px !important;
 }
+
+.paginate {
+    font-family: tahoma !important;
+    font-size: 13px !important;
+    height: 12px;
+    width: auto;
+    padding: 15px 0px 15px 0px;
+    text-align: center;
+    line-height: 10px;
+    direction: ltr;
+}
+
+.paginate ul {
+
+}
+
+.paginate ul li {
+    background-color: #F8F8F8;
+    display: inline;
+    padding: 0px 5px;
+}

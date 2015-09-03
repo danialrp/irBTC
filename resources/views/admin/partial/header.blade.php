@@ -14,7 +14,7 @@
     <div class="header-container-left">
         <div class="header-container-left-element">
             <ul>
-                <li><span> امروز </span><span>{{ $currentTime }}</span></li>
+                <li><span> امروز </span><span class="numbers">{{ $currentTime }}</span></li>
                 <li><span> کاربر:: </span><span>{{ Auth::user()->nname }}</span><span class="pipe"> | </span><span><a href="{{ action('AdminAuthController@getLogout') }}"> خروج </a></span></li>
             </ul>
         </div>

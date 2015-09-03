@@ -43,45 +43,31 @@
                     <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                 </form>
             </tr>
-            <tr>
-                <form name="" class="" method="POST" role="form" action="{{ url('#') }}">
-                    {!! csrf_field() !!}
-                    <td>1</td>
-                    <td class="numbers">0981269823</td>
-                    <td>حمید</td>
-                    <td>رضایی</td>
-                    <td>Hami_reZa</td>
-                    <td class="numbers">3,450,000</td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
-                    <td class="numbers">3.9883421</td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
-                    <td class="numbers">0.00</td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
-                    <td class="numbers">0.00</td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
-                    <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
-                </form>
-            </tr>
-            <tr>
-                <form name="" class="" method="POST" role="form" action="{{ url('#') }}">
-                    {!! csrf_field() !!}
-                    <td>2</td>
-                    <td class="numbers">0950929845</td>
-                    <td>سعید</td>
-                    <td>حسن زاده</td>
-                    <td>asare</td>
-                    <td class="numbers">2,000</td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
-                    <td class="numbers">0.002314</td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
-                    <td class="numbers">230.90</td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
-                    <td class="numbers">30,000.98</td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
-                    <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
-                </form>
-            </tr>
+            @foreach($users as $user)
+                <tr>
+                    <form name="" class="" method="POST" role="form" action="{{ url('#') }}">
+                        {!! csrf_field() !!}
+                        <td>1</td>
+                        <td class="numbers">{{ $user->national_number }}</td>
+                        <td>{{ $user->fname }}</td>
+                        <td>{{ $user->lname }}</td>
+                        <td>{{ $user->nname }}</td>
+                        <td class="numbers">{{ number_format($user->userBalance[0]->current_balance, 0, '.', ',') }}</td>
+                        <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                        <td class="numbers">{{ rtrim(sprintf('%.8F', round(number_format($user->userBalance[2]->current_balance, 6, '.', ','), 6)), '0')}}</td>
+                        <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                        <td class="numbers">{{ number_format($user->userBalance[3]->current_balance, 2, '.', ',') }}</td>
+                        <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                        <td class="numbers">{{ number_format($user->userBalance[4]->current_balance, 2, '.', ',') }}</td>
+                        <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                        <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
+                    </form>
+                </tr>
+            @endforeach
             </tbody>
         </table>
+        <div class="paginate">
+            {!! $users->render() !!}
+        </div>
     </div>
 @stop
