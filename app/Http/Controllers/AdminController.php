@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminManageCreditRequest;
+use App\Http\Requests\AdminSearchRequest;
 use App\MyClasses\AdminClass;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -32,6 +35,23 @@ class AdminController extends Controller
     public function getUserCredit()
     {
         $users = $this->adminClass->manageUserCredit();
+        return view('admin.manageUserCredit', compact('users'));
+    }
+
+    public function postUserCredit($user_id, AdminManageCreditRequest $request)
+    {
+        if($this->adminClass->updateUserCredit($user_id, $request) == 1)
+            Session::flash('message', 'موجودی کاربر با موفقیت بروزرسانی گردید!');
+        elseif($this->adminClass->updateUserCredit($user_id, $request) == 0)
+            Session::flash('message', 'هیچ موجودی بروزرسانی نگردید!');
+        else
+            Session::flash('message', 'متاسفانه بروزرسانی اعتبار انجام نشد!');
+        return redirect('/iadmin/user/credit');
+    }
+
+    public function postSearchUserCredit(AdminSearchRequest $request)
+    {
+        $users = $this->adminClass->searchUserCredit($request);
         return view('admin.manageUserCredit', compact('users'));
     }
 

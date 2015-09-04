@@ -102,6 +102,10 @@ Route::get('/iadmin/dashboard', 'AdminController@getDashboard');
 
 Route::get('/iadmin/user/credit', 'AdminController@getUserCredit');
 
+Route::post('/iadmin/user/credit/search', 'AdminController@postSearchUserCredit');
+
+Route::post('/iadmin/user/credit/{id}', 'AdminController@postUserCredit');
+
 Route::get('/iadmin/user/profile', 'AdminController@getUserProfile');
 
 Route::get('/iadmin/user/profile/{id}', 'AdminController@getUserDetail');

@@ -8,8 +8,11 @@
 
 namespace App\MyClasses;
 
+use App\Balance;
 use App\Fee;
 use App\Http\Requests;
+use App\Http\Requests\AdminManageCreditRequest;
+use App\Http\Requests\AdminSearchRequest;
 use App\Trade;
 use App\TradeDetail;
 use App\Transaction;
@@ -59,7 +62,55 @@ class AdminClass {
 
     public function manageUserCredit()
     {
-        return User::select('id','national_number', 'fname', 'lname', 'nname')->orderby('created_at', 'desc')->paginate(25);
+        return User::select('id','national_number', 'fname', 'lname', 'nname')->orderby('created_at', 'desc')->paginate(20);
+    }
+
+    public function updateUserCredit($user_id, AdminManageCreditRequest $request)
+    {
+        if($request->irr_deposit_amount == 0 && $request->btc_deposit_amount == 0 && $request->wm_deposit_amount == 0 && $request->pm_deposit_amount == 0)
+            return 0;
+        if($request->irr_deposit_amount != 0) {
+            $irrBalance = Balance::where('owner', $user_id)->where('money', 1)->first();
+            $irrBalance->last_balance = $irrBalance->current_balance;
+            $irrBalance->current_balance += $request->irr_deposit_amount;
+            $irrBalance->save();
+        }
+        if($request->btc_deposit_amount != 0) {
+            $btcBalance = Balance::where('owner', $user_id)->where('money', 3)->first();
+            $btcBalance->last_balance = $btcBalance->current_balance;
+            $btcBalance->current_balance += $request->btc_deposit_amount;
+            $btcBalance->save();
+        }
+        if($request->wm_deposit_amount != 0) {
+            $wmBalance = Balance::where('owner', $user_id)->where('money', 4)->first();
+            $wmBalance->last_balance = $wmBalance->current_balance;
+            $wmBalance->current_balance += $request->wm_deposit_amount;
+            $wmBalance->save();
+        }
+        if($request->pm_deposit_amount != 0) {
+            $pmBalance = Balance::where('owner', $user_id)->where('money', 5)->first();
+            $pmBalance->last_balance = $pmBalance->current_balance;
+            $pmBalance->current_balance += $request->pm_deposit_amount;
+            $pmBalance->save();
+        }
+        return 1;
+    }
+
+    public function searchUserCredit(AdminSearchRequest $request)
+    {
+        return User::where(function($query) use($request){
+            if($request->national_number)
+                $query->where('national_number', '=', $request->national_number);
+            if($request->fname)
+                $query->where('fname', 'like', $request->fname.'%');
+            if($request->lname)
+                $query->where('lname', 'like', $request->lname.'%');
+            if($request->nname)
+                $query->where('nname', 'like', $request->nname.'%');
+        })
+            ->select('id','national_number', 'fname', 'lname', 'nname')
+            ->orderby('created_at', 'desc')
+            ->paginate(20);
     }
 
 }

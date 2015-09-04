@@ -25,13 +25,13 @@
             </thead>
             <tbody>
             <tr>
-                <form class="" role="form" method="POST" action="{{ url('#') }}">
+                <form class="" role="form" method="POST" action="{{ url('/iadmin/user/credit/search') }}">
                     {!! csrf_field() !!}
                     <td>::</td>
-                    <td><input type="text" class="txt-table" name="search_national_number" placeholder="" value="{{ old('search_national_number') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_fname" placeholder="" value="{{ old('search_fname') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_lname" placeholder="" value="{{ old('search_lname') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_nname" placeholder="" value="{{ old('search_nname') }}"></td>
+                    <td><input type="text" class="txt-table" name="national_number" placeholder="" value="{{ old('national_number') }}"></td>
+                    <td><input type="text" class="txt-table" name="fname" placeholder="" value="{{ old('fname') }}"></td>
+                    <td><input type="text" class="txt-table" name="lname" placeholder="" value="{{ old('lname') }}"></td>
+                    <td><input type="text" class="txt-table" name="nname" placeholder="" value="{{ old('nname') }}"></td>
                     <td>::</td>
                     <td>::</td>
                     <td>::</td>
@@ -43,23 +43,24 @@
                     <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                 </form>
             </tr>
+            <?php $i=1 ?>
             @foreach($users as $user)
                 <tr>
-                    <form name="" class="" method="POST" role="form" action="{{ url('#') }}">
+                    <form name="" class="" method="POST" role="form" action="{{ url('/iadmin/user/credit', $user->id) }}">
                         {!! csrf_field() !!}
-                        <td>1</td>
+                        <td>{{ $i++ }}</td>
                         <td class="numbers">{{ $user->national_number }}</td>
                         <td>{{ $user->fname }}</td>
                         <td>{{ $user->lname }}</td>
                         <td>{{ $user->nname }}</td>
                         <td class="numbers">{{ number_format($user->userBalance[0]->current_balance, 0, '.', ',') }}</td>
-                        <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                        <td><input type="text" class="txt-table numbers" name="irr_deposit_amount" placeholder="" value="0"></td>
                         <td class="numbers">{{ rtrim(sprintf('%.8F', round(number_format($user->userBalance[2]->current_balance, 6, '.', ','), 6)), '0')}}</td>
-                        <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                        <td><input type="text" class="txt-table numbers" name="btc_deposit_amount" placeholder="" value="0"></td>
                         <td class="numbers">{{ number_format($user->userBalance[3]->current_balance, 2, '.', ',') }}</td>
-                        <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                        <td><input type="text" class="txt-table numbers" name="wm_deposit_amount" placeholder="" value="0"></td>
                         <td class="numbers">{{ number_format($user->userBalance[4]->current_balance, 2, '.', ',') }}</td>
-                        <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                        <td><input type="text" class="txt-table numbers" name="pm_deposit_amount" placeholder="" value="0"></td>
                         <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                     </form>
                 </tr>
