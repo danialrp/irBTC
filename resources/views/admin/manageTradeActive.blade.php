@@ -9,70 +9,68 @@
             <tr>
                 <th>#</th>
                 <th>نوع</th>
-                <th>شناسه</th>
-                <th>کاربر</th>
                 <th>ارز</th>
                 <th>نرخ واحد (تومان)</th>
                 <th>باقیمانده</th>
                 <th>زمان</th>
-                <th>یادداشت</th>
+                <th>توضیحات(#)</th>
                 <th>بروزرسانی</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <form class="" role="form" method="POST" action="{{ url('#') }}">
-                    {!! csrf_field() !!}
+                <form class="" role="form" method="GET" action="{{ url('/iadmin/trade/active/search') }}">
                     <td>::</td>
                     <td>
                         <select name="kind_report" class="fund-dropdown">
-                            <option value="0">همه</option>
+                            <option value="">انتخاب</option>
                             <option value="2">خرید</option>
                             <option value="1">فروش</option>
                         </select>
                     </td>
-                    <td><input type="text" class="txt-table" name="search_reference_number" placeholder="" value="{{ old('search_reference_number') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_nname" placeholder="" value="{{ old('search_nname') }}"></td>
                     <td>
-                        <select name="search_currency" class="fund-dropdown">
+                        <select name="currency_report" class="fund-dropdown">
                             <option value="3">بیتکوین</option>
                         </select>
                     </td>
                     <td>::</td>
                     <td>::</td>
-                    <td><input type="text" class="txt-table" name="search_created_fa" placeholder="" value="{{ old('search_created_fa') }}"></td>
                     <td>::</td>
+                    <td><input type="text" class="txt-table" name="reference_number" placeholder="" value="{{ old('reference_number') }}"></td>
                     <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                 </form>
             </tr>
-            <tr>
-                <form name="" class="" method="POST" role="form" action="{{ url('#') }}">
-                    {!! csrf_field() !!}
-                    <td>1</td>
-                    <td>خرید</td>
-                    <td class="numbers">165624466</td>
-                    <td class="eng-font">Hami_reZa</td>
+            <?php $i = 1 ?>
+            @foreach($activeTrades as $activeTrade)
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    @if($activeTrade->type == 1)
+                        <td>فروش</td>
+                    @elseif($activeTrade->type == 2)
+                        <td>خرید</td>
+                    @endif
                     <td>بیتکوین</td>
-                    <td class="numbers">1,200,000</td>
-                    <td class="numbers">0.982310</td>
-                    <td class="numbers">1394-06-02@04:17:48</td>
-                    <td>مبادله توسط کاربر لغو شد.</td>
+                    <td class="numbers">{{ number_format($activeTrade->value, 0, '.', ',') }}</td>
+                    <td class="numbers">{{ rtrim(sprintf('%.8F', round(number_format($activeTrade->remain, 6, '.', ','), 6)), '0') }}</td>
+                    <td class="numbers">{{ date('Y/m/d@H:i:s', strtotime($activeTrade->created_fa)) }}</td>
+                    <td class="numbers">{{ $activeTrade->description }}</td>
                     <td>::</td>
-                </form>
-            </tr>
+                </tr>
+            @endforeach
             <tr class="bold">
                 <td>::</td>
                 <td>مجموع</td>
                 <td>::</td>
                 <td>::</td>
-                <td>::</td>
-                <td>::</td>
-                <td class="numbers">12.129809</td>
+                <td class="numbers">{{ $activeTradesSum }}</td>
                 <td>::</td>
                 <td>::</td>
                 <td>::</td>
             </tr>
             </tbody>
         </table>
+        <div class="paginate">
+            {!! $activeTrades->appends(Input::query())->render() !!}
+        </div>
     </div>
 @stop

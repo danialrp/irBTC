@@ -102,17 +102,25 @@ Route::get('/iadmin/dashboard', 'AdminController@getDashboard');
 
 Route::get('/iadmin/user/credit', 'AdminController@getUserCredit');
 
-Route::post('/iadmin/user/credit/search', 'AdminController@postSearchUserCredit');
+Route::get('/iadmin/user/credit/search', 'AdminController@getSearchUserCredit');
 
 Route::post('/iadmin/user/credit/{id}', 'AdminController@postUserCredit');
 
 Route::get('/iadmin/user/profile', 'AdminController@getUserProfile');
 
+Route::get('/iadmin/user/profile/search', 'AdminController@getSearchUserProfile');
+
 Route::get('/iadmin/user/profile/{id}', 'AdminController@getUserDetail');
+
+Route::post('/iadmin/user/profile/{id}', 'AdminController@postUserDetail');
 
 Route::get('/iadmin/user/new', 'AdminController@getUserNew');
 
+Route::post('/iadmin/user/new', 'AdminController@postUserNew');
+
 Route::get('/iadmin/trade/active', 'AdminController@getTradeActive');
+
+Route::get('/iadmin/trade/active/search', 'AdminController@getSearchTradeActive');
 
 Route::get('/iadmin/trade', 'AdminController@getTradeAll');
 

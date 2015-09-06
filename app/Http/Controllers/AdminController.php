@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AdminManageCreditRequest;
+use App\Http\Requests\AdminManageDetailRequest;
+use App\Http\Requests\AdminNewUserRequest;
 use App\Http\Requests\AdminSearchRequest;
 use App\MyClasses\AdminClass;
 use Illuminate\Http\Request;
@@ -46,10 +48,11 @@ class AdminController extends Controller
             Session::flash('message', 'هیچ موجودی بروزرسانی نگردید!');
         else
             Session::flash('message', 'متاسفانه بروزرسانی اعتبار انجام نشد!');
+
         return redirect('/iadmin/user/credit');
     }
 
-    public function postSearchUserCredit(AdminSearchRequest $request)
+    public function getSearchUserCredit(AdminSearchRequest $request)
     {
         $users = $this->adminClass->searchUserCredit($request);
         return view('admin.manageUserCredit', compact('users'));
@@ -57,12 +60,30 @@ class AdminController extends Controller
 
     public function getUserProfile()
     {
-        return view('admin.manageUserProfile');
+        $users = $this->adminClass->manageUserProfile();
+        return view('admin.manageUserProfile', compact('users'));
     }
 
-    public function getUserDetail()
+    public function getUserDetail($user_id)
     {
-        return view('admin.manageUserDetail');
+        $user = $this->adminClass->userDetail($user_id);
+        return view('admin.manageUserDetail', compact('user'));
+    }
+
+    public function postUserDetail($user_id, AdminManageDetailRequest $request)
+    {
+        if($this->adminClass->updateUserDetail($user_id, $request) == 1)
+            Session::flash('message', 'مشخصات کاربر با موفقیت بروزرسانی گردید!');
+        else
+            Session::flash('message', 'متاسفانه مشخصات کاربر بروزرسانی نگردید!');
+
+        return redirect('/iadmin/user/profile/'.$user_id);
+    }
+
+    public function getSearchUserProfile(AdminSearchRequest $request)
+    {
+        $users = $this->adminClass->searchUserProfile($request);
+        return view('admin.manageUserProfile', compact('users'));
     }
 
     public function getUserNew()
@@ -70,9 +91,28 @@ class AdminController extends Controller
         return view('admin.manageUserNew');
     }
 
+    public function postUserNew(AdminNewUserRequest $request)
+    {
+        if($this->adminClass->createNewUser($request))
+            Session::flash('message', 'کاربر '.$request->nname.' با موفقیت ثبت گردید!');
+        else
+            Session::flash('message', 'متاسفانه عملیات ثبت انجام نگردید!');
+
+        return redirect('/iadmin/user/new');
+    }
+
     public function getTradeActive()
     {
-        return view('admin.manageTradeActive');
+        $activeTrades = $this->adminClass->manageActiveTrade();
+        $activeTradesSum = $activeTrades->sum('remain');
+        return view('admin.manageTradeActive', compact('activeTrades', 'activeTradesSum'));
+    }
+
+    public function getSearchTradeActive(AdminSearchRequest $request)
+    {
+        $activeTrades = $this->adminClass->searchActiveTrade($request);
+        $activeTradesSum = $activeTrades->sum('remain');
+        return view('admin.manageTradeActive', compact('activeTrades', 'activeTradesSum'));
     }
 
     public function getTradeAll()

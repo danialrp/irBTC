@@ -8,22 +8,33 @@
 
 namespace App\MyClasses;
 
+use App\ActiveTrade;
 use App\Balance;
 use App\Fee;
 use App\Http\Requests;
 use App\Http\Requests\AdminManageCreditRequest;
+use App\Http\Requests\AdminManageDetailRequest;
+use App\Http\Requests\AdminNewUserRequest;
 use App\Http\Requests\AdminSearchRequest;
+use App\Providers\JDateServiceProvider;
 use App\Trade;
 use App\TradeDetail;
 use App\Transaction;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class AdminClass {
 
-    public function __construct()
-    {
+    private $paginateValue = 20;
+    /**
+     * @var UserClass
+     */
+    private $userClass;
 
+    public function __construct(UserClass $userClass)
+    {
+        $this->userClass = $userClass;
     }
 
     public function getDashboardInfo()
@@ -62,7 +73,10 @@ class AdminClass {
 
     public function manageUserCredit()
     {
-        return User::select('id','national_number', 'fname', 'lname', 'nname')->orderby('created_at', 'desc')->paginate(20);
+        return User::where('role', 2)
+            ->select('id','national_number', 'fname', 'lname', 'nname')
+            ->orderby('created_at', 'desc')
+            ->paginate($this->paginateValue);
     }
 
     public function updateUserCredit($user_id, AdminManageCreditRequest $request)
@@ -110,7 +124,113 @@ class AdminClass {
         })
             ->select('id','national_number', 'fname', 'lname', 'nname')
             ->orderby('created_at', 'desc')
-            ->paginate(20);
+            ->paginate($this->paginateValue);
+    }
+
+    public function manageUserProfile()
+    {
+        return User::select('id', 'fname', 'lname', 'nname', 'email', 'national_number', 'active', 'confirmed', 'role', 'login_time', 'ip_address')
+            ->orderby('created_at', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function userDetail($user_id)
+    {
+        return User::where('id', $user_id)->first();
+    }
+
+    public function updateUserDetail($user_id, AdminManageDetailRequest $request)
+    {
+        $user = User::where('id', $user_id)->first();
+        $user->fname = $request->fname;
+        $user->lname = $request->lname;
+        $user->nname = $request->nname;
+        if($request->password != '')
+            $user->password = bcrypt($request->password);
+        $user->email = $request->email;
+        $user->tel = $request->tel;
+        $user->mobile = $request->mobile;
+        $user->address = $request->address;
+        $user->national_number = $request->national_number;
+        $user->active = $request->active;
+        $user->confirmed = $request->confirmed;
+        $user->save();
+        return 1;
+    }
+
+    public function searchUserProfile(AdminSearchRequest $request)
+    {
+        return User::where(function($query) use($request){
+            if($request->role != '')
+                $query->where('role', $request->role);
+            if($request->nname)
+                $query->where('nname', 'like', $request->nname.'%');
+            if($request->email)
+                $query->where('email', 'like', $request->email.'%');
+            if($request->national_number)
+                $query->where('national_number', '=', $request->national_number);
+            if($request->fname)
+                $query->where('fname', 'like', $request->fname.'%');
+            if($request->lname)
+                $query->where('lname', 'like', $request->lname.'%');
+            if($request->active != '')
+                $query->where('active', $request->active);
+            if($request->confirmed != '')
+                $query->where('confirmed', $request->confirmed);
+            if($request->ip_address)
+                $query->where('ip_address', 'like', $request->ip_address.'%');
+        })
+            ->select('id', 'fname', 'lname', 'nname', 'email', 'national_number', 'active', 'confirmed', 'role', 'login_time', 'ip_address')
+            ->orderby('created_at', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function createNewUser(AdminNewUserRequest $request)
+    {
+        $request->fname ? $fname = $request->fname : $fname = null;
+        $request->lname ? $lname = $request->lname : $lname = null;
+        $request->tel ? $tel = $request->tel : $tel = null;
+        $request->mobile ? $mobile = $request->mobile : $mobile = null;
+        $request->address ? $address = $request->address : $address = null;
+        $request->national_number ? $national_number = $request->national_number : $national_number = null;
+        $newUserId =
+            DB::table('users')->insertGetId([
+                'fname' => $fname,
+                'lname' => $lname,
+                'nname' => $request->nname,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'tel' => $tel,
+                'mobile' => $mobile,
+                'address' => $address,
+                'national_number' => $national_number,
+                'active' => $request->active,
+                'confirmed' => $request->confirmed,
+                'role' => $request->role,
+                'created_at' => Carbon::now(),
+                'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true)
+            ]);
+        $this->userClass->makeBalance($newUserId);
+        return true;
+    }
+
+    public function manageActiveTrade()
+    {
+        return $activeTrades = ActiveTrade::orderby('remain', 'desc')->paginate($this->paginateValue);
+    }
+
+    public function searchActiveTrade(AdminSearchRequest $request)
+    {
+        return ActiveTrade::where(function($query) use($request){
+            if($request->kind_report != 0)
+                $query->where('type', $request->kind_report);
+            if($request->currency_report != 0)
+                $query->where('money', $request->currency_report);
+            if($request->reference_number)
+                $query->where('description', 'like', $request->reference_number.'%');
+        })
+            ->orderby('remain', 'desc')
+            ->paginate($this->paginateValue);
     }
 
 }

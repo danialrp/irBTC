@@ -183,8 +183,8 @@ class TradeClass {
             'remain' => $trade->remain,
             'value' => $trade->value,
             'created_at' => $trade->created_at,
-            'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s',time(),false,true)
-
+            'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s',time(),false,true),
+            'description' => $trade->reference_number
         ]);
     }
 

@@ -89,7 +89,7 @@ class ViewComposerServiceProvider extends ServiceProvider
                    'btcTotalBalance' => $balances->where('money', 3)->sum('current_balance'),
                    'wmTotalBalance' => $balances->where('money', 4)->sum('current_balance'),
                    'pmTotalBalance' => $balances->where('money', 5)->sum('current_balance'),
-                   'currentTime' => JDateServiceProvider::date('Y/m/d @ H:i', time(), false, true),
+                   'currentTime' => JDateServiceProvider::date('Y/m/d@H:i', time(), false, true),
                ]);
            }
             else

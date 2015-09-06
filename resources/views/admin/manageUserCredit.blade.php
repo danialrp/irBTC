@@ -25,8 +25,8 @@
             </thead>
             <tbody>
             <tr>
-                <form class="" role="form" method="POST" action="{{ url('/iadmin/user/credit/search') }}">
-                    {!! csrf_field() !!}
+                <form class="" role="form" method="GET" action="{{ url('/iadmin/user/credit/search') }}">
+
                     <td>::</td>
                     <td><input type="text" class="txt-table" name="national_number" placeholder="" value="{{ old('national_number') }}"></td>
                     <td><input type="text" class="txt-table" name="fname" placeholder="" value="{{ old('fname') }}"></td>
@@ -43,7 +43,7 @@
                     <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                 </form>
             </tr>
-            <?php $i=1 ?>
+            <?php $i = 1 ?>
             @foreach($users as $user)
                 <tr>
                     <form name="" class="" method="POST" role="form" action="{{ url('/iadmin/user/credit', $user->id) }}">
@@ -55,7 +55,7 @@
                         <td>{{ $user->nname }}</td>
                         <td class="numbers">{{ number_format($user->userBalance[0]->current_balance, 0, '.', ',') }}</td>
                         <td><input type="text" class="txt-table numbers" name="irr_deposit_amount" placeholder="" value="0"></td>
-                        <td class="numbers">{{ rtrim(sprintf('%.8F', round(number_format($user->userBalance[2]->current_balance, 6, '.', ','), 6)), '0')}}</td>
+                        <td class="numbers">{{ rtrim(sprintf('%.8F', round(number_format($user->userBalance[2]->current_balance, 6, '.', ','), 6)), '0') }}</td>
                         <td><input type="text" class="txt-table numbers" name="btc_deposit_amount" placeholder="" value="0"></td>
                         <td class="numbers">{{ number_format($user->userBalance[3]->current_balance, 2, '.', ',') }}</td>
                         <td><input type="text" class="txt-table numbers" name="wm_deposit_amount" placeholder="" value="0"></td>
@@ -68,7 +68,7 @@
             </tbody>
         </table>
         <div class="paginate">
-            {!! $users->render() !!}
+            {!! $users->appends(Input::query())->render() !!}
         </div>
     </div>
 @stop

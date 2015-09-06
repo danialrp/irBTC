@@ -2,7 +2,7 @@
     <div class="user-login">
         <div class="login-txt-prof">
             <ul>
-                <li>کاربر {{ Auth::user()->nname }} :: </li>
+                <li><span>کاربر:: </span><span>{{ Auth::user()->nname }}</span></li>
                 <li><a href="{{ url('/profile') }}">پروفایل</a></li>
                 <li><a href="{{ url('/fund') }}">مدیریت موجودی</a></li>
                 <li><a href="{{ url('/trades/history') }}">مبادلات</a></li>

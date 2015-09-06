@@ -10,7 +10,7 @@
                 <th>#</th>
                 <th>نام</th>
                 <th>نام خانوادگی</th>
-                <th>نام کاربری</th>
+                <th>* نام کاربری</th>
                 <th>* ایمیل</th>
                 <th>* کلمه عبور</th>
                 <th>تلفن</th>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <tr>
-                <form class="" role="form" method="POST" action="{{ url('#') }}">
+                <form class="" role="form" method="POST" action="{{ url('/iadmin/user/new') }}">
                     {!! csrf_field() !!}
                     <td>::</td>
                     <td><input type="text" class="txt-table" name="fname" placeholder="" value="{{ old('fname') }}"></td>
@@ -38,14 +38,19 @@
                     <td><input type="text" class="txt-table" name="address" placeholder="" value="{{ old('address') }}"></td>
                     <td><input type="text" class="txt-table" name="national_number" placeholder="" value="{{ old('national_number') }}"></td>
                     <td>
-                        <input type="radio" name="active" value="فعال" checked>فعال
-                        <input type="radio" name="active" value="غیرفعال">غیرفعال
+                        <input type="radio" name="active" value="1" checked>فعال
+                        <input type="radio" name="active" value="0">غیرفعال
                     </td>
                     <td>
-                        <input type="radio" name="confirm" value="تایید" checked>تایید
-                        <input type="radio" name="confirm" value="عدم تایید">عدم تایید
+                        <input type="radio" name="confirmed" value="1" checked>تایید
+                        <input type="radio" name="confirmed" value="0">عدم تایید
                     </td>
-                    <td><select id="" class="fund-dropdown" name="search_confirmed"> <option value="user" selected>کاربر</option> <option value="admin">مدیر</option> </select></td>
+                    <td>
+                        <select id="" class="fund-dropdown" name="role">
+                            <option value="2" selected>کاربر</option>
+                            <option value="1">مدیر</option>
+                        </select>
+                    </td>
 
                     <td><button type="submit" id="" class="btn-table">ایجاد کاربر جدید</button></td>
                 </form>
