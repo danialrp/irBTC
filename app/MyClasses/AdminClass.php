@@ -22,6 +22,7 @@ use App\TradeDetail;
 use App\Transaction;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class AdminClass {
@@ -81,7 +82,10 @@ class AdminClass {
 
     public function updateUserCredit($user_id, AdminManageCreditRequest $request)
     {
-        if($request->irr_deposit_amount == 0 && $request->btc_deposit_amount == 0 && $request->wm_deposit_amount == 0 && $request->pm_deposit_amount == 0)
+        if($request->irr_deposit_amount == 0 &&
+            $request->btc_deposit_amount == 0 &&
+            $request->wm_deposit_amount == 0 &&
+            $request->pm_deposit_amount == 0 )
             return 0;
         if($request->irr_deposit_amount != 0) {
             $irrBalance = Balance::where('owner', $user_id)->where('money', 1)->first();
@@ -216,7 +220,14 @@ class AdminClass {
 
     public function manageActiveTrade()
     {
-        return $activeTrades = ActiveTrade::orderby('remain', 'desc')->paginate($this->paginateValue);
+        return $activeTrades = ActiveTrade::orderby('remain', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function manageActiveTradeTotal()
+    {
+        $activeTrades = ActiveTrade::select('remain')->get();
+        return $activeTrades->sum('remain');
     }
 
     public function searchActiveTrade(AdminSearchRequest $request)
@@ -231,6 +242,101 @@ class AdminClass {
         })
             ->orderby('remain', 'desc')
             ->paginate($this->paginateValue);
+    }
+
+    public function manageTrade()
+    {
+        return $trades = Trade::orderby('created_fa', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function manageTradeTotal()
+    {
+        $trades = Trade::select('amount', 'remain', 'value', 'fee_amount')->get();
+        $totalIrr = 0;
+        foreach($trades as $trade) {
+            $temp = $trade->amount * $trade->value;
+            $totalIrr += $temp;
+        }
+        return $tradesTotal = [
+            'totalBtcAmount' => $trades->sum('amount'),
+            'totalIrrAmount' => $totalIrr,
+            'totalRemain' => $trades->sum('remain'),
+            'totalFeeAmount' => $trades->sum('fee_amount')
+        ];
+    }
+
+    public function searchTrade(AdminSearchRequest $request)
+    {
+        return Trade::where(function($query) use($request) {
+            if($request->kind_report != 0)
+                $query->where('type', $request->kind_report);
+            if($request->reference_number)
+                $query->where('reference_number', $request->reference_number);
+            if($request->nname) {
+                $user = User::where('nname', 'like', $request->nname.'%')->first();
+                if($user)
+                    $query->where('owner', $user->id);
+            }
+            if($request->currency_report != 0)
+                $query->where('money', $request->currency_report);
+            if($request->status_report != 0)
+                $query->where('status', $request->status_report);
+        })
+            ->orderby('created_fa', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function searchTradeTotal($trades)
+    {
+        $totalIrr = 0;
+        foreach($trades as $trade) {
+            $temp = $trade->amount * $trade->value;
+            $totalIrr += $temp;
+        }
+        return $tradesTotal = [
+            'totalBtcAmount' => $trades->sum('amount'),
+            'totalIrrAmount' => $totalIrr,
+            'totalRemain' => $trades->sum('remain'),
+            'totalFeeAmount' => $trades->sum('fee_amount')
+        ];
+    }
+
+    public function manageTradeDetail($trade_id)
+    {
+        return TradeDetail::where('trade1', $trade_id)
+            ->orWhere('trade2', $trade_id)
+            ->orderby('created_at', 'desc')
+            ->get();
+
+    }
+
+    public function manageActiveTransaction()
+    {
+        return Transaction::where('status', 4)
+            ->orderby('created_fa')
+            ->paginate($this->paginateValue);
+    }
+
+    public function confirmTransaction($transaction_id, Request $request)
+    {
+        $transaction = Transaction::where('id', $transaction_id)->first();
+        if($transaction->status == $request->status_report)
+            return 0;
+        else {
+            $transaction->status = $request->status_report;
+            $request->note ? $transaction->note = $request->note : $transaction->note = null;
+            $transaction->save();
+            if ($transaction->type == 4 && $request->status_report == 2) {
+                $balance = Balance::where('owner', $transaction->owner)
+                    ->where('money', $transaction->money)
+                    ->first();
+                $balance->last_balance = $balance->current_balance;
+                $balance->current_balance += $transaction->amount;
+                $balance->save();
+            }
+            return 1;
+        }
     }
 
 }

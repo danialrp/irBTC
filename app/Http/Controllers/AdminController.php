@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -104,7 +105,7 @@ class AdminController extends Controller
     public function getTradeActive()
     {
         $activeTrades = $this->adminClass->manageActiveTrade();
-        $activeTradesSum = $activeTrades->sum('remain');
+        $activeTradesSum = $this->adminClass->manageActiveTradeTotal();
         return view('admin.manageTradeActive', compact('activeTrades', 'activeTradesSum'));
     }
 
@@ -117,17 +118,40 @@ class AdminController extends Controller
 
     public function getTradeAll()
     {
-        return view('admin.manageTradeAll');
+        $trades = $this->adminClass->manageTrade();
+        $totalTrades = $this->adminClass->manageTradeTotal();
+        return view('admin.manageTradeAll', compact('trades', 'totalTrades'));
     }
 
-    public function getTradeDetail()
+    public function getSearchTradeAll(AdminSearchRequest $request)
     {
-        return view('admin.manageTradeDetail');
+        $trades = $this->adminClass->searchTrade($request);
+        $totalTrades = $this->adminClass->searchTradeTotal($trades);
+        return view('admin.manageTradeAll', compact('trades', 'totalTrades'));
+    }
+
+    public function getTradeDetail($trade_id)
+    {
+        $tradeDetails = $this->adminClass->manageTradeDetail($trade_id);
+        return view('admin.manageTradeDetail', compact('tradeDetails'));
     }
 
     public function getTransactionActive()
     {
-        return view('admin.manageTransactionActive');
+        $activeTransactions = $this->adminClass->manageActiveTransaction();
+        return view('admin.manageTransactionActive', compact('activeTransactions'));
+    }
+
+    public function getTransactionConfirm($transaction_id, Request $request)
+    {
+        if($this->adminClass->confirmTransaction($transaction_id, $request) == 1)
+            Session::flash('message', 'وضعیت تراکنش '.Crypt::decrypt($request->reference_number).' با موفقیت بروزرسانی گردید!');
+        elseif($this->adminClass->confirmTransaction($transaction_id, $request) == 0)
+            Session::flash('message', 'هیچ تراکنشی بروزرسانی نگردید!');
+        else
+            Session::flash('message', 'متاسفانه عملیات بروزرسانی انجام نگردید!');
+
+        return redirect('/iadmin/transaction/active');
     }
 
     public function getTransactionAll()

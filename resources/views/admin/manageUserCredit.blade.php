@@ -53,13 +53,13 @@
                         <td>{{ $user->fname }}</td>
                         <td>{{ $user->lname }}</td>
                         <td>{{ $user->nname }}</td>
-                        <td class="numbers">{{ number_format($user->userBalance[0]->current_balance, 0, '.', ',') }}</td>
+                        <td class="numbers blue">{{ number_format($user->userBalance[0]->current_balance, 0, '.', ',') }}</td>
                         <td><input type="text" class="txt-table numbers" name="irr_deposit_amount" placeholder="" value="0"></td>
-                        <td class="numbers">{{ rtrim(sprintf('%.8F', round(number_format($user->userBalance[2]->current_balance, 6, '.', ','), 6)), '0') }}</td>
+                        <td class="numbers blue">{{ rtrim(sprintf('%.8F', round(number_format($user->userBalance[2]->current_balance, 6, '.', ','), 6)), '0') }}</td>
                         <td><input type="text" class="txt-table numbers" name="btc_deposit_amount" placeholder="" value="0"></td>
-                        <td class="numbers">{{ number_format($user->userBalance[3]->current_balance, 2, '.', ',') }}</td>
+                        <td class="numbers blue">{{ number_format($user->userBalance[3]->current_balance, 2, '.', ',') }}</td>
                         <td><input type="text" class="txt-table numbers" name="wm_deposit_amount" placeholder="" value="0"></td>
-                        <td class="numbers">{{ number_format($user->userBalance[4]->current_balance, 2, '.', ',') }}</td>
+                        <td class="numbers blue">{{ number_format($user->userBalance[4]->current_balance, 2, '.', ',') }}</td>
                         <td><input type="text" class="txt-table numbers" name="pm_deposit_amount" placeholder="" value="0"></td>
                         <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                     </form>

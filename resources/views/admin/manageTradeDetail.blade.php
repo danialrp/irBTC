@@ -16,34 +16,21 @@
             </tr>
             </thead>
             <tbody>
+            <?php $i = 1 ?>
+            @foreach($tradeDetails as $tradeDetail)
             <tr>
-                <td class="numbers">1</td>
-                <td class="numbers">98975644</td>
-                <td class="numbers">98975644</td>
-                <td class="numbers">0.00023</td>
-                <td class="numbers">1394-06-02@04:17:48</td>
-                <td>کسر کارمزد</td>
+                <td class="numbers">{{ $i++ }}</td>
+                <td class="numbers">{{ $tradeDetail->trade1Detail->reference_number }}</td>
+                <td class="numbers">{{ $tradeDetail->trade2Detail->reference_number }}</td>
+                <td class="numbers">{{ $tradeDetail->amount }}</td>
+                <td class="numbers">{{ date('Y/m/d@H:i:s', strtotime($tradeDetail->created_fa)) }}</td>
+                <td>{{ $tradeDetail->description }}</td>
             </tr>
-            <tr>
-                <td>2</td>
-                <td class="numbers">98975644</td>
-                <td class="numbers">6145254</td>
-                <td class="numbers">0.982310</td>
-                <td class="numbers">1394-06-02@04:17:48</td>
-                <td>ثبت مبادله توسط سیستم</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td class="numbers">98975644</td>
-                <td class="numbers">5562432</td>
-                <td class="numbers">0.00231</td>
-                <td class="numbers">1394-06-02@04:17:48</td>
-                <td>ثبت مبادله توسط سیستم</td>
-            </tr>
+            @endforeach
             </tbody>
         </table>
     </div>
     <div class="center-element">
-        <button type="" id="" class="btn-simple">بازگشت</button>
+        <button type="" id="" class="btn-simple" onclick="location.href='/iadmin/trade'">بازگشت</button>
     </div>
 @stop

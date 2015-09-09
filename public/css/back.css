@@ -316,13 +316,15 @@ body a:hover {
 
 }
 
+.container-box {
+    padding: 100px 0px 0px 0px;
+}
+
 .login-box {
     width: 400px;
     height: 210px;
     background-color: #FFF;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 450px;
+    margin: auto;
     border-radius: 5px;
 }
 

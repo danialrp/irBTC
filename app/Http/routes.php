@@ -124,9 +124,13 @@ Route::get('/iadmin/trade/active/search', 'AdminController@getSearchTradeActive'
 
 Route::get('/iadmin/trade', 'AdminController@getTradeAll');
 
+Route::get('/iadmin/trade/search', 'AdminController@getSearchTradeAll');
+
 Route::get('/iadmin/trade/{id}', 'AdminController@getTradeDetail');
 
 Route::get('/iadmin/transaction/active', 'AdminController@getTransactionActive');
+
+Route::post('/iadmin/transaction/confirm/{id}', 'AdminController@getTransactionConfirm');
 
 Route::get('/iadmin/transaction', 'AdminController@getTransactionAll');
 

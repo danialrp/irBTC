@@ -13,6 +13,7 @@ class CreateTradeDetailTable extends Migration
     public function up()
     {
         Schema::create('trade_details', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('trade1')->unsigned()->nullable();
             $table->foreign('trade1')->references('id')->on('trades')->onDelete('cascade');
             $table->integer('trade2')->unsigned()->nullable();
@@ -22,6 +23,7 @@ class CreateTradeDetailTable extends Migration
             $table->decimal('amount', 15, 6)->nullable();
             $table->string('description')->nullable();
             $table->boolean('deleted')->default(false);
+            $table->dateTime('created_fa');
             $table->timestamps();
         });
     }

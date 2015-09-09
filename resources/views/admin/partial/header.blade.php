@@ -2,7 +2,7 @@
     <div class="header-container-right">
         <div class="header-container-right-element">
             <ul>
-                <li><span class="header-container-title">تراکنش های در انتظار تایید</span><span class="numbers blue-sky">{{ $countWaitingPayment }}</span><span class="pipe green"> :: </span></li>
+                <li><span class="header-container-title"><a href="{{ url('iadmin/transaction/active') }}">تراکنش های در انتظار تایید</a></span><span class="numbers blue-sky">{{ $countWaitingPayment }}</span><span class="pipe green"> :: </span></li>
                 <li><span class="header-container-title">موجودی ریالی</span><span class="numbers blue-sky">{{ number_format($irrTotalBalance, 0, '.', ',') }}</span><span class="blue-sky"> تومان </span><span class="pipe green"> :: </span></li>
                 <li><span class="header-container-title">موجودی بیتکوین</span><span class="numbers blue-sky">{{ rtrim(sprintf('%.8F', round(number_format($btcTotalBalance, 6, '.', ','), 6)), '0')}}</span><span class="pipe green"> :: </span></li>
                 <li><span class="header-container-title">موجودی وب مانی</span><span class="numbers blue-sky">{{ number_format($wmTotalBalance, 2, '.', ',') }}</span><span class="blue-sky"> دلار </span><span class="pipe green"> :: </span></li>

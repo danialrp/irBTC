@@ -89,7 +89,7 @@
                 <tr>
                     <td>بروزرسانی</td>
                     <td><button type="submit" id="" class="btn-table">بروزرسانی</button>
-                        <button type="button" id="" class="btn-table" onclick="location.href='/iadmin/user/profile';">بازگشت</button>
+                        <button type="button" id="" class="btn-table" onclick="location.href='/iadmin/user/profile'">بازگشت</button>
                     </td>
                 </tr>
             </form>

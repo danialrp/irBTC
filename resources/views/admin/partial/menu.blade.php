@@ -14,7 +14,7 @@
             <a href="{{ url('#') }}"><p>گزارشات ورود</p></a>
         </div>
         <div id="submenu-2" class="sub-menu" >
-            <a href="{{ url('/iadmin/user/credit') }}"><p>مدیریت اعتبار</p></a>
+            <a href="{{ url('/iadmin/user/credit') }}"><p>مدیریت موجودی</p></a>
             <a href="{{ url('/iadmin/user/profile') }}"><p>ویرایش مشخصات</p></a>
             <a href="{{ url('/iadmin/user/new') }}"><p>کاربر جدید</p></a>
         </div>

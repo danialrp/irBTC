@@ -11,8 +11,10 @@ namespace App\MyClasses;
 
 use App\ActiveTrade;
 use App\Fee;
+use App\Providers\JDateServiceProvider;
 use App\Trade;
 use App\TradeDetail;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class TradeDetailClass {
@@ -28,7 +30,9 @@ class TradeDetailClass {
             'trade2' => $trade->id,
             'trade2_type' => $trade->type,
             'amount' => $fee*$trade->amount,
-            'description' => 'کسر کارمزد'
+            'description' => 'کسر کارمزد',
+            'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true),
+            'created_at' => Carbon::now()
         ]);
     }
 
@@ -40,7 +44,9 @@ class TradeDetailClass {
             'trade2' => $trade2->trade_id,
             'trade2_type' => $trade2->type,
             'amount' => $amount,
-            'description' => 'ثبت مبادله توسط سیستم'
+            'description' => 'ثبت مبادله توسط سیستم',
+            'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true),
+            'created_at' => Carbon::now()
         ]);
     }
 

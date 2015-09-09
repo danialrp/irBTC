@@ -44,15 +44,15 @@
             </tr>
             <tr>
                 <td>واریز بیتکوین</td>
-                <td class="numbers blue">{{ rtrim(sprintf('%.8F', round(number_format($dashboard['btcTotalDeposit'], 6, '.', ','), 6)), '0')}}</td>
+                <td class="numbers blue">{{ rtrim(sprintf('%.8F', round(number_format($dashboard['btcTotalDeposit'], 6, '.', ','), 6)), '0') }}</td>
             </tr>
             <tr>
                 <td>برداشت بیتکوین</td>
-                <td class="numbers red">{{ rtrim(sprintf('%.8F', round(number_format($dashboard['btcTotalWithdraw'], 6, '.', ','), 6)), '0')}}</td>
+                <td class="numbers red">{{ rtrim(sprintf('%.8F', round(number_format($dashboard['btcTotalWithdraw'], 6, '.', ','), 6)), '0') }}</td>
             </tr>
             <tr>
                 <td>گردش بیتکوین</td>
-                <td class="numbers blue">{{ rtrim(sprintf('%.8F', round(number_format($dashboard['btcTotalTurnover'], 6, '.', ','), 6)), '0')}}</td>
+                <td class="numbers blue">{{ rtrim(sprintf('%.8F', round(number_format($dashboard['btcTotalTurnover'], 6, '.', ','), 6)), '0') }}</td>
             </tr>
             <tr>
                 <td>تعداد تراکنش بیتکوین امروز</td>
