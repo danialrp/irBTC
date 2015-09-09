@@ -156,7 +156,14 @@ class AdminController extends Controller
 
     public function getTransactionAll()
     {
-        return view('admin.manageTransactionAll');
+        $transactions = $this->adminClass->manageTransaction();
+        return view('admin.manageTransactionAll', compact('transactions'));
+    }
+
+    public function getSearchTransactionAll(AdminSearchRequest $request)
+    {
+        $transactions = $this->adminClass->searchTransaction($request);
+        return view('admin.manageTransactionAll', compact('transactions'));
     }
 
     public function getTransactionDetail()

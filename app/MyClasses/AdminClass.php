@@ -10,6 +10,7 @@ namespace App\MyClasses;
 
 use App\ActiveTrade;
 use App\Balance;
+use App\Bank;
 use App\Fee;
 use App\Http\Requests;
 use App\Http\Requests\AdminManageCreditRequest;
@@ -119,12 +120,15 @@ class AdminClass {
         return User::where(function($query) use($request){
             if($request->national_number)
                 $query->where('national_number', '=', $request->national_number);
+
             if($request->fname)
-                $query->where('fname', 'like', $request->fname.'%');
+                $query->where('fname', 'like', $request->fname . '%');
+
             if($request->lname)
-                $query->where('lname', 'like', $request->lname.'%');
+                $query->where('lname', 'like', $request->lname . '%');
+
             if($request->nname)
-                $query->where('nname', 'like', $request->nname.'%');
+                $query->where('nname', 'like', $request->nname . '%');
         })
             ->select('id','national_number', 'fname', 'lname', 'nname')
             ->orderby('created_at', 'desc')
@@ -167,22 +171,30 @@ class AdminClass {
         return User::where(function($query) use($request){
             if($request->role != '')
                 $query->where('role', $request->role);
+
             if($request->nname)
-                $query->where('nname', 'like', $request->nname.'%');
+                $query->where('nname', 'like', $request->nname . '%');
+
             if($request->email)
-                $query->where('email', 'like', $request->email.'%');
+                $query->where('email', 'like', $request->email . '%');
+
             if($request->national_number)
                 $query->where('national_number', '=', $request->national_number);
+
             if($request->fname)
-                $query->where('fname', 'like', $request->fname.'%');
+                $query->where('fname', 'like', $request->fname . '%');
+
             if($request->lname)
-                $query->where('lname', 'like', $request->lname.'%');
+                $query->where('lname', 'like', $request->lname . '%');
+
             if($request->active != '')
                 $query->where('active', $request->active);
+
             if($request->confirmed != '')
                 $query->where('confirmed', $request->confirmed);
+
             if($request->ip_address)
-                $query->where('ip_address', 'like', $request->ip_address.'%');
+                $query->where('ip_address', 'like', $request->ip_address . '%');
         })
             ->select('id', 'fname', 'lname', 'nname', 'email', 'national_number', 'active', 'confirmed', 'role', 'login_time', 'ip_address')
             ->orderby('created_at', 'desc')
@@ -235,10 +247,12 @@ class AdminClass {
         return ActiveTrade::where(function($query) use($request){
             if($request->kind_report != 0)
                 $query->where('type', $request->kind_report);
+
             if($request->currency_report != 0)
                 $query->where('money', $request->currency_report);
+
             if($request->reference_number)
-                $query->where('description', 'like', $request->reference_number.'%');
+                $query->where('description', 'like', $request->reference_number . '%');
         })
             ->orderby('remain', 'desc')
             ->paginate($this->paginateValue);
@@ -271,15 +285,19 @@ class AdminClass {
         return Trade::where(function($query) use($request) {
             if($request->kind_report != 0)
                 $query->where('type', $request->kind_report);
+
             if($request->reference_number)
                 $query->where('reference_number', $request->reference_number);
+
             if($request->nname) {
-                $user = User::where('nname', 'like', $request->nname.'%')->first();
+                $user = User::where('nname', 'like', $request->nname . '%')->first();
                 if($user)
                     $query->where('owner', $user->id);
             }
+
             if($request->currency_report != 0)
                 $query->where('money', $request->currency_report);
+
             if($request->status_report != 0)
                 $query->where('status', $request->status_report);
         })
@@ -337,6 +355,60 @@ class AdminClass {
             }
             return 1;
         }
+    }
+
+    public function manageTransaction()
+    {
+        return Transaction::orderby('created_fa', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function searchTransaction(AdminSearchRequest $request)
+    {
+        return Transaction::where(function($query) use($request){
+
+            if($request->kind_report != 0)
+                $query->where('type', $request->kind_report);
+
+            if($request->reference_number)
+                $query->where('reference_number', $request->reference_number);
+
+            if($request->nname) {
+                $user = User::where('nname', 'like', $request->nname . '%')->first();
+                if($user)
+                    $query->where('owner', $user->id);
+            }
+
+            if($request->currency_report != 0)
+                $query->where('money', $request->currency_report);
+
+            if($request->user_btc_address) {
+                $btc_address = Bank::where('money', 3)
+                    ->where('acc_number', 'like', $request->user_btc_address . '%')
+                    ->first();
+                if($btc_address)
+                    $query->where('bank', $btc_address->id);
+            }
+
+            if($request->user_bank_card) {
+                $bank_card = Bank::where('money', 1)
+                    ->where('card_number', 'like', '%' . $request->user_bank_card . '%')
+                    ->first();
+                if ($bank_card)
+                    $query->where('bank', $bank_card->id);
+            }
+
+            if($request->our_bank)
+                $query->where('to', 'like', '%' . $request->our_bank . '%');
+
+            if($request->tracking)
+                $query->where('tracking_number', $request->tracking);
+
+            if($request->status_report != 0)
+                $query->where('status', $request->status_report);
+        })
+            ->orderby('created_fa', 'desc')
+            ->paginate($this->paginateValue);
     }
 
 }

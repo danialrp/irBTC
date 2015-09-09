@@ -134,6 +134,8 @@ Route::post('/iadmin/transaction/confirm/{id}', 'AdminController@getTransactionC
 
 Route::get('/iadmin/transaction', 'AdminController@getTransactionAll');
 
+Route::get('/iadmin/transaction/search', 'AdminController@getSearchTransactionAll');
+
 Route::get('/iadmin/transaction/{id}', 'AdminController@getTransactionDetail');
 
 Route::get('/iadmin/bank/irr', 'AdminController@getBankIrr');
