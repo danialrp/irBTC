@@ -17,22 +17,27 @@ use App\Http\Requests\AdminManageCreditRequest;
 use App\Http\Requests\AdminManageDetailRequest;
 use App\Http\Requests\AdminNewUserRequest;
 use App\Http\Requests\AdminSearchRequest;
+use App\Money;
 use App\Providers\JDateServiceProvider;
 use App\Trade;
 use App\TradeDetail;
 use App\Transaction;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
 
 class AdminClass {
 
-    private $paginateValue = 20;
+    private $paginateValue = 25;
     /**
      * @var UserClass
      */
     private $userClass;
+
+    use ValidatesRequests;
 
     public function __construct(UserClass $userClass)
     {
@@ -384,7 +389,7 @@ class AdminClass {
 
             if($request->user_btc_address) {
                 $btc_address = Bank::where('money', 3)
-                    ->where('acc_number', 'like', $request->user_btc_address . '%')
+                    ->where('acc_number', $request->user_btc_address)
                     ->first();
                 if($btc_address)
                     $query->where('bank', $btc_address->id);
@@ -409,6 +414,165 @@ class AdminClass {
         })
             ->orderby('created_fa', 'desc')
             ->paginate($this->paginateValue);
+    }
+
+    public function manageTransactionDetail($transaction_id)
+    {
+        return Transaction::where('id', $transaction_id)
+            ->first();
+    }
+
+    public function updateTransactionDetail(Request $request, $transaction_id)
+    {
+        $this->validate($request, [
+            'irr_deposit_amount' => array('numeric', 'max:999999999', 'regex:/^([0-9]{1,9})$/'),
+            'btc_deposit_amount' => array('numeric', 'max:99999999', 'regex:/^([0-9]{1,8})*(\.?[0-9]{1,9})$/'),
+        ]);
+        $transaction = Transaction::where('id', $transaction_id)->first();
+        if($transaction) {
+            if($transaction->money == 1)
+                $transaction->amount = $request->irr_deposit_amount;
+            elseif($transaction->money == 3)
+                $transaction->amount = $request->btc_deposit_amount;
+            $transaction->fee_amount = $request->fee_amount;
+            $transaction->status = $request->status;
+            $transaction->note = $request->note;
+            $transaction->save();
+            return 1;
+        }
+        else
+            return 0;
+    }
+
+    public function manageBankAll()
+    {
+        return Bank::where('money', 1)
+            ->orderby('created_fa', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function SearchBankAll(AdminSearchRequest $request)
+    {
+        return Bank::where('money', 1)
+            ->where(function($query) use($request){
+                if($request->fname) {
+                    $user = User::where('fname', 'like', $request->fname . '%')->first();
+                    if($user)
+                        $query->where('owner', $user->id);
+                }
+
+                if($request->lname) {
+                    $user = User::where('lname', 'like', $request->lname . '%')->first();
+                    if($user)
+                        $query->where('owner', $user->id);
+                }
+
+                if($request->nname) {
+                    $user = User::where('nname', 'like', $request->nname . '%')->first();
+                    if($user)
+                        $query->where('owner', $user->id);
+                }
+
+                if($request->bank_name)
+                    $query->where('name', 'like', '%' . $request->bank_name . '%');
+
+                if($request->acc_number)
+                    $query->where('acc_number', $request->acc_number);
+
+                if($request->card_number)
+                    $query->where('card_number', 'like', '%' . $request->card_number . '%');
+
+                if($request->shaba_number)
+                    $query->where('shaba_number', $request->shaba_number);
+            })
+            ->orderby('created_fa', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function manageBtcAddressAll()
+    {
+        return Bank::where('money', 3)
+            ->orderby('created_fa', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function searchBtcAddress(AdminSearchRequest $request)
+    {
+        return Bank::where('money', 3)
+            ->where(function($query) use($request){
+                if($request->fname) {
+                    $user = User::where('fname', 'like', '%' . $request->fname . '%')->first();
+                    if($user)
+                        $query->where('owner', $user->id);
+                }
+
+                if($request->lname) {
+                    $user = User::where('lname', 'like', $request->lname . '%')->first();
+                    if($user)
+                        $query->where('owner', $user->id);
+                }
+
+                if($request->nname) {
+                    $user = User::where('nname', 'like', $request->nname . '%')->first();
+                    if($user)
+                        $query->where('owner', $user->id);
+                }
+
+                if($request->btc_address)
+                    $query->where('acc_number', $request->btc_address);
+            })
+            ->orderby('created_fa', 'desc')
+            ->paginate($this->paginateValue);
+    }
+
+    public function manageFeeAll()
+    {
+        return Fee::orderby('id')
+            ->paginate($this->paginateValue);
+    }
+
+    public function feeDetail($fee_id)
+    {
+        return Fee::where('id', $fee_id)
+            ->first();
+    }
+
+    public function updateFeeDetail(Request $request, $fee_id)
+    {
+        $this->validate($request,[
+            'fee_value' => 'required|numeric',
+        ]);
+        $fee = Fee::where('id', $fee_id)->first();
+        if($fee) {
+            $fee->fa_name = $request->fa_name;
+            $fee->fee_value = $request->fee_value;
+            $fee->description = $request->description;
+            $fee->save();
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public function manageCurrencyAll()
+    {
+        return $currency = Money::orderby('id')
+            ->paginate($this->paginateValue);
+    }
+
+    public function updateCurrencyRate(Request $request)
+    {
+        $this->validate($request, [
+            'rate_value' => 'required|numeric'
+        ]);
+        $currency = Money::where('id', Crypt::decrypt($request->rate_id))->first();
+        if($currency) {
+            $currency->rate = $request->rate_value;
+            $currency->save();
+            return true;
+        }
+        else
+            return false;
     }
 
 }

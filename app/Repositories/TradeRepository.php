@@ -16,38 +16,43 @@ use Illuminate\Support\Facades\DB;
 class TradeRepository {
 
     /**
-     * @param $type
-     * @param $money
-     * @param $status
-     * @return mixed
+     * @return array
      */
-    public function showOpenTrade($type,$money)
+    public function showOpenTrade()
     {
-        $trade = DB::table('active_trades')
-            ->where('type', '=', $type)
-            ->where('money', '=', $money)
-            ->where('remain', '>', 0.001)
+        $open_trades = ActiveTrade::where('remain', '>', 0.001)
             ->orderBy('value')
             ->take(40)
             ->get();
 
-        return $trade;
-    }
+        $sell_trades = $open_trades->where('type', 1)
+            ->where('money', 3)
+            ->sortBy('value')
+            ->all();
 
-    /**
-     * @param $type
-     * @param $money
-     * @return int
-     */
-    public function totalTrade($type,$money)
-    {
-        $trades = $this->showOpenTrade($type,$money);
-        $total = 0;
-        foreach($trades as $trade){
-            $temp_sum = $trade->remain * $trade->value;
-            $total += $temp_sum;
+        $total_sell = 0;
+        foreach ($sell_trades as $sell_trade) {
+            $temp = $sell_trade->value * $sell_trade->remain;
+            $total_sell += $temp;
         }
-        return $total;
+
+        $buy_trades = $open_trades->where('type', 2)
+            ->where('money', 3)
+            ->sortByDesc('value')
+            ->all();
+
+        $total_buy = 0;
+        foreach ($buy_trades as $buy_trade) {
+            $temp = $buy_trade->value * $buy_trade->remain;
+            $total_buy += $temp;
+        }
+
+        return $trades = [
+            'sell_trades' => $sell_trades,
+            'total_sell' => $total_sell,
+            'buy_trades' => $buy_trades,
+            'total_buy' => $total_buy
+        ];
     }
 
     /**

@@ -25,7 +25,7 @@ class DepositBitcoinRequest extends Request
     {
         return [
             'btc_address_select' => 'required',
-            'btc_deposit_amount' => array('required', 'regex:/^([0-9]{1,8})*(\.?[0-9]{1,9})$/'),
+            'btc_deposit_amount' => array('required', 'numeric', 'max:99999999', 'regex:/^([0-9]{1,8})*(\.?[0-9]{1,9})$/'),
             'our_btc_address' => 'required'
         ];
     }

@@ -78,7 +78,7 @@ class AdminController extends Controller
         else
             Session::flash('message', 'متاسفانه مشخصات کاربر بروزرسانی نگردید!');
 
-        return redirect('/iadmin/user/profile/'.$user_id);
+        return redirect('/iadmin/user/profile/' . $user_id);
     }
 
     public function getSearchUserProfile(AdminSearchRequest $request)
@@ -166,43 +166,81 @@ class AdminController extends Controller
         return view('admin.manageTransactionAll', compact('transactions'));
     }
 
-    public function getTransactionDetail()
+    public function getTransactionDetail($transaction_id)
     {
-        return view('admin.manageTransactionDetail');
+        $transaction = $this->adminClass->manageTransactionDetail($transaction_id);
+        return view('admin.manageTransactionDetail', compact('transaction'));
+    }
+
+    public function postTransactionDetail(Request $request, $transaction_id)
+    {
+        if($this->adminClass->updateTransactionDetail($request, $transaction_id) == 1)
+            Session::flash('message', 'مشخصات تراکنش با موفقیت بروزرسانی گردید!');
+        elseif($this->adminClass->updateTransactionDetail($request, $transaction_id) == 0)
+            Session::flash('message', 'متاسفانه بروزرسانی تراکنش انجام نگردید!');
+
+        return redirect('/iadmin/transaction/' . $transaction_id);
     }
 
     public function getBankIrr()
     {
-        return view('admin.manageBankIrr');
+        $banks = $this->adminClass->manageBankAll();
+        return view('admin.manageBankIrr', compact('banks'));
     }
 
-    public function getBankIrrDetail()
+    public function getSearchBankIrr(AdminSearchRequest $request)
     {
-        return view('admin.manageBankIrrDetail');
+        $banks = $this->adminClass->searchBankAll($request);
+        return view('admin.manageBankIrr', compact('banks'));
     }
 
     public function getBankBtc()
     {
-        return view('admin.manageBankBtc');
+        $btc_addresses = $this->adminClass->manageBtcAddressAll();
+        return view('admin.manageBankBtc', compact('btc_addresses'));
     }
 
-    public function getBankBtcDetail()
+    public function getSearchBankBtc(AdminSearchRequest $request)
     {
-        return view('admin.manageBankBtcDetail');
+        $btc_addresses = $this->adminClass->searchBtcAddress($request);
+        return view('admin.manageBankBtc', compact('btc_addresses'));
     }
 
     public function getFeeAll()
     {
-        return view('admin.manageFeeAll');
+        $fees = $this->adminClass->manageFeeAll();
+        return view('admin.manageFeeAll', compact('fees'));
     }
 
-    public function getFeeDetail()
+    public function getFeeDetail($fee_id)
     {
-        return view('admin.manageFeeDetail');
+        $fee = $this->adminClass->feeDetail($fee_id);
+        return view('admin.manageFeeDetail', compact('fee'));
+    }
+
+    public function postFeeDetail(Request $request, $fee_id)
+    {
+        if($this->adminClass->updateFeeDetail($request, Crypt::decrypt($fee_id)))
+            Session::flash('message', 'مقدار کارمزد با موفقیت بروزرسانی گردید!');
+        else
+            Session::flash('message', 'متاسفانه مقدار کارمزد بروزرسانی نگردید!');
+
+        return redirect('iadmin/fee/' . Crypt::decrypt($fee_id));
     }
 
     public function getRateAll()
     {
-        return view('admin.manageRateAll');
+        $currencies = $this->adminClass->manageCurrencyAll();
+        return view('admin.manageRateAll', compact('currencies'));
+    }
+
+    public function postRate(Request $request)
+    {
+        if($this->adminClass->updateCurrencyRate($request))
+            Session::flash('message', 'ضریب جدید با موفقیت بروزرسانی گردید!');
+        else
+            Session::flash('message', 'متاسفانه ضریب جدید بروزرسانی نگردید!');
+
+        return redirect('iadmin/rate');
     }
 }

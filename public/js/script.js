@@ -321,7 +321,7 @@ $(document).ready(function () {
             $("#btc-address-1").hide();
             $("#btc-address-2").hide();
         }
-        else if($("#our-btc-address :selected").val() == "14HmXbnCgEnvNVsFQ38YtpMcqtEyruU8zC") {
+        else if($("#our-btc-address :selected").val() == "آدرس بیتکوین") {
             $("#btc-address-1").show();
             $("#btc-address-2").hide();
         }

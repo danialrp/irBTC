@@ -15,14 +15,20 @@
             </tr>
             </thead>
             <tbody>
+            <?php $i = 1 ?>
+            @foreach($fees as $fee)
             <tr>
-                <td>1</td>
-                <td>کارمزد مبادله</td>
-                <td class="numbers">0.004</td>
-                <td></td>
-                <td><a id="detail-link" href="{{ url('/iadmin/fee/1') }}">ویرایش</a></td>
+                <td>{{ $i++ }}</td>
+                <td>{{ $fee->fa_name }}</td>
+                <td class="numbers">{{ floatval($fee->fee_value) }}</td>
+                <td>{{ $fee->description }}</td>
+                <td><a id="detail-link" href="{{ url('/iadmin/fee', $fee->id) }}">ویرایش</a></td>
             </tr>
+                @endforeach
             </tbody>
         </table>
+        <div class="paginate">
+            {!! $fees->appends(Input::query())->render() !!}
+        </div>
     </div>
 @stop

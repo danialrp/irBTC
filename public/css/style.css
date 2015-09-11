@@ -67,7 +67,12 @@ body {
     background-color: #CBCBCB;
 }
 
-body a, a:visited {
+body a {
+    text-decoration: none;
+    color: #1D417A;
+}
+
+body a:visited {
     text-decoration: none;
     color: #1D417A;
 }
@@ -259,11 +264,10 @@ body a:hover {
 }
 
 .btn-menu {
-    color: #222222;
+    /*color: #222222;*/
     background-color: #F0F0F0;
     border: 1px solid #000000;
 }
-
 
 #sidebar {
     background-color: #FFFFFF;

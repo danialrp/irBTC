@@ -26,7 +26,7 @@ class DepositRialRequest extends Request
         return [
             'bank_name' => 'required',
             'our_banks' => 'required',
-            'irr_deposit_amount' => array('required', 'regex:/^([0-9]{1,8})$/'),
+            'irr_deposit_amount' => array('required', 'numeric', 'max:999999999', 'regex:/^([0-9]{1,9})$/'),
             'tracking_number' => array('max:50', 'regex:/^[a-zA-Z0-9.-]*$/')
         ];
     }

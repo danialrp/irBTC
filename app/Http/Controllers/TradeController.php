@@ -40,10 +40,11 @@ class TradeController extends Controller
      */
     public function Bitcoin()
     {
-        $sell_trades = $this->tradeRepository->showOpenTrade(1, 3);
-        $buy_trades = $this->tradeRepository->showOpenTrade(2, 3);
-        $total_sell = $this->tradeRepository->totalTrade(1, 3);
-        $total_buy = $this->tradeRepository->totalTrade(2,3);
+        $open_trades = $this->tradeRepository->showOpenTrade();
+        $sell_trades = $open_trades['sell_trades'];
+        $buy_trades = $open_trades['buy_trades'];
+        $total_sell = $open_trades['total_sell'];
+        $total_buy = $open_trades['total_buy'];
         $fee = Fee::findOrFail(1);
         if(Auth::check())
             $active_trades = $this->tradeRepository->getUserActiveTrade(Auth::user()->id, 3);
@@ -66,10 +67,11 @@ class TradeController extends Controller
     public function getBitcoinTable(Request $request)
     {
         if($request->ajax()) {
-            $sell_trades = $this->tradeRepository->showOpenTrade(1, 3);
-            $buy_trades = $this->tradeRepository->showOpenTrade(2, 3);
-            $total_sell = $this->tradeRepository->totalTrade(1, 3);
-            $total_buy = $this->tradeRepository->totalTrade(2, 3);
+            $open_trades = $this->tradeRepository->showOpenTrade();
+            $sell_trades = $open_trades['sell_trades'];
+            $buy_trades = $open_trades['buy_trades'];
+            $total_sell = $open_trades['total_sell'];
+            $total_buy = $open_trades['total_buy'];
             $fee = Fee::findOrFail(1);
             return view('partial.bitcoinTable', compact
             ([

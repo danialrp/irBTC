@@ -25,7 +25,7 @@ class WithdrawRialRequest extends Request
     {
         return [
             'bank_name' => 'required',
-            'irr_withdraw_amount' => array('required', 'regex:/^([0-9]{1,8})$/')
+            'irr_withdraw_amount' => array('required', 'numeric', 'max:999999999', 'regex:/^([0-9]{1,9})$/')
         ];
     }
 }

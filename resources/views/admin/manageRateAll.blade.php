@@ -20,22 +20,29 @@
             </tr>
             </thead>
             <tbody>
+            <?php $i = 1 ?>
+            @foreach($currencies as $currency)
             <tr>
-                <form name="" class="" method="POST" role="form" action="{{ url('#') }}">
+                <form name="" class="" method="POST" role="form" action="{{ url('/iadmin/rate') }}">
                     {!! csrf_field() !!}
-                    <td>1</td>
-                    <td>تومان</td>
-                    <td class="eng-font">Toman</td>
-                    <td class="eng-font">T</td>
-                    <td class="numbers">4000</td>
+                    <input type="hidden" name="rate_id" value="{{ Crypt::encrypt($currency->id) }}">
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $currency->fa_name }}</td>
+                    <td class="eng-font">{{ $currency->name }}</td>
+                    <td class="eng-font">{{ $currency->symbol }}</td>
+                    <td class="numbers blue">{{ floatval($currency->rate) }}</td>
                     <td class="numbers">0</td>
                     <td class="numbers">0</td>
-                    <td></td>
-                    <td><input type="text" class="txt-table numbers" name="" placeholder="" value="0"></td>
+                    <td>{{ $currency->description }}</td>
+                    <td><input type="text" class="txt-table numbers" name="rate_value" placeholder="" value="{{ floatval($currency->rate) }}"></td>
                     <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                 </form>
             </tr>
+                @endforeach
             </tbody>
         </table>
+        <div class="paginate">
+            {!! $currencies->appends(Input::query())->render() !!}
+        </div>
     </div>
 @stop

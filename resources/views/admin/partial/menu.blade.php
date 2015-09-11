@@ -1,7 +1,7 @@
 <div id="main-navigation">
     <div class="menu-container">
         <div class="mainBar">
-            <div id="menu-1" class="menu-item menu-item-drop">تنظیمات مدیریت</div>
+            <div id="menu-1" class="menu-item menu-item-drop">مدیریت سیستم</div>
             <div id="menu-2" class="menu-item menu-item-drop">مدیریت کاربران</div>
             <div id="menu-3" class="menu-item menu-item-drop">مدیریت مبادلات</div>
             <div id="menu-4" class="menu-item menu-item-drop">مدیریت پرداخت</div>

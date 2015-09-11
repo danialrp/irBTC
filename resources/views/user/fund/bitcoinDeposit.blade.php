@@ -37,7 +37,7 @@
                         <div class="fund-info-item-child">
                             <select id="our-btc-address" class="fund-dropdown" name="our_btc_address">
                                 <option value="">انتخاب کیف پول بیتکوین</option>
-                                <option value="14HmXbnCgEnvNVsFQ38YtpMcqtEyruU8zC">14HmXbnCgEnvNVsFQ38YtpMcqtEyruU8zC</option>
+                                <option value="آدرس بیتکوین">14HmXbnCgEnvNVsFQ38YtpMcqtEyruU8zC</option>
                                 {{--<option value="address-2">1NDpZ2wyFekVezssSXv2tmQgmxcoHMUJ7u</option>--}}
                             </select>
                             <label id="btc-address-1">

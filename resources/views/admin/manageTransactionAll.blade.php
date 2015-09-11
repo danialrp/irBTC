@@ -124,24 +124,6 @@
                     <td><a id="detail-link" href="{{ url('/iadmin/transaction', $transaction->id) }}">جزییات</a> </td>
                 </tr>
             @endforeach
-            <tr class="bold">
-                <td>::</td>
-                <td>مجموع</td>
-                <td>::</td>
-                <td>::</td>
-                <td>::</td>
-                <td>::</td>
-                <td>::</td>
-                <td>::</td>
-                <td class="numbers">12,980,765</td>
-                <td class="numbers">20.980761</td>
-                <td>::</td>
-                <td>::</td>
-                <td>::</td>
-                <td>::</td>
-                <td>::</td>
-                <td>::</td>
-            </tr>
             </tbody>
         </table>
         <div class="paginate">

@@ -22,35 +22,40 @@
             </thead>
             <tbody>
             <tr>
-                <form class="" role="form" method="POST" action="{{ url('#') }}">
-                    {!! csrf_field() !!}
+                <form class="" role="form" method="GET" action="{{ url('/iadmin/bank/irr/search') }}">
                     <td>::</td>
-                    <td><input type="text" class="txt-table" name="search_fname" placeholder="" value="{{ old('search_fname') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_lname" placeholder="" value="{{ old('search_lname') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_nname" placeholder="" value="{{ old('search_nname') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_bank_name" placeholder="" value="{{ old('search_bank_name') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_acc_number" placeholder="" value="{{ old('search_acc_number') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_card_number" placeholder="" value="{{ old('search_card_number') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_shaba_number" placeholder="" value="{{ old('search_shaba_number') }}"></td>
-                    <td><input type="text" class="txt-table" name="search_created_fa" placeholder="" value="{{ old('search_created_fa') }}"></td>
+                    <td><input type="text" class="txt-table" name="fname" placeholder="" value="{{ old('fname') }}"></td>
+                    <td><input type="text" class="txt-table" name="lname" placeholder="" value="{{ old('lname') }}"></td>
+                    <td><input type="text" class="txt-table" name="nname" placeholder="" value="{{ old('nname') }}"></td>
+                    <td><input type="text" class="txt-table" name="bank_name" placeholder="" value="{{ old('bank_name') }}"></td>
+                    <td><input type="text" class="txt-table" name="acc_number" placeholder="" value="{{ old('acc_number') }}"></td>
+                    <td><input type="text" class="txt-table" name="card_number" placeholder="" value="{{ old('card_number') }}"></td>
+                    <td><input type="text" class="txt-table" name="shaba_number" placeholder="" value="{{ old('shaba_number') }}"></td>
+                    <td>::</td>
                     <td>::</td>
                     <td><button type="submit" id="" class="btn-table">بروزرسانی</button></td>
                 </form>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>علیرضا</td>
-                <td>محمدی</td>
-                <td class="eng-font">Hami_reZa</td>
-                <td>بانک اقتصاد نوین</td>
-                <td class="numbers">927398723700wew</td>
-                <td class="numbers">6219-8619-9823-0912</td>
-                <td class="numbers">IRR8i87676654321090987</td>
-                <td class="numbers">1394-06-02@04:17</td>
-                <td>حساب بانک</td>
-                <td><a id="detail-link" href="{{ url('/iadmin/bank/irr/1') }}">ویرایش</a></td>
-            </tr>
+            <?php $i = 1 ?>
+            @foreach($banks as $bank)
+                <tr>
+                    <td>{{ $i++ }}</td>
+                    <td>{{ $bank->userBank->fname }}</td>
+                    <td>{{ $bank->userBank->lname }}</td>
+                    <td class="eng-font">{{ $bank->userBank->nname }}</td>
+                    <td>{{ $bank->name }}</td>
+                    <td class="numbers">{{ $bank->acc_number }}</td>
+                    <td class="numbers">{{ $bank->card_number }}</td>
+                    <td class="numbers">{{ $bank->shaba_number }}</td>
+                    <td class="numbers">{{ date('Y/m/d@H:i:s', strtotime($bank->created_fa)) }}</td>
+                    <td>{{ $bank->desctiption }}</td>
+                    <td>::</td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
+        <div class="paginate">
+            {!! $banks->appends(Input::query())->render() !!}
+        </div>
     </div>
 @stop

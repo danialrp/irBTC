@@ -90,7 +90,7 @@
                                 <option value="3">لغو شده</option>
                             </select>
                         </td>
-                        <td><button type="submit" id="" class="btn-table">تغییر وضعیت</button></td>
+                        <td><button type="submit" id="" class="btn-table">ذخیره</button></td>
                     </form>
                 </tr>
             @endforeach

@@ -25,7 +25,7 @@ class WithdrawBitcoinRequest extends Request
     {
         return [
             'btc_address_select' => 'required',
-            'btc_withdraw_amount' => array('required', 'regex:/^([0-9]{1,8})*(\.?[0-9]{1,9})$/'),
+            'btc_withdraw_amount' => array('required', 'numeric', 'max:99999999', 'regex:/^([0-9]{1,8})*(\.?[0-9]{1,9})$/'),
         ];
     }
 }
