@@ -91,7 +91,7 @@
     </div>
 
     <div class="trade-fee-show">
-        <label> <span> در حال حاضر کارمزد برای هر مبادله </span> <span> {{ $fee->fee_value*100 }} </span><span> درصد میباشد. </span> </label>
+        <label> <span> در حال حاضر کارمزد برای هر مبادله </span> <span> {{ $fee->fee_value * 100 }} </span><span> درصد میباشد. </span> </label>
     </div>
 
     <div id="active-trades">

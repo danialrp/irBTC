@@ -556,17 +556,28 @@ class AdminClass {
 
     public function manageCurrencyAll()
     {
-        return $currency = Money::orderby('id')
+        return Money::orderby('id')
             ->paginate($this->paginateValue);
     }
 
     public function updateCurrencyRate(Request $request)
     {
         $this->validate($request, [
-            'rate_value' => 'required|numeric'
+            'rate_value' => 'required|numeric',
+            'sell_rate_value' => 'numeric',
+            'buy_rate_value' => 'numeric'
         ]);
         $currency = Money::where('id', Crypt::decrypt($request->rate_id))->first();
+        $fee = Fee::wherein('id', [4, 5])->get();
+        $fee_p = $fee[0]->fee_value;
+        $fee_c = $fee[1]->fee_value;
         if($currency) {
+            $request->sell_rate_value ?
+                $currency->sell_rate = $request->sell_rate_value :
+                $currency->sell_rate = ($request->rate_value + ($request->rate_value * $fee_p)) + $fee_c;
+            $request->buy_rate_value ?
+                $currency->buy_rate = $request->buy_rate_value :
+                $currency->buy_rate = ($request->rate_value - ($request->rate_value * $fee_p)) - $fee_c;
             $currency->rate = $request->rate_value;
             $currency->save();
             return true;

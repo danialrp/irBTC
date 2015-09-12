@@ -17,6 +17,8 @@ class CreateMoneyTable extends Migration
             $table->string('name')->nullable();
             $table->string('fa_name')->nullable();
             $table->string('symbol')->nullable();
+            $table->decimal('sell_rate', 15, 6)->nullable();
+            $table->decimal('buy_rate', 15, 6)->nullable();
             $table->decimal('rate', 15, 6)->nullable();
             $table->string('description')->nullable();
             $table->boolean('deleted')->default(false);
