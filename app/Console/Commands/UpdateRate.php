@@ -19,7 +19,7 @@ class UpdateRate extends Command
      *
      * @var string
      */
-    protected $description = 'Command description.';
+    protected $description = 'Update rates from blockchain';
     /**
      * @var BlockchainClass
      */
@@ -43,6 +43,6 @@ class UpdateRate extends Command
      */
     public function handle()
     {
-        $this->blockchainClass->getLatestRate();
+        $this->blockchainClass->insertLatestRate();
     }
 }
