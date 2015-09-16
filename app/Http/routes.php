@@ -62,6 +62,8 @@ Route::post('/bank/btc/delete/{id}', 'UserController@deleteAddressBtc');
 
 Route::post('/user/update/balance', 'UserController@updateBalance');
 
+Route::post('/rate/update/btc', 'BlockchainController@postBtcRate');
+
 
 Route::get('/trade/webmoney', 'TradeController@Webmoney');
 
@@ -90,7 +92,7 @@ Route::post('/trades/history', 'UserController@tradeHistory');
 Route::post('/trade/update/cancel', 'TradeController@cancelTrade');
 
 
-Route::get('/iadmin', 'AdminController@getDashboard');
+Route::get('/iadmin', 'AdminAuthController@getLogin');
 
 Route::get('/iadmin/login', 'AdminAuthController@getLogin');
 
@@ -158,3 +160,4 @@ Route::get('/iadmin/rate', 'AdminController@getRateAll');
 
 Route::post('/iadmin/rate', 'AdminController@postRate');
 
+Route::get('/rate/btc', 'BlockchainController@getBtcRate');

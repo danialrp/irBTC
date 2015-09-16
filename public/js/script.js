@@ -7,9 +7,14 @@ $(document).ready(function() {
         $(".active-trades").show();
         $(".no-active").hide();
     }
+    updateRate()
+    $(".rate-positive").hide();
+    $(".rate-negative").hide();
+
     setInterval(function () {
         updateList();
-    }, 60000);
+        updateRate()
+    }, 180000);
 });
 
 /*GLOBAL AJAX LOADER AND AJAX SETUP*/
@@ -331,6 +336,66 @@ $(document).ready(function () {
         }
     });
 });
+
+function updateRate()
+{
+    $.ajax({
+        type: "post",
+        url: "/rate/update/btc",
+        data: "data",
+        dataType: "json",
+        cache: false
+    })
+        .done(function (rate) {
+            $("#rate-btc").text(Number(rate.last).toFixed(0)).digits();
+            $("#rate-change").text(Number(Math.abs(rate.last - rate.previous)).toFixed(0)).digits();
+            $("#rate-percent").text(Number(Math.abs(((rate.last - rate.previous) * 100) / rate.last)).toFixed(2)).digits();
+            if(rate.last - rate.previous > 0) {
+                $("#rate-btc").addClass("green");
+                $("#rate-btc").removeClass("red");
+                $("#rate-change").addClass("green");
+                $("#rate-change").removeClass("red");
+                $("#rate-percent").addClass("green");
+                $("#rate-percent").removeClass("red");
+                $(".symbol-percent").addClass("green");
+                $(".symbol-percent").removeClass("red");
+                $(".rate-positive").show();
+                $(".rate-negative").hide();
+            }
+            if(rate.last - rate.previous < 0) {
+                $("#rate-btc").addClass("red");
+                $("#rate-btc").removeClass("green");
+                $("#rate-change").addClass("red");
+                $("#rate-change").removeClass("green");
+                $("#rate-percent").addClass("red");
+                $("#rate-percent").removeClass("green");
+                $(".symbol-percent").removeClass("green");
+                $(".symbol-percent").addClass("red");
+                $(".rate-positive").hide();
+                $(".rate-negative").show();
+            }
+            if(rate.last - rate.previous === 0) {
+                $("#rate-btc").removeClass("red");
+                $("#rate-btc").removeClass("green");
+                $("#rate-change").removeClass("red");
+                $("#rate-change").removeClass("green");
+                $("#rate-percent").removeClass("red");
+                $("#rate-percent").removeClass("green");
+                $(".symbol-percent").removeClass("red");
+                $(".symbol-percent").removeClass("green");
+                $(".rate-positive").hide();
+                $(".rate-negative").hide();
+            }
+
+        })
+
+        .fail(function (jqXhr) {
+            console.log(jqXhr.responseJSON);
+        })
+        .always(function () {
+
+        });
+}
 
 
 

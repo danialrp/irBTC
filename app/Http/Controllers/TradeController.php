@@ -31,7 +31,6 @@ class TradeController extends Controller
         $this->middleware('auth', ['except' => ['Webmoney','Bitcoin','Perfectmoney']]);
         $this->tradeClass = $tradeClass;
         $this->tradeRepository = $tradeRepository;
-        /*Session::forget('message');*/
     }
 
     /**
@@ -57,7 +56,8 @@ class TradeController extends Controller
             'total_buy',
             'total_sell',
             'active_trades'
-        ]));
+        ])
+        );
     }
 
     /**

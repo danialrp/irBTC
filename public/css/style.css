@@ -374,7 +374,7 @@ body a:hover {
     width: 15px;
     height: 18px;
     position: absolute;
-    margin: 11px -20px 0px 0px;
+    margin: 10px 72px 0px 0px;
 }
 
 .rate-down {
@@ -382,7 +382,12 @@ body a:hover {
     width: 15px;
     height: 18px;
     position: absolute;
-    margin: 11px -20px 0px 0px;
+    margin: 10px 72px 0px 0px;
+}
+
+.rate-title {
+    font-size: 11px;
+    padding: 0px 0px 0px 3px;
 }
 
 #box {
