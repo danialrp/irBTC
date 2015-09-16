@@ -159,5 +159,3 @@ Route::post('/iadmin/fee/{id}', 'AdminController@postFeeDetail');
 Route::get('/iadmin/rate', 'AdminController@getRateAll');
 
 Route::post('/iadmin/rate', 'AdminController@postRate');
-
-Route::get('/rate/btc', 'BlockchainController@getBtcRate');

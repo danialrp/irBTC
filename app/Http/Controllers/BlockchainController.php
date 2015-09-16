@@ -30,9 +30,4 @@ class BlockchainController extends Controller
 
         return response()->json($latestRate, 200);
     }
-
-    public function getBtcRate() /*SHOULD BE DELETE + ROUTE*/
-    {
-        return response($this->blockchainClass->insertLatestRate());
-    }
 }
