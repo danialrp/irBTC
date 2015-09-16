@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call('ActiveTradeTableSeeder');
         $this->call('BankTableSeeder');
         $this->call('TransactionTableSeeder');
+        $this->call('BlockchainRateTableSeeder');
 
         Model::reguard();
     }
