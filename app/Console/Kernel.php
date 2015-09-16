@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('inspire')
                  ->hourly();
 
-        $schedule->command('updateRate')
+        $schedule->command('irbtc:updateRate')
             ->everyMinute();
     }
 }
