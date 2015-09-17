@@ -14,7 +14,7 @@ $(document).ready(function() {
     setInterval(function () {
         updateList();
         updateRate()
-    }, 180000);
+    }, 120000);
 });
 
 /*GLOBAL AJAX LOADER AND AJAX SETUP*/
@@ -299,6 +299,7 @@ $(document).ready(function () {
     })
 });
 
+/*DEPOSIT IRR*/
 $(document).ready(function () {
     $("#mellat-bank-info").hide();
     $("#saman-bank-info").hide();
@@ -318,6 +319,7 @@ $(document).ready(function () {
     });
 });
 
+/*DEPOSIT BTC*/
 $(document).ready(function () {
     $("#btc-address-1").hide();
     $("#btc-address-2").hide();
@@ -337,6 +339,7 @@ $(document).ready(function () {
     });
 });
 
+/*UPDATE BTC RATES*/
 function updateRate()
 {
     $.ajax({
