@@ -43,7 +43,8 @@ class BlockchainClass {
                 'buy' => $lastRate->buy * $usdRate->rate,
                 'sell' => $lastRate->sell * $usdRate->rate,
                 'created_fa' => JDateServiceProvider::date('Y-m-d H:i:s', time(), false, true),
-                'created_at' => Carbon::now()
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]);
     }
 

@@ -1,4 +1,4 @@
-@extends('layout/profile')
+@extends('layout/main')
 
 @section('title', 'بازیابی کلمه عبور')
 
