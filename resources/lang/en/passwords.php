@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least six characters and match the confirmation.',
-    'user' => "We can't find a user with that e-mail address.",
-    'token' => 'This password reset token is invalid.',
-    'sent' => 'We have e-mailed your password reset link!',
-    'reset' => 'Your password has been reset!',
+    'password' => 'کلمه عبور باید شامل حروف کوچک و بزرگ و اعداد باشد!',
+    'user' => "آدرس ایمیل وارد شده در سیستم وجود ندارد!",
+    'token' => 'لینک بازیابی کلمه عبور یا آدرس ایمیل اعتبار ندارد!',
+    'sent' => 'ایمیل حاوی لینک بازیابی کلمه عبور به آدرس ایمیل شما ارسال شد!',
+    'reset' => 'کلمه عبور شما با موفقیت تغییر نمود!',
 
 ];

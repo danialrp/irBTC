@@ -10,7 +10,7 @@
             <li class="message-item"> {{ Session::get('message') }} </li>
         </ul>
     @endif
-        <ul class="two">
-            <li class="message-item"> </li>
-        </ul>
+    <ul class="two">
+        <li class="message-item"> </li>
+    </ul>
 </div>

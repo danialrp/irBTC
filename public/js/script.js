@@ -124,8 +124,8 @@ function updateBalance()
         .done(function(bal) {
             $("#ir_balance").text(Number(bal[0].current_balance).toFixed(0)).digits();
             $("#btc_balance").text(Number(bal[2].current_balance).toFixed(6));
-            $("#wm_balance").text(Number(bal[3].current_balance).toFixed(2));
-            $("#pm_balance").text(Number(bal[4].current_balance).toFixed(2));
+            /*$("#wm_balance").text(Number(bal[3].current_balance).toFixed(2));
+            $("#pm_balance").text(Number(bal[4].current_balance).toFixed(2));*/
         })
         .fail(function(jqXhr) {
             console.log(jqXhr.responseJSON);

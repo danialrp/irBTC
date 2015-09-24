@@ -26,7 +26,7 @@
                 <button type="submit" id="btn-login" class="btn-simple"> ورود به سیستم </button>
                 <ul>
                     <li> <a href="{{ url('/auth/register') }}"> عضویت </a> </li>
-                    <li> <a href="#"> بازیابی کلمه عبور </a> </li>
+                    <li> <a href="{{ url('/password/email') }}"> بازیابی کلمه عبور </a> </li>
                 </ul>
             </div>
         </form>
