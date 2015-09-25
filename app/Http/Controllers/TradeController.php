@@ -49,14 +49,14 @@ class TradeController extends Controller
             $active_trades = $this->tradeRepository->getUserActiveTrade(Auth::user()->id, 3);
 
         return view('trade.bitcoin',compact
-        ([
-            'buy_trades',
-            'sell_trades',
-            'fee',
-            'total_buy',
-            'total_sell',
-            'active_trades'
-        ])
+            ([
+                'buy_trades',
+                'sell_trades',
+                'fee',
+                'total_buy',
+                'total_sell',
+                'active_trades'
+            ])
         );
     }
 
@@ -66,24 +66,23 @@ class TradeController extends Controller
      */
     public function getBitcoinTable(Request $request)
     {
-        if($request->ajax()) {
-            $open_trades = $this->tradeRepository->showOpenTrade();
-            $sell_trades = $open_trades['sell_trades'];
-            $buy_trades = $open_trades['buy_trades'];
-            $total_sell = $open_trades['total_sell'];
-            $total_buy = $open_trades['total_buy'];
-            $fee = Fee::findOrFail(1);
-            return view('partial.bitcoinTable', compact
-            ([
-                'buy_trades',
-                'sell_trades',
-                'total_buy',
-                'total_sell',
-                'fee'
-            ]));
-        }
-        else
-            return response(false, 422);
+        if( ! $request->ajax())
+            App::abort(403);
+
+        $open_trades = $this->tradeRepository->showOpenTrade();
+        $sell_trades = $open_trades['sell_trades'];
+        $buy_trades = $open_trades['buy_trades'];
+        $total_sell = $open_trades['total_sell'];
+        $total_buy = $open_trades['total_buy'];
+        $fee = Fee::findOrFail(1);
+        return view('partial.bitcoinTable', compact
+        ([
+            'buy_trades',
+            'sell_trades',
+            'total_buy',
+            'total_sell',
+            'fee'
+        ]));
     }
 
     /**
@@ -92,14 +91,13 @@ class TradeController extends Controller
      */
     public function getBitcoinActiveTrades(Request $request)
     {
-        if($request->ajax()) {
-            if(Auth::check()) {
-                $active_trades = $this->tradeRepository->getUserActiveTrade(Auth::user()->id, 3);
-                return view('partial.activeTradeBtc', compact('active_trades'));
-            }
+        if( ! $request->ajax())
+            App::abort(403);
+
+        if(Auth::check()) {
+            $active_trades = $this->tradeRepository->getUserActiveTrade(Auth::user()->id, 3);
+            return view('partial.activeTradeBtc', compact('active_trades'));
         }
-        else
-            return response(false, 422);
     }
 
     /**
@@ -108,6 +106,9 @@ class TradeController extends Controller
      */
     public function sellBitcoin(BitcoinTradeRequest $request)
     {
+        if( ! $request->ajax())
+            App::abort(403);
+
         if(Auth::user()->confirmed == 1) {
             $amount = $request->sell_amount;
             $value = $request->sell_value;
@@ -135,6 +136,9 @@ class TradeController extends Controller
      */
     public function buyBitcoin(BitcoinTradeRequest $request)
     {
+        if( ! $request->ajax())
+            App::abort(403);
+
         if(Auth::user()->confirmed == 1) {
             $amount = $request->sell_amount;
             $value = $request->sell_value;
@@ -162,6 +166,9 @@ class TradeController extends Controller
      */
     public function cancelTrade(Request $request)
     {
+        if( ! $request->ajax())
+            App::abort(403);
+
         if(Auth::user()->confirmed == 1) {
             if ($this->tradeClass->cancelTrade($request->trade_id, Auth::user()->id)) {
                 return response()->json(['message' => 'مبادله مورد نظر با موفقیت لغو شد!'], 200);

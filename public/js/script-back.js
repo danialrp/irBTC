@@ -15,7 +15,7 @@ function show_flash()
             resizable: false,
             dialogClass: "alert",
             width: 300,
-            position: { my: "center center-50%", at: "center", of: "#page-wrap" },
+            position: { my: "top", at: "top+150" },
             buttons: [
                 {
                     text: "بستن",

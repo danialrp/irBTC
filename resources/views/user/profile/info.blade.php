@@ -10,42 +10,42 @@
                 <legend> مشخصات کاربری </legend>
                 <div class="form-normal-content">
                     <div class="form-element">
-                        <label> نام </label>
+                        <label> <span>نام</span><span class="red">*</span> </label>
                         <input type="text" name="fname" class="txt-form-normal txt-simple" placeholder="نام" value="{{ old('fname') }}" >
                     </div>
 
                     <div class="form-element">
-                        <label> نام خانوادگی </label>
+                        <label> <span>نام خانوادگی</span><span class="red">*</span> </label>
                         <input type="text" name="lname" class="txt-form-normal txt-simple" placeholder="نام خانوادگی" value="{{ old('lname') }}">
                     </div>
 
                     <div class="form-element">
-                        <label> نام کاربری </label>
+                        <label> <span>نام کاربری</span> </label>
                         <input type="text" name="nname" class="txt-form-normal txt-simple" placeholder="" value="{{ Auth::user()->nname }}" disabled>
                     </div>
 
                     <div class="form-element">
-                        <label> ایمیل </label>
+                        <label> <span>ایمیل</span> </label>
                         <input type="email" name="email" class="txt-form-normal txt-simple" placeholder="آدرس ایمیل" value="{{ Auth::user()->email }}" disabled >
                     </div>
 
                     <div class="form-element">
-                        <label> تلفن </label>
+                        <label> <span>تلفن</span><span class="red">*</span> </label>
                         <input type="text" name="tel" class="txt-form-normal txt-simple" placeholder="02188888888" value="{{ old('tel') }}">
                     </div>
 
                     <div class="form-element">
-                        <label> موبایل</label>
+                        <label> <span>موبایل</span><span class="red">*</span> </label>
                         <input type="text" name="mobile" class="txt-form-normal txt-simple" placeholder="09128888888" value="{{ old('mobile') }}">
                     </div>
 
                     <div class="form-element">
-                        <label> شماره ملی </label>
+                        <label> <span>شماره ملی</span><span class="red">*</span> </label>
                         <input type="text" name="national_number" class="txt-form-normal txt-simple" placeholder="xxxxxxxxxx" value="{{ old('national_number') }}">
                     </div>
 
                     <div class="form-element">
-                        <label> آدرس </label>
+                        <label> <span>آدرس</span><span class="red">*</span> </label>
                         <input type="text" name="address" class="txt-form-normal txt-simple" placeholder="آدرس محل سکونت" value="{{ old('address') }}">
                     </div>
                 </div>

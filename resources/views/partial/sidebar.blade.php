@@ -2,25 +2,14 @@
     @if(Auth::check())
         <div class="sidebar-section">
             <div class="sidebar-head"> موجودی </div>
-
             <div class="sidebar-element">
                 <label class="sidebar-element-title"> تومان </label>
-                <label id="ir_balance" class="sidebar-element-value numbers blue"><a href="{{ url('/fund/deposit/irr') }}">{{ number_format($ir_balance, 0, '.', ',') }}</a></label>
+                <label id="ir_balance" class="sidebar-element-value numbers blue">{{ number_format($ir_balance, 0, '.', ',') }}</label>
             </div>,
             <div class="sidebar-element">
                 <label class="sidebar-element-title"> بیتکوین </label>
-                <label id="btc_balance" class="sidebar-element-value numbers blue"><a href="{{ url('/fund/deposit/btc') }}">{{ rtrim(sprintf('%.8F', round(number_format($bitcoin_balance, 6, '.', ','), 6)), '0') }}</a></label>
+                <label id="btc_balance" class="sidebar-element-value numbers blue">{{ rtrim(sprintf('%.8F', round(number_format($bitcoin_balance, 6, '.', ','), 6)), '0') }}</label>
             </div>
-
-            {{--<div class="sidebar-element">
-                <label class="sidebar-element-title"> وبمانی (دلار) </label>
-                <label id="wm_balance" class="sidebar-element-value numbers blue"><a href="{{ url('/fund') }}">{{ number_format($webmoney_balance, 2, '.', ',') }}</a></label>
-            </div>
-
-            <div class="sidebar-element">
-                <label class="sidebar-element-title"> پرفکت مانی (دلار) </label>
-                <label id="pm_balance" class="sidebar-element-value numbers blue"><a href="{{ url('/fund') }}">{{ number_format($perfectmoney_balance, 2, '.', ',') }}</a></label>
-            </div>--}}
         </div>
 
         <div class="sidebar-section">

@@ -43,9 +43,10 @@ function show_flash()
             modal: true,
             draggable: false,
             resizable: false,
+            closeOnEscape: true,
             dialogClass: "alert",
             width: 300,
-            position: { my: "center center-50%", at: "center", of: "#page-wrap" },
+            position: { my: "top", at: "top+150"},
             buttons: [
                 {
                     text: "بستن",

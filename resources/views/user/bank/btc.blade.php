@@ -17,7 +17,7 @@
                 <tr class="">
                     <td class="numbers">{{ $address->acc_number }}</td>
                     <td>فعال</td>
-                    <form id="delete-btc-address" class="form-normal" role="form" method="POST" action="{{ action('UserController@deleteAddressBtc', [$address->id]) }}">
+                    <form id="delete-btc-address" class="form-normal" role="form" method="POST" action="{{ action('UserController@deleteAddressBtc', Crypt::encrypt($address->id)) }}">
                         {!! csrf_field() !!}
                         <td class="td-no-padding"><button type="submit" class="link-button">حذف</button></td>
                     </form>

@@ -21,7 +21,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 use Session;
 
@@ -261,7 +263,7 @@ class UserController extends Controller
 
     public function deleteBankIrr($bank_id)
     {
-        if($this->userClass->deleteIrrBankAccount(Auth::user()->id, $bank_id))
+        if($this->userClass->deleteIrrBankAccount(Auth::user()->id, Crypt::decrypt($bank_id)))
             Session::flash('message', 'حساب بانکی شما با موفقیت حذف گردید!');
         else
             Session::flash('message', 'متاسفانه عملیات حذف انجام نشد!');
@@ -287,7 +289,7 @@ class UserController extends Controller
 
     public function deleteAddressBtc($address_id)
     {
-        if($this->userClass->deleteBitcoinAddress(Auth::user()->id, $address_id))
+        if($this->userClass->deleteBitcoinAddress(Auth::user()->id, Crypt::decrypt($address_id)))
             Session::flash('message', 'آدرس کیف پول بیتکوین با موفقیت حذف شد!');
         else
             Session::flash('message', 'متاسفانه عملیات حذف انجام نشد!');
@@ -301,6 +303,9 @@ class UserController extends Controller
      */
     public function updateBalance(Request $request)
     {
+        if( ! $request->ajax())
+            App::abort(403);
+
         if(Auth::check()) {
             $id = Auth::user()->id;
             $balance = $this->userClass->getBalance($id);

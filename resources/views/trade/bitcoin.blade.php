@@ -6,7 +6,6 @@
     <div class="rate">
         @include('/partial/rate')
     </div>
-
     <div id="box">
         <div class="trade-box-right">
             <label class="trade-box-title"> فروش بیتکوین </label>
