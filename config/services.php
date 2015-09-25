@@ -15,8 +15,8 @@ return [
     */
 
     'mailgun' => [
-        'domain' => '',
-        'secret' => '',
+        'domain' => 'mg.irbtc.com',
+        'secret' => 'key-c0e3f2526abc3fd3eeb2b96fccf7042e',
     ],
 
     'mandrill' => [

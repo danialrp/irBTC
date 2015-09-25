@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => 'info@irbtc.com', 'name' => 'iRBtc::All about trading'],
 
     /*
     |--------------------------------------------------------------------------
