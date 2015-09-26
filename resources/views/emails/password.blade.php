@@ -22,8 +22,11 @@
             font-size: 18px;
             font-weight: bold;
         }
+        .title-text {
+            line-height: 35px;
+        }
         .content {
-            background: #fffbe6;
+            background: #f3f3f3;
             width: 100%;
             color: #000000;
             text-align: right;
@@ -41,26 +44,27 @@
         .footer {
             width: 100%;
             background: #4d4d4d;
-            color: #ffffff;
+            color: #9D9D9D;
             height: 25px;
             text-align: center;
             font-size: 10px;
-            font-weight: bold;
             line-height: 24px;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="title">::iRBtc::</div>
+    <div class="title"><div class="title-text">::iRBtc::</div></div>
     <div class="content">
         <p>
             <span>با سلام</span> <br/>
             <span>برای بازیابی کلمه عبور خود بر روی لینک زیر کلیک کنید:</span><br/>
             <span>{{ url('password/reset/'.$token) }}</span><br/>
-            <span>مدت زمان اعتبار این لینک تا ۱ ساعت پس از دریافت این ایمیل می باشد.</span>
         </p>
-        <p class="red">این ایمیل به صورت خودکار توسط سیستم برای شما ارسال شده است و از ارسال پاسخ به آن خودداری نمایید.</p>
+        <p class="red">
+            <span>مدت زمان اعتبار این لینک تا ۱ ساعت پس از دریافت این ایمیل می باشد.</span><br/>
+            <span>این ایمیل به صورت خودکار توسط سیستم برای شما ارسال شده است و از ارسال پاسخ به آن خودداری نمایید.</span>
+        </p>
     </div>
 </div>
 <div class="footer">IRBTC.COM</div>
