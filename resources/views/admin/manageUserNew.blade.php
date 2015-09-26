@@ -52,7 +52,7 @@
                         </select>
                     </td>
 
-                    <td><button type="submit" id="" class="btn-table">ایجاد کاربر جدید</button></td>
+                    <td><button type="submit" id="" class="btn-table">ذخیره</button></td>
                 </form>
             </tbody>
         </table>

@@ -5,8 +5,9 @@
 
 <div class="footer-links">
     <ul>
-        <li><a href="#"> صفحه مبادلات </a></li>
+        <li><a href="{{ url('/trade/bitcoin') }}"> صفحه مبادلات </a></li>
         <li><a href="#"> راهنما </a></li>
+        <li><a href="#"> تماس با ما </a></li>
     </ul>
 </div>
 

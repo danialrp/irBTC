@@ -5,7 +5,7 @@
                 <li><span>کاربر:: </span><span>{{ Auth::user()->nname }}</span></li>
                 <li><a href="{{ url('/profile') }}">پروفایل</a></li>
                 <li><a href="{{ url('/fund') }}">مدیریت موجودی</a></li>
-                <li><a href="{{ url('/trades/history') }}">مبادلات</a></li>
+                <li><a href="{{ url('/trades/history') }}">مبادلات من</a></li>
                 <li><a href="{{ url('/bank/irr') }}">حساب ها</a></li>
                 <li> | </li>
                 <li><a href="{{ url('/auth/logout') }}"> خروج </a></li>
