@@ -71,6 +71,10 @@
             </div>
         </fieldset>
 
+        <div class="lbl-center">
+            <label>*حساب بانک های ملت و سامان در اولویت قرار دارند.</label>
+        </div>
+
         <div class="form-btn">
             <button type="submit" class="btn-form-normal"> ثبت حساب جدید </button>
         </div>

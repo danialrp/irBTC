@@ -73,7 +73,15 @@ Route::post('/user/update/balance', 'UserController@updateBalance');
 Route::post('/rate/update/btc', 'BlockchainController@postBtcRate');
 
 
-Route::get('/trade/webmoney', 'TradeController@Webmoney');
+Route::get('/contact', 'TradeController@getContact');
+
+Route::get('/privacy', 'TradeController@getPrivacy');
+
+Route::get('/guide', 'TradeController@getGuide');
+
+Route::get('/trade/emoney', 'TradeController@getEmoneyTrade');
+
+Route::get('/exchange', 'TradeController@getExchange');
 
 Route::get('/trade/bitcoin', 'TradeController@Bitcoin');
 
@@ -84,8 +92,6 @@ Route::post('/trade/bitcoin/buy', 'TradeController@buyBitcoin');
 Route::post('/trade/bitcoin/bitcoin-list', 'TradeController@getBitcoinTable');
 
 Route::post('/trade/bitcoin/active-trades', 'TradeController@getBitcoinActiveTrades');
-
-Route::get('/trade/perfectmoney', 'TradeController@Perfectmoney');
 
 Route::get('/trades/active', 'UserController@activeTradesShow');
 

@@ -28,7 +28,7 @@ class TradeController extends Controller
      */
     public function __construct(TradeClass $tradeClass, TradeRepository $tradeRepository)
     {
-        $this->middleware('auth', ['except' => ['Webmoney','Bitcoin','Perfectmoney']]);
+        $this->middleware('auth', ['except' => ['Bitcoin', 'getContact', 'getPrivacy', 'getGuide']]);
         $this->tradeClass = $tradeClass;
         $this->tradeRepository = $tradeRepository;
     }
@@ -179,13 +179,28 @@ class TradeController extends Controller
             return response()->json(['message' => ['برای شروع مبادله باید ابتدا اکانت خود را فعال کنید!']], 422);
     }
 
-    public function Webmoney()
+    public function getContact()
     {
-        return view('trade.webmoney');
+        return view('static.contact');
     }
 
-    public function Perfectmoney()
+    public function getPrivacy()
     {
-        return view('trade.perfectmoney');
+        return view('static.privacy');
+    }
+
+    public function getGuide()
+    {
+        return view('static.guide');
+    }
+
+    public function getExchange()
+    {
+        return view('exchng.exchange');
+    }
+
+    public function getEmoneyTrade()
+    {
+        return view('trade.emoney');
     }
 }

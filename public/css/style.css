@@ -339,7 +339,7 @@ body a:hover {
 #main-content {
     width: 848px;
     height: auto;
-    min-height: 780px;
+    min-height: 785px;
     background: #FFFFFF;
     margin: 2px 252px 0px -1px;
     padding: 0px 0px 7px 0px;
@@ -388,6 +388,19 @@ body a:hover {
 .rate-title {
     font-size: 11px;
     padding: 0px 0px 0px 3px;
+}
+
+.static-content {
+    font-size: 12px;
+    padding: 5px 14px 0px 25px;
+}
+
+.static-content.center {
+    text-align: center;
+}
+
+.static-content p {
+    line-height: 20px;
 }
 
 #box {
@@ -925,7 +938,7 @@ hr {
     margin: 10px 0px 111px;
 }
 
-.comming-soon {
+.coming-soon {
     margin: 14px 10px 772px;
 }
 
@@ -948,6 +961,14 @@ hr {
 }
 
 .numbers {
+    font-family: tahoma !important;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.eng-font {
     font-family: tahoma !important;
 }
 
