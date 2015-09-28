@@ -599,6 +599,12 @@ hr {
     margin: 4px 10px 0px 0px;
 }
 
+.last-trades {
+    width: 825px;
+    border: 1px solid #EBEBEB;
+    margin: 4px 10px 0px 0px;
+}
+
 .form-normal {
     font-size: 13px;
     width: 800px;

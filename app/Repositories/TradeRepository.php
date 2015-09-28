@@ -120,4 +120,14 @@ class TradeRepository {
             ->get();
     }
 
+    public function lastTradeBtc()
+    {
+        return Trade::where('money', 3)
+            ->where('status', 2)
+            ->select('type', 'value', 'amount', 'created_fa')
+            ->orderBy('created_fa', 'desc')
+            ->take(25)
+            ->get();
+    }
+
 }

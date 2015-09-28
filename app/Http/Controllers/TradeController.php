@@ -45,6 +45,7 @@ class TradeController extends Controller
         $total_sell = $open_trades['total_sell'];
         $total_buy = $open_trades['total_buy'];
         $fee = Fee::findOrFail(1);
+        $lastTrades = $this->tradeRepository->lastTradeBtc();
         if(Auth::check())
             $active_trades = $this->tradeRepository->getUserActiveTrade(Auth::user()->id, 3);
 
@@ -55,7 +56,8 @@ class TradeController extends Controller
                 'fee',
                 'total_buy',
                 'total_sell',
-                'active_trades'
+                'active_trades',
+                'lastTrades'
             ])
         );
     }

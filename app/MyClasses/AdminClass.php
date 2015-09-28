@@ -155,16 +155,17 @@ class AdminClass {
     public function updateUserDetail($user_id, AdminManageDetailRequest $request)
     {
         $user = User::where('id', $user_id)->first();
-        $user->fname = $request->fname;
-        $user->lname = $request->lname;
-        $user->nname = $request->nname;
-        if($request->password != '')
+        if( ! $request->password == '')
             $user->password = bcrypt($request->password);
-        $user->email = $request->email;
-        $user->tel = $request->tel;
-        $user->mobile = $request->mobile;
-        $user->address = $request->address;
-        $user->national_number = $request->national_number;
+
+        $request->fname ? $user->fname = $request->fname : $user->fname = null;
+        $request->lname ? $user->lname = $request->lname : $user->lname = null;
+        $request->nname ? $user->nname = $request->nname : $user->nname = null;
+        $request->email ? $user->email = $request->email : $user->email = null;
+        $request->tel ? $user->tel = $request->tel : $user->tel = null;
+        $request->mobile ? $user->mobile = $request->mobile : $user->mobile = null;
+        $request->address ? $user->address = $request->address : $user->address = null;
+        $request->national_number ? $user->national_number = $request->national_number : $user->national_number = null;
         $user->active = $request->active;
         $user->confirmed = $request->confirmed;
         $user->save();

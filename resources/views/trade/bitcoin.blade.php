@@ -93,15 +93,19 @@
 
     </div>
 
-    <div class="trade-fee-show">
-        <label> <span> در حال حاضر کارمزد برای هر مبادله </span> <span> {{ $fee->fee_value * 100 }} </span><span> درصد میباشد. </span> </label>
-    </div>
-
     <div id="active-trades">
         @include('/partial/activeTradeBtc')
     </div>
 
     <div class=" no-active trade-fee-show">
         <label> <span> هیچ مبادله فعالی وجود ندارد.</span></label>
+    </div>
+
+    <div class="trade-fee-show">
+        <label> <span> در حال حاضر کارمزد برای هر مبادله </span> <span> {{ $fee->fee_value * 100 }} </span><span> درصد میباشد. </span> </label>
+    </div>
+
+    <div id="last-trade">
+        @include('/partial/lastTradeBtc')
     </div>
 @stop
