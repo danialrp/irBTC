@@ -28,7 +28,7 @@ class TradeController extends Controller
      */
     public function __construct(TradeClass $tradeClass, TradeRepository $tradeRepository)
     {
-        $this->middleware('auth', ['except' => ['Bitcoin', 'getContact', 'getPrivacy', 'getGuide']]);
+        $this->middleware('auth', ['except' => ['Bitcoin', 'getContact', 'getPrivacy', 'getGuide', 'getEmoneyTrade', 'getExchange']]);
         $this->tradeClass = $tradeClass;
         $this->tradeRepository = $tradeRepository;
     }
