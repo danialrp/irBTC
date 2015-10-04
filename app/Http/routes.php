@@ -81,8 +81,6 @@ Route::get('/guide', 'TradeController@getGuide');
 
 Route::get('/trade/emoney', 'TradeController@getEmoneyTrade');
 
-Route::get('/exchange', 'TradeController@getExchange');
-
 Route::get('/trade/bitcoin', 'TradeController@Bitcoin');
 
 Route::post('/trade/bitcoin/sell', 'TradeController@sellBitcoin');
@@ -104,6 +102,13 @@ Route::get('/trades/history', 'UserController@tradeHistoryShow');
 Route::post('/trades/history', 'UserController@tradeHistory');
 
 Route::post('/trade/update/cancel', 'TradeController@cancelTrade');
+
+
+Route::get('/exchange', 'ExchangeController@getExchange');
+
+Route::post('/exchange/sell', 'ExchangeController@postSell');
+
+Route::post('/exchange/buy', 'ExchangeController@postBuy');
 
 
 Route::get('/iadmin', 'AdminAuthController@getLogin');

@@ -20,6 +20,7 @@ class FeeTableSeeder extends Seeder
             ['id' => 3, 'name' => 'withdraw-btc-fee', 'fa_name' => 'کارمزد برداشت بیتکوین', 'fee_value' => '0.0001', 'description' => 'مقدار ثابت'],
             ['id' => 4, 'name' => 'exchange-fee-p', 'fa_name' => 'کارمزد معاوضه دلار', 'fee_value' => '0.01', 'description' => 'درصد'],
             ['id' => 5, 'name' => 'exchange-fee-c', 'fa_name' => 'کارمزد معاوضه دلار', 'fee_value' => '0', 'description' => 'مقدار ثابت'],
+            ['id' => 6, 'name' => 'exchange-fee-btc', 'fa_name' => 'کارمزد معاوضه بیتکوین', 'fee_value' => '25000', 'description' => 'مقدار ثابت'],
         ]);
     }
 }

@@ -8,19 +8,19 @@
     </div>
     <div id="box">
         <div class="trade-box-right">
-            <label class="trade-box-title"> فروش بیتکوین </label>
+            <div class="trade-box-title"> فروش بیتکوین </div>
             <form id="sell-btc" class="trade-form" role="form" method="POST" action="{{ url('/trade/bitcoin/sell') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="trade-box-element">
                     <label> مقدار </label>
-                    <input type="text" id="sell-amount" class="txt-trade txt-trade-amount numbers" name="sell_amount" placeholder="0.00" >
+                    <input type="text" id="sell-amount" class="txt-trade txt-trade-amount numbers" name="sell_amount" placeholder="0" >
                     <label> بیتکوین </label>
                 </div>
 
                 <div class="trade-box-element">
                     <label> نرخ واحد </label>
-                    <input type="text" id="sell-value" class="txt-trade txt-trade-value numbers" name="sell_value" placeholder="0.00" >
+                    <input type="text" id="sell-value" class="txt-trade txt-trade-value numbers" name="sell_value" placeholder="0" >
                     <label> تومان </label>
                 </div>
 
@@ -48,19 +48,19 @@
         </div>
 
         <div class="trade-box-left">
-            <label class="trade-box-title"> خرید بیتکوین </label>
+            <div class="trade-box-title"> خرید بیتکوین </div>
             <form id="buy-btc" class="trade-form" role="form" method="POST" action="{{ url('/trade/bitcoin/buy') }}">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <div class="trade-box-element">
                     <label> مقدار </label>
-                    <input type="text" id="buy-amount" class="txt-trade txt-trade-amount numbers" name="buy_amount" placeholder="0.00" >
+                    <input type="text" id="buy-amount" class="txt-trade txt-trade-amount numbers" name="buy_amount" placeholder="0" >
                     <label> بیتکوین </label>
                 </div>
 
                 <div class="trade-box-element">
                     <label> نرخ واحد </label>
-                    <input type="text" id="buy-value" class="txt-trade txt-trade-value numbers" name="buy_value" placeholder="0.00" >
+                    <input type="text" id="buy-value" class="txt-trade txt-trade-value numbers" name="buy_value" placeholder="0" >
                     <label> تومان </label>
                 </div>
 

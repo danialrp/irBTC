@@ -17,10 +17,5 @@
             <span id="" class="rate-positive numbers green">+</span>
             <span id="" class="rate-negative numbers red">-</span>
         </li>
-        {{--<li>
-            <span class="rate-up"></span>
-            <span class="rate-down"></span>
-            <span class="rate-title"> میانگین مارکت </span>
-        </li>--}}
     </ul>
 </div>

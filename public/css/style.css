@@ -241,7 +241,7 @@ body a:hover {
 
 #menu ul {
     text-align: center;
-    padding: 10px 0px 0px 0px;
+    padding: 15px 0px 0px 0px;
 }
 
 #menu ul li {
@@ -433,7 +433,7 @@ hr {
     font-size: 14px;
     font-weight: bold;
     line-height: 20px;
-    margin: 0px 4px 0px 0px;
+    margin: 5px 8px 0px 0px;
 }
 
 .trade-form {
@@ -603,6 +603,42 @@ hr {
     width: 825px;
     border: 1px solid #EBEBEB;
     margin: 4px 10px 0px 0px;
+}
+
+.exchange-price {
+    height: 40px;
+    margin: 20px 5px 0px 0px;
+}
+
+.exchange-sell-price {
+    text-align: left;
+    direction: ltr;
+    padding: 0px 0px 0px 34px;
+}
+
+.exchange-value {
+    height: 40px;
+    margin: 0px 5px 0px 0px;
+}
+
+.exchange-sell-value {
+    margin: -9px 207px 0px 0px;
+}
+
+.exchange-value-txt {
+    font-family: "MyYekan" !important;
+    font-size: 13px !important;
+    border: 1px solid #AAA;
+    text-align: left;
+    width: 130px;
+    height: 18px;
+    padding: 0px 0px 0px 4px;
+    direction: ltr;
+}
+
+.exchange-total {
+    height: 40px;
+    margin: 0px 5px 0px 0px;
 }
 
 .form-normal {
