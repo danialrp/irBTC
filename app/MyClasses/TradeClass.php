@@ -96,7 +96,7 @@ class TradeClass {
      * @param $amount
      * @return bool
      */
-    public function checkBalance($id,$money,$type,$amount)
+    public function checkBalance($id, $money, $type, $amount)
     {
         if($type == 1) {
             $balance = Balance::where('owner', $id)->where('money', $money)->first();
