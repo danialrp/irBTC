@@ -1,10 +1,8 @@
-## For portfolio purpose only.
-
-## Using Laravel PHP Framework 5.1
-
-## http://arnetcode.com
-
-## Email:danialrz[at]icloud[dot]com
+## Author note
+For portfolio purpose only.
+Using Laravel PHP Framework 5.1
+website: http://arnetcode.com
+contact:danialrz[at]icloud[dot]com
 
 ## Laravel PHP Framework
 
